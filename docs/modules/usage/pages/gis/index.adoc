@@ -1,7 +1,6 @@
 = Plaintext accounting with GIS
 :page-date: 2019-05-05 00:00:00 Z
 :page-last_modified_at: 2019-05-09 00:00:00 Z
-:page-permalink: /docs/gis/
 
 Tackler supports geographic location with accounting journal and it can use transaction GIS data
 for generating accounting reports.

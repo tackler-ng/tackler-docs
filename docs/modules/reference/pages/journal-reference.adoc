@@ -1,0 +1,3 @@
+= Journal Reference
+
+include::journal:partial$syntax.adoc[]

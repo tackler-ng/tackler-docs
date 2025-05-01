@@ -1,30 +1,7 @@
 = Journal Format
 :page-date: 2019-03-29 00:00:00 Z
 :page-last_modified_at: 2020-12-25 00:00:00 Z
-:page-layout: page
-:page-redirect_from: /docs/journal/format/v2/
 
-
-Tacklers journal is based on idea of link:https://plaintextaccounting.org/[plain text files],
-where each accounting record is written in human readable and editable form into those text files. 
-This idea of text based double-entry accounting was 
-link:https://www.ledger-cli.org/[invented and pioneered] by John Wiegley in 2003.
-
-[NOTE]
-====
-Tackler Ain't Calculator and Kernel for link:http://ledger-cli.org/[Ledger] Equivalent Records. +
-Why not? Because it uses simplified syntax.
-====
-
-
-== Journal files
-
-Journal can be a single file or it can be split on transaction level into multiple files (shards).
-See general link:/docs/journal/[Journal Documentation],
-xref:./sharding.adoc[Transaction Data Sharding],
-xref:../usage.adoc[Usage Manual] and
-xref:../configuration/tackler-conf.adoc[tackler.conf] for further details
-how to define used storage system and ideas for different sharding schemes.
 
 
 == Journal Format Syntax
