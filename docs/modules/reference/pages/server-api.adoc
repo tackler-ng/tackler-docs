@@ -2,9 +2,6 @@
 :page-date: 2019-03-29 00:00:00 Z
 :page-last_modified_at: 2019-09-24 00:00:00 Z
 
-image:/img/scaladoc-core.svg["ScalaDoc: tackler-core", link="https://tackler.e257.fi/scaladoc/fi.e257/tackler-core_2.13/latest/fi/e257/tackler/index.html"]
-image:/img/scaladoc-api.svg[ "ScalaDoc: tackler-api",  link="https://tackler.e257.fi/scaladoc/fi.e257/tackler-api_2.13/latest/fi/e257/tackler/api/index.html"]
-
 This document explains how to embedded Tackler core and use it as a library in other systems.
 
 Tackler operates on stream of immutable transactions and over this
@@ -24,8 +21,8 @@ This is released on Maven Central Repository.
 
 Transactions can be read from three different sources
 
- * From filesystem `fs`-storage xref:./configuration/tackler-conf.adoc[(conf: tackler.core.input.fs)]
- * From xref:./git-storage.adoc[Git] `git`-storage xref:./configuration/tackler-conf.adoc[(conf: tackler.core.input.git)]
+ * From filesystem `fs`-storage xref:reference:tackler-conf.adoc[(conf: tackler.core.input.fs)]
+ * From xref:reference:tackler-conf.adoc[(conf: tackler.core.input.git)]
  * Internally directly from string
 
 All of these inputs produce transaction stream and metadata of that stream. This transaction set (`txnData`)
@@ -36,7 +33,7 @@ and it's companion object's helpers.
 == Filtering transactions
 
 There is an option to filter transactions based on attributes of single transaction.
-See xref:./txn-filters.adoc[Transaction Filters] for general information about these filters.
+See xref:usage:txn-filters.adoc[Transaction Filters] for general information about these filters.
 
 Transaction filter models are defined at
 {gitlink}/api/src/main/scala/fi/e257/tackler/api/TxnFilter.scala[api -> TxnFilter].
@@ -80,7 +77,7 @@ Reports are done in three steps:
 
 === Consuming reports
 
-See xref:./client-api.adoc[Client API] how to use generated reports on client side.
+See xref:reference:client-api.adoc[Client API] how to use generated reports on client side.
 
 
 == Example of usage of Server API

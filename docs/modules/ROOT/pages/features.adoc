@@ -1,59 +1,58 @@
 = Features
 :page-date: 2019-03-29 00:00:00 Z
 :page-last_modified_at: 2019-05-05 00:00:00 Z
-:page-permalink: /features/
 
 
-* Tackler xref:docs/reliability.adoc[is extremely well tested]
+* Tackler xref:ROOT:reliability.adoc[is extremely well tested]
 
-* Integrated xref:docs/journal/git-storage.adoc[version control based journal storage] (and plain files too!)
+* Integrated xref:journal:git-storage.adoc[version control based journal storage] (and plain files too!)
 
-* Can provide Audit Trail for xref:docs/auditing.adoc[Accounting Auditing and Assurance]
+* Can provide Audit Trail for xref:usage:auditing.adoc[Accounting Auditing and Assurance]
 
-* Support for xref:docs/commodities.adoc[Commodities] and xref:docs/currencies.adoc[Currencies]
+* Support for xref:commodities:currencies.adoc[Currencies]
 
 * Can do link:/docs/gis/[Accounting with Geo Location (GIS)]
 
-* xref:docs/configuration/accounts-conf.adoc[Chart of Accounts] with strict account and commodity name validation
+* xref:reference:accounts-conf.adoc[Chart of Accounts] with strict account and commodity name validation
 
-* xref:docs/configuration/tags-conf.adoc[Transaction Tags] with strict name validation
+* xref:reference:tags-conf.adoc[Transaction Tags] with strict name validation
 
-* Clean and simple xref:docs/journal/format.adoc[journal format]
+* Clean and simple xref:journal:format.adoc[journal format]
 
 * Multiple report and export types:
 
-** xref:docs/report-balance.adoc[Balance], xref:docs/report-balance-group.adoc[Balance Groups] and xref:docs/report-register.adoc[Register] Reports
+** xref:reports:report-register.adoc[Register] Reports
 
-** xref:docs/export-equity.adoc[Equity] and xref:docs/export-identity.adoc[Identity] Exports
+** xref:reports:export-identity.adoc[Identity] Exports
 
 
-* xref:docs/txn-filters.adoc[Transaction Filters]
-** Logical operators: xref:docs/txn-filters.adoc#logic-ops[AND, OR, NOT] to combine multiple filters
-** All transaction properties have filters: xref:docs/txn-filters.adoc#ts-begin[Time],
-xref:docs/txn-filters.adoc#txn-code[Code],
-xref:docs/txn-filters.adoc#txn-desc[Description],
-xref:docs/txn-filters.adoc#txn-uuid[UUID],
-xref:docs/txn-filters.adoc#txn-gis[Location (GIS)],
-xref:docs/txn-filters.adoc#txn-tags[Tags],
-xref:docs/txn-filters.adoc#txn-comments[Comments],
+* xref:usage:txn-filters.adoc[Transaction Filters]
+** Logical operators: xref:usage:txn-filters.adoc#logic-ops[AND, OR, NOT] to combine multiple filters
+** All transaction properties have filters: xref:usage:txn-filters.adoc#ts-begin[Time],
+xref:usage:txn-filters.adoc#txn-code[Code],
+xref:usage:txn-filters.adoc#txn-desc[Description],
+xref:usage:txn-filters.adoc#txn-uuid[UUID],
+xref:usage:txn-filters.adoc#txn-gis[Location (GIS)],
+xref:usage:txn-filters.adoc#txn-tags[Tags],
+xref:usage:txn-filters.adoc#txn-comments[Comments],
 ** All posting properties have filters:
-xref:docs/txn-filters.adoc#txn-posting-account[Accounts],
-xref:docs/txn-filters.adoc#txn-posting-amount[Amounts],
-xref:docs/txn-filters.adoc#txn-posting-comment[Comments],
-xref:docs/txn-filters.adoc#txn-posting-commodity[Commodities]
+xref:usage:txn-filters.adoc#txn-posting-account[Accounts],
+xref:usage:txn-filters.adoc#txn-posting-amount[Amounts],
+xref:usage:txn-filters.adoc#txn-posting-comment[Comments],
+xref:usage:txn-filters.adoc#txn-posting-commodity[Commodities]
 
-* Supports wide range of xref:docs/journal/charsets.adoc[Unicode characters, scripts and languages]
+* Supports wide range of xref:reference:charsets.adoc[Unicode characters, scripts and languages]
 
-* Real transaction xref:docs/journal/format.adoc#timestamps[timestamps with timezones and nanosecond] resolution
+* Real transaction xref:journal:format.adoc#timestamps[timestamps with timezones and nanosecond] resolution
 
-* Text and xref:docs/json.adoc[JSON] output formats for reports
+* Text and xref:reference:json.adoc[JSON] output formats for reports
 
-** xref:docs/server-api.adoc[Server API] for embedding Tackler core
+** xref:reference:server-api.adoc[Server API] for embedding Tackler core
 
-** xref:docs/client-api.adoc[Client API] for JVM and JS environments
+** xref:reference:client-api.adoc[Client API] for JVM and JS environments
 
 
-* Has really xref:docs/performance.adoc[good performance]
+* Has really xref:usage:performance.adoc[good performance]
 
 ** Tackler is {gitlink}/perf/results/perf-hw00.adoc[tested up to one million (1E6)] transactions
 

@@ -35,7 +35,7 @@ Tackler is stress and performance tested with up to {gitlink}/perf/readme.adoc[*
 On laptop, tackler can process over 40 000 txn/s. On server systems, tackler can easily read and process 50-60 thousand
 transactions per second.  Tackler's performance scales almost linearly with available CPU and memory.
 
-See xref:./performance.adoc[Performance Overview] for details or {gitlink}/docs/devel/build.adoc[test it yourself].
+See xref:usage:performance.adoc[Performance Overview] for details or {gitlink}/docs/devel/build.adoc[test it yourself].
 
 
 === Tackler Test Tracking Database

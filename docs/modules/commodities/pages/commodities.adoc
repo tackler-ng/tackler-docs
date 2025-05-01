@@ -70,6 +70,6 @@ assuming that 50 liter storage tanks are used.
 == Example
 
 For example see an accounting example for scuba diving
-xref:./examples/trimix-filling-station.adoc[Trimix Filling and Mixing Station].
+xref:examples:trimix-filling-station.adoc[Trimix Filling and Mixing Station].
 It demonstrates how to track different commodities
 and how to convert those commodities to monetary values.

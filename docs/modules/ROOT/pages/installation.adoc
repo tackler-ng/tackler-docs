@@ -9,14 +9,12 @@ To use tackler cli you will need
   * Java Runtime Environment (Tackler requires at least Java 11 to run)
   * Tackler command line binary (`tackler-cli-XX.YY.Z.jar`-file)
 
-Download the latest version of tackler-cli.jar from
-{jarlink}[here] or
-https://gitlab.com/e257/accounting/tackler/blob/main/docs/devel/build.adoc[build it yourself].
+To use an old version of tackler-mk1, you have to https://gitlab.com/e257/accounting/tackler/blob/main/docs/devel/build.adoc[build it yourself].
 
 
 == Minimal setup
 
-Minimal initial installation and setup is described in xref:quickstart.adoc[Quickstart Guide].
+Minimal initial installation and setup is described in xref:ROOT:quickstart.adoc[Quickstart Guide].
 
 Tackler could be used with minimal quickstart setup just fine, but to get most out of it (strict modes, git storage system, Audit trail functinality etc.), it must be configured properly. Below is recommended setup for production use.
 
@@ -50,7 +48,7 @@ Recommended layout and setup (the "installation") would be:
 ----
 
 This setup uses year/month based sharding for transactions (the directory structure under `txns`).  It's up to for each
-system to decide which is xref:./journal/sharding.adoc[the best way to shard transaction data], or not to shard transactions at all.
+system to decide which is xref:journal:sharding.adoc[the best way to shard transaction data], or not to shard transactions at all.
 
 
 === Configuration Settings for Recommended Layout
@@ -86,13 +84,13 @@ tackler {
 
 This setup makes it possible to separate journal setup and data, and store relevant configuration next to transaction data (and possibly under version control).
 
-See xref:./configuration/examples.adoc#backend-fs-or-git[Configuration Example: fs or git] how combine git based transaction storage with this setup.
+See xref:reference:examples.adoc#backend-fs-or-git[Configuration Example: fs or git] how combine git based transaction storage with this setup.
 
 
 ==== accounts.conf
 
 If there is missing or mistyped account, that will cause an error and tackler will stop processing journal.
-See xref:./configuration/accounts-conf.adoc[accounts.conf] for full documentation
+See xref:reference:accounts-conf.adoc[accounts.conf] for full documentation
 of Chart of Accounts and commodity listing.
 
 .journal/conf/accounts.conf
@@ -115,7 +113,7 @@ accounts {
 ==== tags.conf
 
 If there is missing or mistyped tag, that will cause an error and tackler will stop processing journal.
-See xref:./configuration/tags-conf.adoc[tags.conf] for full documentation
+See xref:reference:tags-conf.adoc[tags.conf] for full documentation
 of Chart of Tags.
 
 .journal/conf/tags.conf
@@ -141,12 +139,12 @@ and it will just work.
 
 See reference configuration files for full details:
 
-* xref:./configuration/tackler-conf.adoc[tackler.conf]
-* xref:./configuration/accounts-conf.adoc[accounts.conf]
-* xref:./configuration/tags-conf.adoc[tags.conf]
+* xref:reference:tackler-conf.adoc[tackler.conf]
+* xref:reference:accounts-conf.adoc[accounts.conf]
+* xref:reference:tags-conf.adoc[tags.conf]
 
-xref:./journal/git-storage.adoc[Git Storage Guide] has information how to use integrated version control features with Tackler.
+xref:journal:git-storage.adoc[Git Storage Guide] has information how to use integrated version control features with Tackler.
 
-Git and filesystem based production setup is described in xref:./configuration/examples.adoc#backend-fs-or-git[Configuration Example]
+Git and filesystem based production setup is described in xref:reference:examples.adoc#backend-fs-or-git[Configuration Example]
 
-xref:./journal/sharding.adoc[Transaction Data Sharding] has ideas for different storage schemes.
+xref:journal:sharding.adoc[Transaction Data Sharding] has ideas for different storage schemes.

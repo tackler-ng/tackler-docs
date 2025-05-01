@@ -1,4 +1,4 @@
 * xref:index.adoc[Examples]
-** xref:trimix-filling-station.adoc[]
-** xref:gis-travel-journal.adoc[]
+** xref:examples:trimix-filling-station.adoc[]
+** xref:examples:travel-journal.adoc[]
 ** xref:filter-for-two-accounts.adoc[]

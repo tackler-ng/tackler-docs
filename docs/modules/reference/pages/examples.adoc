@@ -139,7 +139,7 @@ Configuration system
 used by Tackler supports using  environment variables as part of configuration.
 
 Below is an example how to use those for setting shard for report and selecting
-xref:../report-balance-group.adoc[Balance-Group]'s title and groupBy operator.
+xref:reports:report-balance-group.adoc[Balance-Group]'s title and groupBy operator.
 
 [source,hocon]
 .tackler.conf with environment variables

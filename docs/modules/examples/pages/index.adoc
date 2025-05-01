@@ -3,12 +3,12 @@
 :page-last_modified_at: 2025-03-15 00:00:00 Z
 
 
-xref:trimix-filling-station.adoc[Trimix Filling Station]::
+xref:examples:trimix-filling-station.adoc[Trimix Filling Station]::
 
 This examples shows how to use Tackler for accounting and billing system of Trimix Filling station.
 
 
-xref:gis-travel-journal.adoc[GIS based accounting for travel journal]::
+xref:examples:travel-journal.adoc[GIS based accounting for travel journal]::
 
 This is a travel journal example how to utilize plaintext accounting with geographic location data.
 

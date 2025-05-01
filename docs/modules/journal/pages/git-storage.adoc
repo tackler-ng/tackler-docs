@@ -10,10 +10,10 @@ version metadata will be included directly to the generated reports. This also m
 are always made out of well known and well defined state of accounting data.
 
 This provides one key of the immutable audit trail of used accounting data. This audit trail can be printed e.g.
-on paper or transferred directly to accountant or escrow agent. See xref:../auditing.adoc[Accounting Auditing]
+on paper or transferred directly to accountant or escrow agent. See xref:usage:auditing.adoc[Accounting Auditing]
 if there is need for audit trail of used account data.
 
-See xref:./sharding.adoc[Transaction data sharding] for ideas how to store data inside git repository. It is
+See xref:journal:sharding.adoc[Transaction data sharding] for ideas how to store data inside git repository. It is
 really good idea to select feasible way to split up journal, so that possible merge conflicts
 could be kept at minimum.  Tackler supports happily one-transaction - one-journal-file mode.
 
@@ -107,7 +107,7 @@ git push
 cd ..
 ....
 
-Then you have to configure git storage, see xref:../configuration/tackler-conf.adoc[tackler.conf] for full explanation, but it could be as simple as:
+Then you have to configure git storage, see xref:reference:tackler-conf.adoc[tackler.conf] for full explanation, but it could be as simple as:
 
 ....
 cat >> git-storage.conf << EOF
@@ -237,7 +237,7 @@ Total processing time: 2879, parse: 600, reporting: 73
 Notice that Tackler warns you (`FIXED by commit`)
 that you are not anymore following ref and ref's head.
 
-See xref:../usage.adoc#git-storage[Usage Manual] for general instructions
+See xref:usage:index.adoc#git-storage[Usage Manual] for general instructions
 how to use tackler with git.
 
 === Difference between refs and commits

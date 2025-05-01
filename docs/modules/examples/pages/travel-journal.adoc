@@ -1,13 +1,12 @@
 = Travel Journal with Geo Location
 :page-date: 2019-05-05 00:00:00 Z
 :page-last_modified_at: 2019-05-09 00:00:00 Z
-:page-layout: page
 
 This is a travel journal example how to utilize plaintext accounting with
 geographic location data.
 
-See xref:txn-geo-location.adoc[Transaction Geo Location] and
-xref:txn-geo-filters.adoc[Transaction Geo Filters]
+See xref:usage:gis/txn-geo-location.adoc[Transaction Geo Location] and
+xref:usage:gis/txn-geo-filters.adoc[Transaction Geo Filters]
 for full documentation of tackler's GIS features.
 
 
@@ -209,5 +208,5 @@ REGISTER
 ....
 
 
-Usage guide has xref:../usage.adoc#txn-filters-shell[multiple examples] how to use more conveniently
-xref:../txn-filters.adoc[transaction filters] from shell with `base64` ascii armor.
+Usage guide has xref:usage:index.adoc#txn-filters-shell[multiple examples] how to use more conveniently
+xref:usage:txn-filters.adoc[transaction filters] from shell with `base64` ascii armor.

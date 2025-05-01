@@ -1,43 +1,42 @@
 = Tour of Tackler
 :page-date: 2019-03-29 00:00:00 Z
 :page-last_modified_at: 2020-12-28 00:00:00 Z
-:page-permalink: /docs/
 
 
 Here are starting points to get up and running with Tackler.
 
 == Getting started
 
-* xref:docs/quickstart.adoc[Quickstart]
+* xref:ROOT:quickstart.adoc[Quickstart]
 
-* xref:docs/journal/format.adoc[Journal Format]
+* xref:journal:format.adoc[Journal Format]
 
-* xref:docs/installation.adoc[Installation Manual]
+* xref:ROOT:installation.adoc[Installation Manual]
 
-* xref:docs/usage.adoc[Usage Guide]
+* xref:usage:index.adoc[Usage Guide]
 
 
 == Advanced topics
 
-* xref:docs/journal/git-storage.adoc[Version Control Storage Guide]
+* xref:journal:git-storage.adoc[Version Control Storage Guide]
 
 * link:/docs/gis/[Accounting with Geo Location (GIS)]
 
-* xref:docs/txn-filters.adoc[Transaction filters]
+* xref:usage:txn-filters.adoc[Transaction filters]
 
-* xref:docs/currencies.adoc[Currencies, shares ...]
+* xref:commodities:currencies.adoc[Currencies, shares ...]
 
 
 == Examples
 
-* xref:docs/configuration/examples.adoc[Production Setup Configuration]
-* xref:docs/examples/trimix-filling-station.adoc[Trimix Filling Station]
-* xref:docs/gis/example.adoc[Travel Journal with Geographic location]
+* xref:reference:examples.adoc[Production Setup Configuration]
+* xref:examples:trimix-filling-station.adoc[Trimix Filling Station]
+* xref:examples:travel-journal.adoc[Travel Journal with Geographic location]
 
 
 == Embedding Tackler
 
- * xref:docs/server-api.adoc[Server API]
- * xref:docs/client-api.adoc[Client API]
- * xref:docs/json.adoc[JSON Format for Reports and Metadata]
+ * xref:reference:server-api.adoc[Server API]
+ * xref:reference:client-api.adoc[Client API]
+ * xref:reference:json.adoc[JSON Format for Reports and Metadata]
 

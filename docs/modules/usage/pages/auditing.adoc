@@ -31,7 +31,7 @@ Tackler's Git storage backend provides immutable, cryptographic strong evidence 
 This information is included in reports' metadata.  It is also possible to rerun reports based on old,
 original data, and be assured that same data was used for new calculations that was used originally in the past.
 
-See xref:./journal/git-storage.adoc[Git Storage] and xref:#examples[examples] section for further details.
+See xref:journal:git-storage.adoc[Git Storage] and xref:#examples[examples] section for further details.
 
 
 === Proof of used set of transactions
@@ -59,7 +59,7 @@ makes it impossible that transaction would leak into unknown account.
 If accounting system allows usage of undefined accounts and doesn't enforce account name validation, it is possible to
 loose or leak value into unknown, not tracked accounts, even when transactions still balance internally perfectly.
 
-See xref:./configuration/accounts-conf.adoc[accounts.conf] for further info.
+See xref:reference:accounts-conf.adoc[accounts.conf] for further info.
 
 
 === Validation of commodities
@@ -70,7 +70,7 @@ accounts is activated, then it is also activated for commodities at the same tim
 When strict mode is activated, it is possible to set configuration option that allows empty commodities
 (e.g. value posts without unit or commodity).
 
-See xref:./configuration/accounts-conf.adoc[accounts.conf] for further info.
+See xref:reference:accounts-conf.adoc[accounts.conf] for further info.
 
 
 === Proof of used reporting parameters
@@ -96,8 +96,8 @@ with larger data sets.  Tackler's unit tests includes test cases up to one hundr
 
 For further info, see:
 
- * xref:./reliability.adoc[Reliability]
- * xref:./performance.adoc[Overview of Performance testing]
+ * xref:ROOT:reliability.adoc[Reliability]
+ * xref:usage:performance.adoc[Overview of Performance testing]
  * {gitlink}/tests/tests.adoc[Tackler Test Tracking Database (T3DB)]
 
 

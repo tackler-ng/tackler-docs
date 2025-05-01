@@ -12,28 +12,28 @@ To use tackler you have to have
 
 And last but not least you need some transaction data to play with.
 
-If your installation follows xref:installation.adoc#layout[recommended structure],
+If your installation follows xref:ROOT:installation.adoc#layout[recommended structure],
 then you can generate default reports immediately after 
 you put some transaction data under `txns`-directory.
 
 
 == CLI
 
-See xref:installation.adoc[Installation Manual] for minimal setup and recommendations for production setups.
+See xref:ROOT:installation.adoc[Installation Manual] for minimal setup and recommendations for production setups.
 
 After you have installed tackler and you have some transaction data you can run tackler with command:
 
    java -jar tackler-cli.jar
 
-(If you created minimal setup based on xref:installation.adoc[Installation Manual])
+(If you created minimal setup based on xref:ROOT:installation.adoc[Installation Manual])
 
 To skip automatic configuration discovery mechanism, you can provide path 
 to configuration file with `--cfg` argument.
 
    java tackler-cli.jar --cfg=/path/to/my/tackler.conf
 
-See tackler's xref:./configuration.adoc[Configuration Manual],
-xref:./configuration/tackler-conf.adoc[tackler.conf] and xref:./configuration/accounts-conf.adoc[accounts.conf]
+See tackler's xref:reference:index.adoc[Configuration Manual],
+xref:reference:accounts-conf.adoc[accounts.conf]
 for how to configure tackler.
 
 
@@ -127,7 +127,7 @@ Glob to define which files are used as journals. For example:
 * `*.txn` Single folder and shallow directory structure
 * `**.txn` Deep directory structure with some sharding scheme
 
-See xref:./journal/sharding.adoc[Journal Sharding] for discussion of 
+See xref:journal:sharding.adoc[Journal Sharding] for discussion of 
 possible sharding schemes.
 
 
@@ -136,7 +136,7 @@ possible sharding schemes.
 
 Tackler journal data can be read directly from git, even without checkout working copy. 
 
-See xref:./journal/git-storage.adoc[git storage] for full information about git based storage.
+See xref:journal:git-storage.adoc[git storage] for full information about git based storage.
 
 Git storage backend will use by default directory structure based mode.
 If you like to use single journal mode with git, then just put journal in specific directory,
@@ -159,11 +159,11 @@ Use single `commit-id` and tree defined by it. This can not be specified at the 
 `--input.git.dir=<dir-name>`::
 
 Top level directory of transaction data is defined by `dir-name`. All files inside this directory tree
-with xref:./configuration/tackler-conf.adoc[configured] suffix will be used as journal files.
+with xref:reference:tackler-conf.adoc[configured] suffix will be used as journal files.
 
 These options are mutually exclusive with filesystem storage arguments (`input.fs.*`).
 
-See xref:./journal/sharding.adoc[Journal Sharding] for discussion of 
+See xref:journal:sharding.adoc[Journal Sharding] for discussion of 
 possible sharding schemes.
 
 
@@ -176,13 +176,13 @@ If transaction is filtered away by txn filter, it will disappear from all calcul
 The effect is same as if transaction didn't exist in the first place.  Transactions can be filtered based on
 various attributes of single transaction, and different filters can be combined logically together.
 
-For full list of available filters and their syntax, see xref:./txn-filters.adoc[Transaction Filters]
+For full list of available filters and their syntax, see xref:usage:txn-filters.adoc[Transaction Filters]
 document.
 
 
 Transaction filter can be defined by providing filter definition as JSON with `--api-filter-def` option,
 and it can be plain JSON or encoded as base64 string. Base64 encoding will make it easy to use filters
-with xref:./usage.adoc#txn-filters-shell[shell scripts].
+with xref:usage:index.adoc#txn-filters-shell[shell scripts].
 
 Belows is an example of filter to find all transactions where there is "ice-cream"
 on transaction's description field.
@@ -206,7 +206,7 @@ code as starting "#" and description starts as "txn-".
 --api-filter-def '{ "txnFilter": { "TxnFilterAND" : { "txnFilters" : [ { "TxnFilterTxnCode": { "regex": "#.*" } },  { "TxnFilterTxnDescription": { "regex": "txn-.*" } } ] } } }'
 ----
 
-See xref:./txn-filters.adoc[Transaction Filters] for list of all available filters and their syntax.
+See xref:usage:txn-filters.adoc[Transaction Filters] for list of all available filters and their syntax.
 
 
 [[txn-filters-shell]]
@@ -338,28 +338,28 @@ then either Txns must have either `uuid` or unique `time`, `code` or `descriptio
 
 ===== Selecting reports and exports
 
-Produced reports can be selected either by xref:./configuration/tackler-conf.adoc[configuration] or CLI options:
+Produced reports can be selected either by xref:reference:tackler-conf.adoc[configuration] or CLI options:
 
 `--reporting.reports report1 report2 ...`::
 
 Valid options are:
-xref:./report-balance.adoc[`balance`],
-xref:./report-balance-group.adoc[`balance-group`],
-xref:./report-register.adoc[`register`]
+xref:reports:report-balance.adoc[`balance`],
+xref:reports:report-balance-group.adoc[`balance-group`],
+xref:reports:report-register.adoc[`register`]
 
 
 
-Produced exports can be selected either by xref:./configuration/tackler-conf.adoc[configuration] or CLI options:
+Produced exports can be selected either by xref:reference:tackler-conf.adoc[configuration] or CLI options:
 
 
 `--reporting.exports export1 export2`::
 
-valid options are xref:./export-equity.adoc[`equity`] and xref:./export-identity.adoc[`identity`]
+valid options are xref:reports:export-identity.adoc[`identity`]
 
 
 ===== Selecting report formats
 
-Report formats can be selected either by xref:./configuration/tackler-conf.adoc[configuration] or CLI options:
+Report formats can be selected either by xref:reference:tackler-conf.adoc[configuration] or CLI options:
 
 
 `--reporting.formats frmt1 frmt2`::
@@ -394,7 +394,7 @@ reports {
 }
 ....
 
-See xref:./configuration/tackler-conf.adoc[tackler.conf] full documentation.
+See xref:reference:tackler-conf.adoc[tackler.conf] full documentation.
 
 
 ===== Selecting accounts for reports
@@ -406,7 +406,7 @@ Default selection for reports is "all accounts" and it can be done with empty se
 
 [NOTE]
 ====
-See xref:./report-balance.adoc[Balance] and xref:./report-balance-group.adoc[Balance Group]
+See xref:reports:report-balance-group.adoc[Balance Group]
 for details how account selectors affects reports.
 ====
 
@@ -442,14 +442,14 @@ is not printed / outputted at all (balance Group, register report).
 
 ===== Balance Group Report and GroupBy
 
-xref:./report-balance-group.adoc[Balance Group] report is
-like xref:./report-balance.adoc[Balance] report, but it will produce
+xref:reports:report-balance-group.adoc[Balance Group] report is
+like xref:reports:report-balance.adoc[Balance] report, but it will produce
 several sub-reports for group of transactions. Typical examples are Balance report over month
 and Balance Group report by weeks, or Balance report for week and Balance Group report based on iso-week-date or plain date.
 
 Criteria could be: `year`, `month`, `date`, `iso-week`, `iso-week-date`
 
-GroupBy is set by xref:./configuration/tackler-conf.adoc[configuration (tackler.conf)].
+GroupBy is set by xref:reference:tackler-conf.adoc[configuration (tackler.conf)].
 
 
 ==== Output
@@ -467,9 +467,9 @@ Actual file names will be:
 
 For reports:
 
-* `<output>.bal.txt`: xref:./report-balance.adoc[Balance report]
-* `<output>.balgrp.txt`: xref:./report-balance-group.adoc[Balance Groups report]
-* `<output>.reg.txt`: xref:./report-register.adoc[Registry report]
+* `<output>.bal.txt`: xref:reports:report-balance.adoc[Balance report]
+* `<output>.balgrp.txt`: xref:reports:report-balance-group.adoc[Balance Groups report]
+* `<output>.reg.txt`: xref:reports:report-register.adoc[Registry report]
 
 For exports:
 
@@ -481,5 +481,5 @@ Exports are special reports, which are valid input for Tackler.
 
 == Accounting Auditing and Assurance
 
-See document xref:./auditing.adoc[Accounting Auditing and Assurance] for information how Tackler reports could support
+See document xref:usage:auditing.adoc[Accounting Auditing and Assurance] for information how Tackler reports could support
 accounting auditing and assurance actions.

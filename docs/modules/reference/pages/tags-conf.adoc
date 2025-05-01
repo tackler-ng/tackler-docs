@@ -5,7 +5,7 @@
 The tags.conf contains Chart of Tags for Tackler. If strict mode is activated for tags,
 then all tags must be defined in chart of tags. If not, that's fatal error.
 
-See xref:./tackler-conf.adoc[tackler.conf] for tackler's general configuration
+See xref:reference:tackler-conf.adoc[tackler.conf] for tackler's general configuration
 and xref:./accounts-conf.adoc[accounts.conf] for accounts configuration.
 
 File format is

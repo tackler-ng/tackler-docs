@@ -1,9 +1,3 @@
-= Journal Format
-:page-date: 2019-03-29 00:00:00 Z
-:page-last_modified_at: 2020-12-25 00:00:00 Z
-
-
-
 == Journal Format Syntax
 
 
@@ -28,7 +22,7 @@
 | This is sequence of Transactions (Txns). There could one
 or many Txns per input file.
 
-See xref:./sharding.adoc[Transaction data sharding] for ideas
+See xref:journal:sharding.adoc[Transaction data sharding] for ideas
 how to store journal.
 
 | Basic transaction
@@ -72,7 +66,7 @@ e.g.
 | These are link:https://en.wikipedia.org/wiki/ISO_8601[ISO-8601] dates and times with up to nanosecond resolution.
 
 * If time part is missing then `00:00:00` is used.
-* If Offset is missing then offset based on xref:../configuration/tackler-conf.adoc[configured] timezone/offset is used.
+* If Offset is missing then offset based on xref:reference:tackler-conf.adoc[configured] timezone/offset is used.
 
 | Transaction code
 |
@@ -137,14 +131,14 @@ Expenses:風:空
 Credit_Card:1234567890
 ----
 | Top-account names must begin with a UTF-8 letter or sign
-(xref:./charsets.adoc[over 130 languages and code blocks are supported]).
+(xref:reference:charsets.adoc[over 130 languages and code blocks are supported]).
 Then letters, digits, middle dot `·`, hyphen `-`, underscore `_` are allowed in account names,
 but no spaces. +
  +
 Sub-accounts are separated by `:`. Sub-accounts can start with numbers and be all numeric. +
  +
 All accounts must be declared in Chart of Accounts, or `accounts.strict` must be set to `false`.
-See xref:../configuration/accounts-conf.adoc[accounts.conf] for full details.
+See xref:reference:accounts-conf.adoc[accounts.conf] for full details.
 
 
 | Amounts
@@ -160,7 +154,7 @@ Output truncation:
 ----
 | 
 Default *output* scale is is between 2..7 decimal points.  This is can be configured 
-by `reporting.scale.{min, max}` in xref:../configuration/tackler-conf.adoc[tackler.conf].
+by `reporting.scale.{min, max}` in xref:reference:tackler-conf.adoc[tackler.conf].
 
 Tackler uses decimal floating-point numbers of arbitrary precision for calculations.
 
@@ -178,14 +172,14 @@ Tackler uses decimal floating-point numbers of arbitrary precision for calculati
    Gas:He:Stogare·Tank:102 -273 He·bar
    Mixer:diverX:He
 ----
-|xref:../commodities.adoc[Commodity] names begin with a UTF-8 letter. Then
+|xref:commodities:commodities.adoc[Commodity] names begin with a UTF-8 letter. Then
 letters, digits, middle dot `·`, hyphen `-` and underscore `_` are allowed,
 but no spaces. +
  +
 All commodities must be defined in strict-mode.
 Commodity is mandatory in strict mode if
 `permit-empty-commodity` is not true.
-See xref:../configuration/accounts-conf.adoc[accounts.conf] for full details.
+See xref:reference:accounts-conf.adoc[accounts.conf] for full details.
 
 | Value positions
 | [[value-pos]]
@@ -200,7 +194,7 @@ See xref:../configuration/accounts-conf.adoc[accounts.conf] for full details.
 ----
 | Optional value position for posting +
 This is mandatory for mixed commodity transaction,
-see xref:../currencies.adoc[Currencies].
+see xref:commodities:currencies.adoc[Currencies].
 
 | PnL: Opening position
 |
@@ -211,7 +205,7 @@ see xref:../currencies.adoc[Currencies].
 ----
 | Optional opening position for posting +
 Currently opening position is valid input, but it is not used.
-This is planned feature. See xref:../currencies.adoc[Currencies]
+This is planned feature. See xref:commodities:currencies.adoc[Currencies]
 
 
 | Metadata: UUID
@@ -226,13 +220,13 @@ This is planned feature. See xref:../currencies.adoc[Currencies]
 This is transaction's unique identifier (link:https://en.wikipedia.org/wiki/Universally_unique_identifier[UUID]). +
  +
 Transaction UUID is mandatory if `txn-set-checksum` calculation is activated.
-See xref:../auditing.adoc[Accounting Auditing] and xref:../configuration/tackler-conf.adoc[tackler.conf]
+See xref:reference:tackler-conf.adoc[tackler.conf]
 for further information. +
  +
 Transactions must have UUIDs, if deterministic, stable
 and "distributed transaction producers"-proof sort order is needed
-for xref:../report-register.adoc[register report]
-or xref:../export-identity.adoc[identity export].
+for xref:reports:report-register.adoc[register report]
+or xref:reports:export-identity.adoc[identity export].
 
 | Metadata: Location
 |
@@ -242,7 +236,7 @@ or xref:../export-identity.adoc[identity export].
  Expenses:Ice_cream 2.12
  Assets:Cash
 ----
-| Optional xref:../gis/txn-geo-location.adoc[Geo Location for Transaction] +
+| Optional xref:usage:gis/txn-geo-location.adoc[Geo Location for Transaction] +
 Since v0.31
 
 
@@ -256,7 +250,7 @@ Since v0.31
 ----
 | Optional transaction tags +
 Txn tags could be used select subselection of txns for reports.
-See: xref:../txn-filters.adoc#txn-tags[Txn Tag Filters] +
+See: xref:usage:txn-filters.adoc#txn-tags[Txn Tag Filters] +
 Since v0.34
 
 | Comments

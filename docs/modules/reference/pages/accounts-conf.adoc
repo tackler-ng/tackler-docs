@@ -5,7 +5,7 @@
 accounts.conf contains Chart of Accounts (CoA) for Tackler,
 and other accounts and commodities related settings.
 
-See xref:./tackler-conf.adoc[tackler.conf] for tackler's general configuration
+See xref:reference:tackler-conf.adoc[tackler.conf] for tackler's general configuration
 and xref:./tags-conf.adoc[tags.conf] for defining transaction tags.
 
 File format is 

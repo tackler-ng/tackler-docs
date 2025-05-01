@@ -1,2 +1,2 @@
-* xref:commodities.adoc[]
-** xref:currencies.adoc[]
+* xref:commodities:commodities.adoc[]
+** xref:commodities:currencies.adoc[]

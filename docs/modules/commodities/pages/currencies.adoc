@@ -2,14 +2,14 @@
 :page-date: 2019-03-29 00:00:00 Z
 :page-last_modified_at: 2019-03-29 00:00:00 Z
 
-Currencies and shares are special xref:./commodities.adoc[commodities] which have value without unit of measurement.
+Currencies and shares are special xref:commodities:commodities.adoc[commodities] which have value without unit of measurement.
 
 Examples of currencies and shares are: EUR, USD, NOKIA, etc. Currencies
 and shares could be used as plain values without quantity unit.
 
 Currency and share name has to be  a valid `ID` element (same rules applies as with account names).
 Examples of valid names  are `€`, `$`, `¥`, `ACME·INC`, `EUR`, etc. See
-xref:./journal/charsets.adoc[Character Sets] for full list of all supported signs, scripts and languages.
+xref:reference:charsets.adoc[Character Sets] for full list of all supported signs, scripts and languages.
 
 
 == Transactions with mixed currencies or shares

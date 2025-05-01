@@ -22,8 +22,8 @@ REGISTER
 Register report will list for each transaction its date, code and txn subject (note).
 Also it will report metadata, e.g. `uuid` and `location` if transaction has these.
 
-Register report will print out xref:./gis/txn-geo-location.adoc[transaction geo location]
-and uuid for xref:./auditing.adoc[accounting auditing] if transaction has set location or uuid.
+Register report will print out xref:usage:gis/txn-geo-location.adoc[transaction geo location]
+and uuid for xref:usage:auditing.adoc[accounting auditing] if transaction has set location or uuid.
 
 On the right side of report, first column is posting amount for account on that transaction.
 Second column on the right side is running total of that account with reported transactions.
@@ -61,7 +61,7 @@ but actual value of timestamp is used for determining sort order always.
 
 == Register report configuration
 
-See xref:./configuration/tackler-conf.adoc[tackler.conf] and `reports.register.*` for full
+See xref:reference:tackler-conf.adoc[tackler.conf] and `reports.register.*` for full
 information of register report configuration options.
 
 === Timestamps in register report
@@ -96,7 +96,7 @@ setting (conf-only).
 If there are no accounts matched with selected regexs with some transaction,
 then that transaction is not is not printed / outputted at all.
 
-See 'timezone', 'report-timezone' options in xref:./tackler-conf.adoc[tackler.conf].
+See 'timezone', 'report-timezone' options in xref:reference:tackler-conf.adoc[tackler.conf].
 
 
 == Example reports
@@ -106,7 +106,7 @@ Below are links to example register reports:
 * Register reports with link:/docs/gis/[geo location information]
 ** {repolink}/tests/location/ok/basic-01.ref.reg.txt[Register report with Geo Location]
 ** {repolink}/tests/location/ok/basic-01.ref.reg.json[Register JSON report with Geo Location]
-* Register reports with xref:auditing.adoc[audit metadata]
+* Register reports with xref:usage:auditing.adoc[audit metadata]
 ** {repolink}/tests/audit/ok/audit-1E2-04.ref.reg.txt/[Register report with audit metadata]
 ** {repolink}/tests/audit/ok/audit-1E2-04.ref.reg.json/[Register JSON report with audit metadata]
 * Register reports with Transaction Tags

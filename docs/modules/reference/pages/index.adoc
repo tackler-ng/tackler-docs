@@ -1,16 +1,15 @@
 = Configuration Manual
 :page-date: 2019-03-29 00:00:00 Z
 :page-last_modified_at: 2020-12-25 00:00:00 Z
-:page-permalink: /docs/configuration/
 
 Tackler configuration is controlled by configuration files and command line options.
 
 == Reference configuration and examples
 
-* Reference configuration file: xref:./configuration/tackler-conf.adoc[tackler.conf]
-* Account name rules and example accounts: xref:./configuration/accounts-conf.adoc[accounts.conf]
-* Transaction Tag names: xref:./configuration/tags-conf.adoc[tags.conf]
-* Examples for production systems: xref:./configuration/examples.adoc[Example Setups]
+* Reference configuration file: xref:reference:tackler-conf.adoc[tackler.conf]
+* Account name rules and example accounts: xref:reference:accounts-conf.adoc[accounts.conf]
+* Transaction Tag names: xref:reference:tags-conf.adoc[tags.conf]
+* Examples for production systems: xref:reference:examples.adoc[Example Setups]
 
 
 == Configuration discovery

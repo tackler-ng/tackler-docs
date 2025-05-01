@@ -6,8 +6,8 @@ This is an example of transaction filter to find card payments from journal.
 
 Further info:
 
-* xref:../txn-filters.adoc[Transaction Filters]
-* xref:../usage.adoc#txn-filters-shell[Transaction filters with shell scripts]
+* xref:usage:txn-filters.adoc[Transaction Filters]
+* xref:usage:index.adoc#txn-filters-shell[Transaction filters with shell scripts]
 
 == Journal
 

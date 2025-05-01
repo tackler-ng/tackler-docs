@@ -1,7 +1,6 @@
 = Quickstart
 :page-date: 2019-03-29 00:00:00 Z
 :page-last_modified_at: 2021-01-03 00:00:00 Z
-:page-permalink: /docs/quickstart/
 
 
 This is minimal quickstart setup for Tackler.
@@ -9,12 +8,12 @@ This is minimal quickstart setup for Tackler.
 [NOTE]
 ====
 See
-xref:./journal/format.adoc[Journal Format],
-xref:./installation.adoc[Installation Manual],
-xref:./usage.adoc[Usage Guide],
-xref:./configuration/tackler-conf.adoc[tackler.conf],
-xref:./configuration/accounts-conf.adoc[accounts.conf] and
-xref:./configuration/examples.adoc[Configuration Examples]
+xref:journal:format.adoc[Journal Format],
+xref:ROOT:installation.adoc[Installation Manual],
+xref:usage:index.adoc[Usage Guide],
+xref:reference:tackler-conf.adoc[tackler.conf],
+xref:reference:accounts-conf.adoc[accounts.conf] and
+xref:reference:examples.adoc[Configuration Examples]
 for how to configure tackler and use it with full-fledged production setup.
 ====
 
@@ -23,8 +22,7 @@ for how to configure tackler and use it with full-fledged production setup.
 
 === 0. Get tackler-cli.jar
 
-Download tackler-cli.jar from {jarlink}[here] or
-https://gitlab.com/e257/accounting/tackler/blob/main/docs/devel/build.adoc[build it yourself].
+To use an old version of tackler-mk1, you have to https://gitlab.com/e257/accounting/tackler/blob/main/docs/devel/build.adoc[build it yourself].
 
 
 === 1. Make directory structure for demo setup
@@ -84,7 +82,7 @@ so there must be some transactions to play with it.
 java -jar ./tackler-cli.jar --accounts.strict=false
 ----
 
-==== 4.1. Resulting xref:./report-balance.adoc[Balance] and xref:./report-register.adoc[Register] Reports
+==== 4.1. Resulting xref:reports:report-register.adoc[Register] Reports
 
 [source]
 ----
@@ -121,10 +119,10 @@ Total processing time: 1284, parse: 464, reporting: 80
 ----
 
 See
-xref:./journal/format.adoc[Journal Format],
-xref:./installation.adoc[Installation Manual],
-xref:./usage.adoc[Usage Guide],
-xref:./configuration/tackler-conf.adoc[tackler.conf],
-xref:./configuration/accounts-conf.adoc[accounts.conf] and
-xref:./configuration/examples.adoc[Configuration Examples]
+xref:journal:format.adoc[Journal Format],
+xref:ROOT:installation.adoc[Installation Manual],
+xref:usage:index.adoc[Usage Guide],
+xref:reference:tackler-conf.adoc[tackler.conf],
+xref:reference:accounts-conf.adoc[accounts.conf] and
+xref:reference:examples.adoc[Configuration Examples]
 how to configure tackler and use it with full-fledged production setup.

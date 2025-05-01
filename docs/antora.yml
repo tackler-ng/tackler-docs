@@ -1,0 +1,18 @@
+name: tackler
+title: Tackler
+version: 22.12.2
+#version: 
+start_page: tour-of-tackler.adoc
+asciidoc:
+  attributes:
+    source-language: text@
+    table-caption: false
+nav:
+- modules/ROOT/nav.adoc
+- modules/journal/nav.adoc
+- modules/usage/nav.adoc
+- modules/reports/nav.adoc
+- modules/commodities/nav.adoc
+- modules/reference/nav.adoc
+- modules/examples/nav.adoc
+- modules/ROOT/governance.adoc

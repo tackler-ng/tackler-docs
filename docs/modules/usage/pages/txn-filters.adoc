@@ -7,7 +7,7 @@ Transaction stream can be filtered to select which transactions are part of repo
 Transaction stream can be filtered based on several attributes of single transaction.
 If transaction is not included into stream and it is filtered out,
 then all data regarding that transaction will not be used with any calculation.
-It is also possible to filter transactions based on xref:journal/sharding.adoc#shard-filters[sharding scheme].
+It is also possible to filter transactions based on xref:journal:sharding.adoc#shard-filters[sharding scheme].
 
 Transaction filters can be combined with logical `AND`, `OR` and `NOT` operations and
 it is possible to create filter trees by combining logical filters and filters
@@ -15,10 +15,10 @@ for single transactions.
 
 Usage of transaction filters:
 
-* See xref:./usage.adoc#txn-filters[Usage Guide] for using transaction filters with
+* See xref:usage:index.adoc#txn-filters[Usage Guide] for using transaction filters with
 `tackler-cli.jar` CLI application
-* See xref:./server-api.adoc[Server API document] for using transaction filters with embedded `tackler-core`
-* See xref:./client-api.adoc[Client API document] for data model of transaction filters for JS/JVM `tackler-api`
+* See xref:reference:server-api.adoc[Server API document] for using transaction filters with embedded `tackler-core`
+* See xref:reference:client-api.adoc[Client API document] for data model of transaction filters for JS/JVM `tackler-api`
 * For actual definition of transaction filters, keep reading this document
 
 == Logical transaction filters
@@ -193,7 +193,7 @@ Txn UUID filter selects transactions which UUID is same as specified.
 ===== Geo Location
 
 Transaction Geo Filters selects transactions which geographic location is inside Bounding Box defined by the filter.
-See xref:gis/txn-geo-filters.adoc[Transaction Geo Filters] documentation for how these filters selects transactions.
+See xref:usage:gis/txn-geo-filters.adoc[Transaction Geo Filters] documentation for how these filters selects transactions.
 
 .2D Bounding Box (Latitude, Longitude)
 [source,json]

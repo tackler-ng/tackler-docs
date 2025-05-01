@@ -11,7 +11,7 @@ to user by UI as they are without further processing or data formatting.
 
 JSON output does not contain null values, e.g. if field is null, it is dropped.
 
-xref:./client-api.adoc[Client API] lists used data models for JSON serialization.
+xref:reference:client-api.adoc[Client API] lists used data models for JSON serialization.
 
 == Example reports
 

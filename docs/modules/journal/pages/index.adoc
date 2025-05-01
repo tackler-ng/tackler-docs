@@ -1,7 +1,6 @@
 = Journal
 :page-date: 2019-03-29 00:00:00 Z
 :page-last_modified_at: 2019-04-22 00:00:00 Z
-:page-permalink: /docs/journal/
 
 
 Tackler supports journals on plain filesystem and on git repository.
@@ -9,11 +8,11 @@ Tackler supports journals on plain filesystem and on git repository.
 Tackler can use journal from single file or journal could be split into multiple different files. 
 There are options to configure directory setup from where tackler will scan journal files.
 
-See xref:./journal/sharding.adoc[Transaction data sharding] for information of possible ways to 
-shard transaction data, and xref:./journal/format.adoc[Journal Format] for description of journal syntax.
+See xref:journal:sharding.adoc[Transaction data sharding] for information of possible ways to 
+shard transaction data, and xref:journal:format.adoc[Journal Format] for description of journal syntax.
 
 Tackler accepts over 130 different languages, script and sign unicode blocks as valid account
-and commodity names, see xref:./journal/charsets.adoc[Character Set] document for detailed information about
+and commodity names, see xref:reference:charsets.adoc[Character Set] document for detailed information about
 valid character sets.
 
 
@@ -31,12 +30,12 @@ because used journal is always in committed state.
 Tackler also includes used commit id  into reports.
 
 For full details and examples, 
-see xref:./journal/git-storage.adoc[Git Storage Manual]
-and xref:./auditing.adoc[Accounting Auditing], 
+see xref:journal:git-storage.adoc[Git Storage Manual]
+and xref:usage:auditing.adoc[Accounting Auditing], 
 
 
 == Filesystem storage
 
 Journal is read directly from filesystem storage as plain file or set of files, 
-when filesystem storage is used. See xref:./installation.adoc[Installation Manual] 
+when filesystem storage is used. See xref:ROOT:installation.adoc[Installation Manual] 
 for further info.
