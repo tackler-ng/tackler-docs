@@ -1,0 +1,79 @@
+= Price Database
+:page-date: 2025-01-01 07:00:00 Z
+:page-last_modified_at: 2025-04-04 00:00:00 Z
+
+
+[NOTE]
+====
+See link:/docs/price/[Commodity Price Manual] how to do Market Value analysis with commodities.
+====
+
+PriceDB is file format used to store market value (prices) of commodities, shares and currency exchange rates at certain point of time.  The syntax is simple and there are ready-to-use data sources available, for example link:https://github.com/kantord/pricedb[pricedb] currency rate database. There are also external link:https://plaintextaccounting.org/#price-fetching[PTA price fetching] tools to collect price data from various sources.
+
+
+== Configuration
+
+Location of the pricedb is defined either by `price` section in
+link:/docs/configuration/tackler-toml/[tackler.toml] or by CLI.
+
+.PriceDB and Report commodity settings in tackler.toml
+----
+[price]
+db-path = "journal/txns/price.db"
+lookup-type = "last-price"
+...
+[Report]
+commodity = "TCKLR"
+----
+
+The CLI option is `--pricedb`, see `tackler --help` for all price related CLI options: `--report.commodity`, `--price.lookup-type` and `--price.before`
+
+
+== File Format
+
+Used pricedb file format is compatible with other PTA tools (e.g. link:https://ledger-cli.org/[Ledger],
+https://hledger.org/[hledger]
+and link:https://github.com/kantord/pricedb[pricedb] currency rate database).
+
+This is an example of EUR to CAD rate:
+
+----
+P 2025-03-07 EUR 1.5566 CAD ; The official rate of ECB
+----
+
+Above is an example of one record of currency rate of EUR to CAD, as rated by the Central Bank of Europe on Mar 7th 2025.
+
+== Syntax
+
+Each pricedb record is one row, containing space separated fields:
+
+----
+'P' TIMESTAMP SRC_COMMODITY AMOUNT TRG_COMMODITY OPT_COMMENT
+'P' ...
+----
+
+
+
+TIMESTAMP :: This is the time of price value (rate) when it was rated. See xref:timestamp[] for info about various timestamp formats.
+
+SRC_COMMODITY :: This is the source commodity of price conversion
+
+AMOUNT :: This is the rate of conversion (one source commodity in the target commodity)
+
+TRG_COMMODITY :: This is the target commodity of the conversion
+
+OPT_COMMENT (optional):: Optional comment for price record. It's prefixed with `';' space+`. This syntax is same as with link:/doc/journal/format/[Txn comments].
+
+
+[[timestamp]]
+=== Timestamp handling
+
+The `timestamp` will use the same logic as link:/docs/journal/format/[transaction timestamps]:
+
+Timestamp could be:
+
+* RFC3339 timestamp with offset information (`2024-12-31T14:15:16+02:00`)
+* Timestamp without zone or offset (`2024-12-31T14:15:16`), then the `kernel.timestamp.timezone` value is used as zone/offset.
+* Date (`2024-12-31`), then `kernel.timestamp.default-time` is used with `kernel.timestamp.timezone`.
+
+The resulting timestamp has always time and offset.

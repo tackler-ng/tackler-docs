@@ -1,33 +1,41 @@
 = Features
 :page-date: 2019-03-29 00:00:00 Z
-:page-last_modified_at: 2019-05-05 00:00:00 Z
+:page-last_modified_at: 2025-04-18 00:00:00 Z
 
+* Tackler has excellent performance - it can process xref:usage:performance.adoc[700_000 txn/s] on modern laptop
 
-* Tackler xref:ROOT:reliability.adoc[is extremely well tested]
+* Tackler is written in link:https://www.rust-lang.org/[Rust] and it's xref:reliability.adoc[well tested]
 
-* Integrated xref:journal:git-storage.adoc[version control based journal storage] (and plain files too!)
+* Integrated xref:journal:git-storage.adoc[journal storage with Git SCM] (and plain files too!)
 
-* Can provide Audit Trail for xref:usage:auditing.adoc[Accounting Auditing and Assurance]
+* Support for xref:commodities:commodities.adoc[Commodities], xref:commodities:currencies.adoc[Currencies and Shares]
+** Commodity xref:journal:pricedb.adoc[Price Database] support
+** link:commodities:price.adoc[Mark-to-Market (MTM)] and other valuation analysis methods
+*** xref:commodities:price/current-market-value.adoc[Current Market Value]
+*** xref:commodities:price/historic-market-value.adoc[Historic Market Value]
+*** xref:commodities:price/variable-market-value.adoc[Variable Market Value]
 
-* Support for xref:commodities:currencies.adoc[Currencies]
+* Audit trail for xref:usage:auditing.adoc[Accounting Auditing]
 
-* Can do link:/docs/gis/[Accounting with Geo Location (GIS)]
+* Accounting based on link:usage:gis/index.adoc[Geo Location (GIS)]
 
-* xref:reference:accounts-conf.adoc[Chart of Accounts] with strict account and commodity name validation
+* xref:reference:accounts-toml.adoc[Chart of Accounts] with strict account and xref:reference:commodities-toml.adoc[commodity name] validation
 
-* xref:reference:tags-conf.adoc[Transaction Tags] with strict name validation
+* xref:reference:tags-toml.adoc[Transaction Tags] with strict name validation
 
-* Clean and simple xref:journal:format.adoc[journal format]
+* Logical and simple xref:journal:format.adoc[journal format]
 
 * Multiple report and export types:
 
-** xref:reports:report-register.adoc[Register] Reports
+** xref:reports:report-balance.adoc[Balance], 
+xref:reports:report-balance-group.adoc[Balance Groups] 
+and xref:reports:report-register.adoc[Register] Reports
 
-** xref:reports:export-identity.adoc[Identity] Exports
+** xref:reports:export-equity.adoc[Equity] and xref:reports:export-identity.adoc[Identity] Exports
 
 
 * xref:usage:txn-filters.adoc[Transaction Filters]
-** Logical operators: xref:usage:txn-filters.adoc#logic-ops[AND, OR, NOT] to combine multiple filters
+** Logical operators xref:usage:txn-filters.adoc#logic-ops[AND, OR, NOT] to combine multiple filters
 ** All transaction properties have filters: xref:usage:txn-filters.adoc#ts-begin[Time],
 xref:usage:txn-filters.adoc#txn-code[Code],
 xref:usage:txn-filters.adoc#txn-desc[Description],
@@ -41,23 +49,12 @@ xref:usage:txn-filters.adoc#txn-posting-amount[Amounts],
 xref:usage:txn-filters.adoc#txn-posting-comment[Comments],
 xref:usage:txn-filters.adoc#txn-posting-commodity[Commodities]
 
-* Supports wide range of xref:reference:charsets.adoc[Unicode characters, scripts and languages]
+* Supports wide range of xrefreference:charsets.adoc[Unicode characters, scripts and languages]
 
-* Real transaction xref:journal:format.adoc#timestamps[timestamps with timezones and nanosecond] resolution
+* Support for real xref:journal:format.adoc#timestamps[transaction timestamps]
+** Plain dates
+** Civil date and time up to nanosecond resolution (without timezones)
+** Support for timezones
 
-* Text and xref:reference:json.adoc[JSON] output formats for reports
-
-** xref:reference:server-api.adoc[Server API] for embedding Tackler core
-
-** xref:reference:client-api.adoc[Client API] for JVM and JS environments
-
-
-* Has really xref:usage:performance.adoc[good performance]
-
-** Tackler is {gitlink}/perf/results/perf-hw00.adoc[tested up to one million (1E6)] transactions
-
-** Tackler can read and process {gitlink}/perf/results/readme.adoc[42_000 txn/s] on normal laptop computer
-
-
-* Tackler has link:/docs/[extensive documentation] for users and developers
+* Tackler has extensive link:/docs/[user and developer documentation]
 

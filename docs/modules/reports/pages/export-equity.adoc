@@ -1,6 +1,6 @@
 = Equity export
 :page-date: 2019-03-29 00:00:00 Z
-:page-last_modified_at: 2019-03-29 00:00:00 Z
+:page-last_modified_at: 2024-12-01 00:00:00 Z
 
 Equity export produces a transaction which records
 current state of accounts.
@@ -8,14 +8,14 @@ current state of accounts.
 == Equity export configuration
 
 
-See xref:reference:tackler-conf.adoc[tackler.conf] and `exports.equity.*` for full
-information of register report configuration options.
+See xref:reference:tackler-toml.adoc[tackler.toml] and `export.equity.*` for full
+information of equity export configuration options.
 
 === Account filtering
 
-Accounts for Equity report can be filtered with global 
-`reporting.accounts` (conf+cli) or export specific `exports.equity.accounts`
-setting (conf-only).
+Accounts for Equity report can be filtered with cli option `--accounts`,
+global `report.accounts`  or export specific `export.equity.accounts`
+setting.
 
 
 == Metadata
@@ -32,6 +32,6 @@ field.
 
 == Example export
 
-See {repolink}/tests/audit/ok/audit-1E2-04.ref.equity.txn/[Equity export with audit metadata]
+See {repolink}/suite/audit/ok/audit-1E2-04.ref.equity.txn/[Equity export with audit metadata]
 for example of equity report with full metadata.
 

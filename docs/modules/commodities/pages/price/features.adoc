@@ -1,0 +1,62 @@
+= Commodity Price Data Features
+:page-date: 2025-01-01 00:00:00 Z
+:page-last_modified_at: 2025-03-15 00:00:00 Z
+
+
+== Supported features
+
+* link:/docs/journal/pricedb/[PriceDB format]
+  ** With date, datetime and timezone support
+  ** datetime up to nanosecond resolution
+
+* Multiple price lookup methods:
+  ** xref:./current-market-value.adoc[Current Market Value]
+  ** xref:./historic-market-value.adoc[Historic Market Value]
+  ** xref:./variable-market-value.adoc[Variable Market Value]
+
+
+
+== Unsupported features
+
+=== Fixed conversions
+
+Currently the price data conversion does not support directly unit conversions,
+e.g. oz to g, gallons to litres, etc.
+
+Hoever, there is a workaround to be define a conversion with prehistoric timestamp value:
+
+----
+P 0000-00-00 g 0.035274 oz ; g -> oz
+P 0000-00-00 kg 2.205 lb ; kg -> lb
+P 0000-00-00 km 0.621371 mi; km -> mi
+----
+
+
+=== Inverted prices
+
+Inverted prices are not supported. This means there is no automatic conversions from  `CAD` to `EUR` when there is
+a valid conversion from  `EUR` to `CAD`.  The reason is that these conversions are never well-defined in real life,
+not by accuracy, and not by real prices.
+
+When there is need for bi-directional rates, both rates must be defined.
+
+.PriceDB with bi-directional rates
+----
+P 2025-01-07 EUR 1.5566 CAD
+P 2025-01-07 CAD 0.6424 EUR ; 1/1.5566 ~ 0.6424; Normally there is official inverted rate
+----
+
+
+=== Price conversion chains
+
+Price conversions chains are not supported. For example, this conversion from EUR to CAD via SEK and NOK is not supported. So with following pricedb, there it's not possible to convert `EUR` to `CAD`, even when there is route via
+`EUR` -> `SEK` -> `NOK` -> `CAD`.
+
+.PriceDB without direct EUR to CAD rate
+----
+P 2025-01-07 EUR 11.50 SEK
+P 2025-01-07 SEK  1.02 NOK
+P 2025-01-07 NOK  0.09 CAD ; EUR->SEK->NOK->CAD = 1.055700; The real rate is 1.02
+----
+
+Again, the reason is that these conversions are never well-defined in real life, and they could provide surprising results, especially when these would be mixed with direct conversion rates.

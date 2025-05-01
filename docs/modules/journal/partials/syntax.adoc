@@ -1,4 +1,4 @@
-== Journal Format Syntax
+== Tackler Journal Format
 
 
 [cols="1,5a,3a", options="header"]
@@ -65,8 +65,8 @@ e.g.
 ----
 | These are link:https://en.wikipedia.org/wiki/ISO_8601[ISO-8601] dates and times with up to nanosecond resolution.
 
-* If time part is missing then `00:00:00` is used.
-* If Offset is missing then offset based on xref:reference:tackler-conf.adoc[configured] timezone/offset is used.
+* If time part is missing then `default-time` defined in xref:reference:tackler-toml.adoc[tackler.toml] is used.
+* If Offset is missing then offset based on timezone/offset defined in xref:reference:tackler-toml.adoc[tackler.toml] is used.
 
 | Transaction code
 |
@@ -131,14 +131,14 @@ Expenses:風:空
 Credit_Card:1234567890
 ----
 | Top-account names must begin with a UTF-8 letter or sign
-(xref:reference:charsets.adoc[over 130 languages and code blocks are supported]).
+(xrefreference:charsets.adoc[over 130 languages and code blocks are supported]).
 Then letters, digits, middle dot `·`, hyphen `-`, underscore `_` are allowed in account names,
 but no spaces. +
  +
 Sub-accounts are separated by `:`. Sub-accounts can start with numbers and be all numeric. +
  +
-All accounts must be declared in Chart of Accounts, or `accounts.strict` must be set to `false`.
-See xref:reference:accounts-conf.adoc[accounts.conf] for full details.
+All accounts must be declared in Chart of Accounts when  `kernel.strict` mode is true.
+See xref:reference:accounts-toml.adoc[accounts.toml] for full details.
 
 
 | Amounts
@@ -154,9 +154,9 @@ Output truncation:
 ----
 | 
 Default *output* scale is is between 2..7 decimal points.  This is can be configured 
-by `reporting.scale.{min, max}` in xref:reference:tackler-conf.adoc[tackler.conf].
+by `reporting.scale.{min, max}` in xref:reference:tackler-toml.adoc[tackler.toml].
 
-Tackler uses decimal floating-point numbers of arbitrary precision for calculations.
+Tackler uses decimal floating-point numbers with 28 digit precision for calculations.
 
 
 | Commodities
@@ -177,9 +177,9 @@ letters, digits, middle dot `·`, hyphen `-` and underscore `_` are allowed,
 but no spaces. +
  +
 All commodities must be defined in strict-mode.
-Commodity is mandatory in strict mode if
-`permit-empty-commodity` is not true.
-See xref:reference:accounts-conf.adoc[accounts.conf] for full details.
+Commodity is mandatory when `kernel.strict` and `permit-empty-commodity` are set to true.
+See xref:reference:commodities-toml.adoc[commodities.toml] for full details.
+
 
 | Value positions
 | [[value-pos]]
@@ -220,7 +220,7 @@ This is planned feature. See xref:commodities:currencies.adoc[Currencies]
 This is transaction's unique identifier (link:https://en.wikipedia.org/wiki/Universally_unique_identifier[UUID]). +
  +
 Transaction UUID is mandatory if `txn-set-checksum` calculation is activated.
-See xref:reference:tackler-conf.adoc[tackler.conf]
+See xref:usage:auditing.adoc[Accounting Auditing] and xref:reference:tackler-toml.adoc[tackler.toml]
 for further information. +
  +
 Transactions must have UUIDs, if deterministic, stable
@@ -250,7 +250,9 @@ Since v0.31
 ----
 | Optional transaction tags +
 Txn tags could be used select subselection of txns for reports.
-See: xref:usage:txn-filters.adoc#txn-tags[Txn Tag Filters] +
+by using xref:usage:txn-filters.adoc#txn-tags[Txn Tag Filters]. +
+All tags must be declared in Chart of Tags when  `kernel.strict` mode is true. +
+see xref:reference:tags-toml.adoc[tags.toml] for full details. +
 Since v0.34
 
 | Comments

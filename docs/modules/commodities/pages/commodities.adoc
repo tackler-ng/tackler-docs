@@ -1,6 +1,11 @@
 = Commodities
 :page-date: 2019-03-29 00:00:00 Z
-:page-last_modified_at: 2019-04-24 00:00:00 Z
+:page-last_modified_at: 2025-03-15 00:00:00 Z
+
+[NOTE]
+====
+See xref:price/index.adoc[Commodity Price Manual] how to do Market Value analysis with commodities.
+====
 
 Commodity is something which doesn't have value without unit of measurement.
 

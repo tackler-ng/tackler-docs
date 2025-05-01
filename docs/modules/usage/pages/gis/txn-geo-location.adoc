@@ -5,10 +5,10 @@
 
 Tackler supports `location` metadata with transaction data and this makes it possible to record
 location data for that transaction.  This location data could be used later to select transaction
-for reports or plot transactions on map. link:/docs/gis/#use-cases[Plaintext accounting with GIS]
+for reports or plot transactions on map. link:usage:gis.adoc#use-cases[Plaintext accounting with GIS]
 has ideas for some use cases.
 
-See xref:usage:gis/txn-geo-filters.adoc[Transaction Geo Filters]
+See xref:./txn-geo-filters.adoc[Transaction Geo Filters]
 for information how to select transactions based on location data
 and xref:examples:travel-journal.adoc[Travel Journal with Geo Location] for full example of GIS data and reports.
 

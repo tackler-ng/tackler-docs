@@ -1,64 +1,65 @@
 = Credits
 :page-date: 2019-03-29 00:00:00 Z
-:page-last_modified_at: 2019-03-29 00:00:00 Z
+:page-last_modified_at: 2025-03-15 00:00:00 Z
 
 
 Tackler has been originally written by e257.fi from scratch.
 Following projects have provided valuable contributions,
-feedback, inspiration and ideas for this project. 
+feedback, inspiration and ideas for this work.
 
 Thank you for your help!
 
 Components (used with Tackler):
 
- * link:http://www.antlr.org/[ANTLR (ANother Tool for Language Recognition)]
- * link:https://github.com/pathikrit/better-files[Better-files]
- * link:http://typelevel.org/cats/[Cats]
- * link:https://circe.github.io/circe/[circe]
- * link:http://www.eclipse.org/jgit/[jgit]
- * link:https://logback.qos.ch/[Logback Project]
- * link:https://github.com/scallop/scallop[Scallop]
- * link:https://github.com/typesafehub/config[Typesafe Config]
+ * link:https://github.com/marshallpierce/rust-base64[base64]
+ * link:https://github.com/clap-rs/clap[clap]
+ * link:https://github.com/RustCrypto/traits[digest]
+ * link:https://github.com/Byron/gitoxide[gix]
+ * link:https://github.com/Byron/gitoxide[gix-hash]
+ * link:https://github.com/dtolnay/indoc[indoc]
+* link:https://github.com/BurntSushi/jiff[jiff]
+ * link:https://github.com/rust-itertools/itertools[itertools]
+ * link:https://github.com/tikv/jemallocator[tikv-jemallocator]
+ * link:https://github.com/rust-lang/log[log]
+ * link:https://github.com/rust-lang/regex[regex]
+ * link:https://github.com/paupino/rust-decimal[rust_decimal]
+ * link:https://github.com/serde-rs/serde[serde]
+ * link:https://github.com/serde-rs/json[serde_json]
+ * link:https://github.com/tailhook/serde-regex[serde_regex]
+ * link:https://github.com/RustCrypto/hashes[sha2]
+ * link:https://github.com/RustCrypto/hashes[sha3]
+ * link:https://github.com/toml-rs/toml/tree/main/crates/toml[toml]
+ * link:https://github.com/uuid-rs/uuid[uuid]
+ * link:https://github.com/BurntSushi/walkdir[walkdir]
+ * link:https://github.com/winnow-rs/winnow[winnow]
 
-Documentation and Site:
-
- * link:https://asciidoctor.org/[Asciidoctor]
- * link:https://github.com/asciidoctor/jekyll-asciidoc[Asciidoctor / jekyll-asciidoc]
- * link:http://gitgraphjs.com/[GitGraph.JS]
- * link:https://jekyllrb.com/[Jekyll]
- * link:https://github.com/jekyll/jekyll/tree/master/docs[Jekyll Site and Themes]
- * link:http://www.latofonts.com/[Lato Font]
- * link:https://fonts.google.com/specimen/Cousine[Cousine Font]
-
-Code samples and examples:
-
- * link:https://github.com/centic9/jgit-cookbook[jgit-cookbook]
-
-Tests:
-
- * link:https://gitlab.com/e257/testing/dirsuite[DirSuite]
- * link:http://www.scalatest.org/[ScalaTest]
 
 Build-tools (used to build Tackler):
 
  * Build, Release and Publish
- ** link:http://www.scala-sbt.org/[sbt]
- ** link:https://github.com/ihji/sbt-antlr4[sbt-antlr4]
- ** link:https://github.com/sbt/sbt-buildinfo[sbt-buildinfo]
- ** link:http://www.scala-js.org/[sbt-scalajs]
- ** link:https://github.com/portable-scala/sbt-crossproject[sbt-crossproject]
- ** link:https://github.com/sbt/sbt-assembly[sbt-assembly]
- ** link:https://github.com/sbt/sbt-git[sbt-git]
- ** link:https://github.com/xerial/sbt-sonatype[sbt-sonatype] 
- * QA
- ** link:https://github.com/scoverage/sbt-scoverage[sbt-scoverage]
- ** link:https://github.com/wartremover/wartremover[WartRemover]
+    ** link:https://doc.rust-lang.org/cargo/[cargo]
+    ** link:https://github.com/rust-lang/rust-clippy[clippy!]
+    ** link:https://github.com/rust-lang/rustfmt[rustfmt]
+    ** link:https://crates.io/crates/cargo-audit[cargo audit]
+    ** link:https://crates.io/crates/cargo-deny[cargo deny]
+ * Test
+    ** link:https://github.com/bheisler/criterion.rs[Criterion.rs]
+
+Documentation and Site:
+
+* link:https://asciidoctor.org/[Asciidoctor]
+* link:https://github.com/asciidoctor/jekyll-asciidoc[Asciidoctor / jekyll-asciidoc]
+* link:https://github.com/nicoespeon/gitgraph.js/[GitGraph.JS]
+* link:https://jekyllrb.com/[Jekyll]
+* link:https://github.com/jekyll/jekyll/tree/master/docs[Jekyll Site and Themes]
+* link:http://www.latofonts.com/[Lato Font]
+* link:https://fonts.google.com/specimen/Cousine[Cousine Font]
 
 
 Ideas and inspiration:
 
  * link:http://ledger-cli.org/[Ledger]
- * link:https://github.com/hrj/abandon[Abandon]
  * link:http://furius.ca/beancount/[Beancount]
  * link:http://hledger.org/[hledger]
+
 

@@ -1,6 +1,6 @@
 = Accounting Auditing
 :page-date: 2019-03-29 00:00:00 Z
-:page-last_modified_at: 2019-10-05 00:00:00 Z
+:page-last_modified_at: 2024-12-01 00:00:00 Z
 
 Tackler has features to support accounting auditing, 
 assurance actions and financial audit.
@@ -44,10 +44,10 @@ calculated without Tackler.
 Information provided by Git storage backend and Txn Set Checksum combined together creates
 immutable and persistent evidence of used accounting data in calculations.
 
-Tackler contrib has an example script {gitlink}/contrib/txn-set-checksum.sh[txn-set-checksum.sh]
+Tackler contrib has an example script {github-link}/docs/devel/txn-set-checksum.sh[txn-set-checksum.sh]
 to demonstrate how to externally calculate Txn Set Checksum.
 
-See xref:#examples[examples] section and {gitlink}/docs/tep/tep-1007.adoc[TEP-1007: Txn Set Checksum]
+See xref:#examples[examples] section and {github-link}/docs/tep/tep-1007.adoc[TEP-1007: Txn Set Checksum]
 for more infromation.
 
 
@@ -59,7 +59,7 @@ makes it impossible that transaction would leak into unknown account.
 If accounting system allows usage of undefined accounts and doesn't enforce account name validation, it is possible to
 loose or leak value into unknown, not tracked accounts, even when transactions still balance internally perfectly.
 
-See xref:reference:accounts-conf.adoc[accounts.conf] for further info.
+See xref:reference:accounts-toml.adoc[accounts.toml] for further info.
 
 
 === Validation of commodities
@@ -70,7 +70,7 @@ accounts is activated, then it is also activated for commodities at the same tim
 When strict mode is activated, it is possible to set configuration option that allows empty commodities
 (e.g. value posts without unit or commodity).
 
-See xref:reference:accounts-conf.adoc[accounts.conf] for further info.
+See xref:reference:commodities-toml.adoc[commodities.toml] for further info.
 
 
 === Proof of used reporting parameters
@@ -82,7 +82,7 @@ into reports and calculations. Account Selector Checksum is easier and more stra
 than verbatim listing of long and potentially complex accounts selector definition.
 
 See xref:#examples[examples] section and 
-{gitlink}/docs/tep/tep-1007.adoc[TEP-1007: Txn Set Checksum]
+{github-link}/docs/tep/tep-1007.adoc[TEP-1007: Txn Set Checksum]
 for further info.
 
 
@@ -98,7 +98,7 @@ For further info, see:
 
  * xref:ROOT:reliability.adoc[Reliability]
  * xref:usage:performance.adoc[Overview of Performance testing]
- * {gitlink}/tests/tests.adoc[Tackler Test Tracking Database (T3DB)]
+ * {github-link}/suite/tests.adoc[Tackler Test Tracking Database (T3DB)]
 
 
 == Examples of reports with audit metadata
@@ -106,16 +106,7 @@ For further info, see:
 
 Below are links to test reports with audit metadata:
 
-* {repolink}/tests/audit/ok/audit-1E2-04.ref.bal.txt/[Balance report with audit metadata]
-* {repolink}/tests/audit/ok/audit-1E2-04.ref.balgrp.txt/[Balance Group report with audit metadata]
-* {repolink}/tests/audit/ok/audit-1E2-04.ref.reg.txt/[Register report with audit metadata]
-* {repolink}/tests/audit/ok/audit-1E2-04.ref.equity.txn/[Equity export with audit metadata]
-
-
-Same information is available with JSON format for Server and Client API:
-
-* {repolink}/tests/audit/ok/audit-1E2-04.ref.bal.json/[Balance JSON report with audit metadata]
-* {repolink}/tests/audit/ok/audit-1E2-04.ref.balgrp.json/[Balance Group JSON report with audit metadata]
-* {repolink}/tests/audit/ok/audit-1E2-04.ref.reg.json/[Register JSON report with audit metadata]
-
-
+* {repolink}/suite/audit/ok/audit-1E2-04.ref.bal.txt/[Balance report with audit metadata]
+* {repolink}/suite/audit/ok/audit-1E2-04.ref.balgrp.txt/[Balance Group report with audit metadata]
+* {repolink}/suite/audit/ok/audit-1E2-04.ref.reg.txt/[Register report with audit metadata]
+* {repolink}/suite/audit/ok/audit-1E2-04.ref.equity.txn/[Equity export with audit metadata]

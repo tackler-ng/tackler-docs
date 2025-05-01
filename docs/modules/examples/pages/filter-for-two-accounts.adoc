@@ -1,8 +1,10 @@
 = Txn Filter to find card payments
 :page-date: 2022-12-23 00:00:00 Z
-:page-last_modified_at: 2022-12-24 12:00:00 Z
+:page-last_modified_at: 2024-12-12 00:00:00 Z
 
-This is an example of transaction filter to find card payments from journal.
+This is an example of transaction filter to find all transfers from account A to account B.
+These could be for example card balance payments (not purchases).
+
 
 Further info:
 
@@ -32,7 +34,7 @@ Further info:
 
 ==  Filter definition
 
-Find card payment transactions: e.d destination account is under Liabilities with positive amount, and origination account is under Assets with negative amount.
+Find all credit card balance payment transactions:  These transactions are moving money from Assets to the Liabilities (paying off the card), so the destination account is under Liabilities with positive amount, and the originating account is under Assets with negative amount.
  
 ....
 two_accounts_filter () {
@@ -68,7 +70,7 @@ EOF
 == Register listing, without filter
 
 ....
-java -jar bin/tackler-cli.jar
+tackler --config tackler.toml
 ....
 
 ....
@@ -96,7 +98,7 @@ REGISTER
 == Register report with filter
 
 ....
-java -jar bin/tackler-cli.jar --api-filter-def $(two_accounts_filter)
+tackler --config tackler.toml --api-filter-def $(two_accounts_filter)
 ....
 
 ....

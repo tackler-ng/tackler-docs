@@ -1,0 +1,64 @@
+= Current Market Value
+:page-date: 2025-03-15 00:00:00 Z
+:page-last_modified_at: 2025-04-04 00:00:00 Z
+
+
+== Use case
+
+Current Market Value, or Mark-to-Market (MTM) is used to display link:/docs/commodities/[commodity]
+and link:/docs/currencies/[share] values with the latest available market price in
+link:/docs/journal/pricedb/[PriceDB].
+Typically this is used to display assets as "Market Value Today", with the most up-to-date market price information.
+
+=== Price Data application policy
+
+`*last-price*`::
+1. Used Price is based on rates (prices) noted in the pricedb. Possible costs recorded in the transactions are ignored.
+2. Latest price (rate) in the price db is used for the conversion
+
+
+== Configuration
+
+Current Market Value mode is selected either by `price.lookup-type = "last-price"` in link:/docs/configuration/tackler-toml/[tackler.toml] or by CLI `--price.lookup-type=last-price` option.
+
+.Current Market Value and Report commodity settings in tackler.toml
+----
+[price]
+db-path = "journal/txns/price.db"
+lookup-type = "last-price"
+...
+[Report]
+commodity = "EUR"
+----
+
+See `tackler --help` for all price related CLI options.
+
+
+== Example
+
+This is journal records from the 2024 spring - some lovely ice cream and one Golden Maple Leaf coin
+
+----
+include::example$gml-price-journal.txn[]
+----
+
+We would like to know what is the current market value of GML at the moment.
+To do that, we run report with price lookup with the last available price in pricedb:
+
+----
+tackler \
+    --config examples/maple.toml \
+    --reports balance \
+    --accounts "Assets:Coins" \
+    --price.lookup-type last-price \
+    --report.commodity CAD
+----
+
+This will produce the following balance report:
+
+
+----
+include::example$gml-price-last.bal.txt[]
+----
+
+include::partial$example-location.adoc[]

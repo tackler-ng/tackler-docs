@@ -3,12 +3,19 @@
 :page-last_modified_at: 2025-03-15 00:00:00 Z
 
 
-xref:examples:trimix-filling-station.adoc[Trimix Filling Station]::
+These are examples of how tackler could be used in various real life accounting situations.
+
+xref:solar-energy-value.adoc[Solar Energy Value]::
+
+This example utilizes link:/docs/price/variable-market-value/[Variable Market Value] price model to calculate the value of energy production of Solar power system.
+
+
+xref:trimix-filling-station.adoc[Trimix Filling Station]::
 
 This examples shows how to use Tackler for accounting and billing system of Trimix Filling station.
 
 
-xref:examples:travel-journal.adoc[GIS based accounting for travel journal]::
+xref:travel-journal.adoc[GIS based accounting for travel journal]::
 
 This is a travel journal example how to utilize plaintext accounting with geographic location data.
 

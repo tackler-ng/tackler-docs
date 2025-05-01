@@ -1,0 +1,13 @@
+Report Time Zone
+        TZ name : UTC
+
+Commodity Prices
+           Time : 2025-03-12 00:00:00
+      Commodity : GML
+          Value : 4220 CAD
+
+Balance Report
+--------------
+              4220.00        4220.00 CAD  Assets:Coins
+=========================
+              4220.00 CAD

@@ -1,7 +1,8 @@
 * xref:index.adoc[Reference]
 ** xref:journal-reference.adoc[]
-** xref:reference:tackler-conf.adoc[tackler.conf]
-** xref:accounts-conf.adoc[accounts.conf]
-** xref:tags-conf.adoc[tags.toml]
+** xref:tackler-toml.adoc[tackler.toml]
+** xref:accounts-toml.adoc[accounts.toml]
+** xref:commodities-toml.adoc[commodities.toml]
+** xref:tags-toml.adoc[tags.toml]
 ** xref:examples.adoc[Example Setups]
 

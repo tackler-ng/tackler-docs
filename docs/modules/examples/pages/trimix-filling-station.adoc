@@ -1,28 +1,35 @@
 = Trimix Filling Station
 :page-date: 2019-03-29 00:00:00 Z
-:page-last_modified_at: 2019-03-29 00:00:00 Z
+:page-last_modified_at: 2024-12-16 00:00:00 Z
 
-Trimix is breathing gas for diving which is mixture of Helium, Oxygen and air.
+Trimix is breathing gas for diving, which is a mixture of Helium, Oxygen and air.
 
 This is an example how you could use Tackler for Trimix Filling station accounting purposes. 
-This example is also part of Tacklers test setup and it is run with test target.
+This example is also part of Tackler's test setup and it is run with test target.
 
-Trimix is made out of mix of Helium and Nitrox or mix of Helium, Oxygen and compressed air.
+Trimix is made out of mix of Helium and Nitrox, or mix of Helium, Oxygen and compressed air.
 Helium is expensive and Oxygen substantially cheaper (depending where do you live
 and how Oxygen is available in your region).
 
-At filling station you have to track individual users (how much and which gas they have used),
-and how much do you have gas in your Helium and Oxygen tanks. Also you have to generate bills 
-to users and reset Helium and Oxygen usage for each billed user.
+At filling station you have to track
 
-Below are accounting entries for filling station, and an examples what kind of transactions
+* Individual users (how much and which gas they have used)
+* How much do you have gas in your Helium and Oxygen tanks.
+
+Also you have to generate bills to users and reset Helium and Oxygen usage for each billing period.
+
+Below are accounting transactions for filling station, and an examples what kind of transactions
 are recorded of one mixing of 18/45 (O2/He) trimix gas.
 
-There are also examples how you could record and bill used gases.
+There are also examples how you could record the used gas and generate bills for users.
 
 == Gas usage
 
 === Initial gas delivery
+
+Woikoski is gas supply company, and their bill of lading number is used as tracking code for transactions.
+
+Nominal pressure of storage tanks are 298 bars for Helium and 198 bars for Oxygen.
 
 ....
 2017-01-01 (#123456789) 'Helium delivery (three tanks)
@@ -38,6 +45,9 @@ There are also examples how you could record and bill used gases.
 
 
 === One 18/45 trimix blend with Helium (He) and Oxygen (O2)
+
+Here we have one mix of trimix, which uses Helium and Oxygen. The mix is #1234 in station's logbook,
+and that number is recorded to transactions.  Below is explanation why this is using negative pressure delta.
 
 ....
 2017-05-01 (mix-1234) 'tmx 18/45 D12L
@@ -55,29 +65,30 @@ There are also examples how you could record and bill used gases.
 
 ==== Why is this using negative pressure deltas?
 
-By using negative pressure deltas the whole account flow makes more sense,
-and there are 1:1 real world check points.
+When negative pressure delta is used, then the whole account flow makes more sense
+and there are 1:1 real world check points with the accounting data.
 
 When system uses negative pressure deltas, then tank pressure decreases as gas is used,
 and remaining pressure in storage tank (reported by gauge) matches pressure
 reported by accounting system (Reported by Balance report for the tank).
 
-Also with negative deltas, gas which accumulates for user (used by user) has positive
-sign, which correlates nicely natural "how much gas user owns" concepts.
+Also with negative deltas, gas which accumulates for user (e.g. is used by user)
+has positive sign, which correlates nicely natural language "I have used 26bars of Helium"
 
 This accumulated saldo is then in turn zeroed with negative pressures and positive monetary values
 within payment transactions.
 
 So in overall, whole transaction flow makes more sense with real starting pressure
-and negative tank pressure deltas when mixing gas. Examples below should clarify this.
+and negative pressure deltas when mixing gas. Examples below should clarify this.
 
 
 == Accounting
 
-Balance report by gas type and by tank
+Here is a balance report by gas type and by tank (e.g. "how much there is gas left").
+Full tanks were 298 bars (He) and 198 bars (O2).
 
 ....
-cli/run --cfg ../tests/commodity/gb.conf --reporting.accounts ^Gas:.*:Tank.*
+tackler --config ../tests/commodity/gb.toml --accounts Gas:.*:Tank.*
 
 Tank pressures
 --------------
@@ -94,8 +105,10 @@ Tank pressures
 
 === Gas Balance per users.
 
+How much users have used gas? This is also outstanding amount of goods to be billed.
+
 ....
-cli/run --cfg ../tests/commodity/gb.conf --reporting.accounts ^User:.*:.*
+tackler --config ../tests/commodity/gb.toml --accounts User:.*:.*
 
 Users Gas Balance
 -----------------
@@ -109,6 +122,9 @@ Users Gas Balance
 
 === Generate billing transactions
 
+This is an example of transaction which converts used gases to euros and moves the value to Billing account.
+At the same time gas balance is zeroed.
+
 ....
 2017-05-02 'diverX outstanding payments
    ; Convert used gas (bars) to EUR
@@ -120,8 +136,10 @@ Users Gas Balance
 
 === Generate billing reports
 
+Here we can see what are the outstanding bills for each user.
+
 ....
-cli/run --cfg ../tests/commodity/gb-billing.conf
+tackler --config ../tests/commodity/gb-billing.toml
 
 Outstanding payments
 --------------------
@@ -144,24 +162,24 @@ Test data and setup is described below.
 === Test data
 
 * Test steps
-** {repolink}/tests/commodity/ok/gas-blender-billing.exec/[Billing]
-** {repolink}/tests/commodity/ok/gas-blender-mix-log.exec/[Mixer log]
-** {repolink}/tests/commodity/ok/gas-blender-saldo.exec/[Mixer Saldo]
-** {repolink}/tests/commodity/ok/gas-blender-tanks.exec/[Storage tank pressures]
-* {gitlink}/tests/commodity/ok/gas-blender/[Accounting data]
+** link:https://github.com/tackler-ng/tackler/blob/main/tests/sh/gas-blender.sh#L28[Mixer log]
+** link:https://github.com/tackler-ng/tackler/blob/main/tests/sh/gas-blender.sh#L48[Storage tank pressures]
+** link:https://github.com/tackler-ng/tackler/blob/main/tests/sh/gas-blender.sh#L68[Mixer Saldo]
+** link:https://github.com/tackler-ng/tackler/blob/main/tests/sh/gas-blender.sh#L88[Billing]
+* link:https://github.com/tackler-ng/tackler-tests/tree/main/commodity/ok/gas-blender[Accounting data]
 
 === Configuration
 
-* {repolink}/tests/commodity/gb.conf/[General configuration for Gas Blending system]
-* {repolink}/tests/commodity/gb-accounts.conf/[Chart of Accounts]
-* {repolink}/tests/commodity/gb-billing.conf/[Configuration for billing reports]
+* {repolink}/suite/commodity/gb-stock.toml/[General configuration for Gas Blending system]
+* {repolink}/suite/commodity/gb-accounts.toml/[Chart of Accounts]
+* {repolink}/suite/commodity/gb-billing.toml/[Configuration for billing reports]
 
 
 === Reports
 
 Example reports
 
-* {repolink}/tests/commodity/ok/gas-blender-tanks.ref.bal.txt/[Tank pressures]
-* {repolink}/tests/commodity/ok/gas-blender-saldo.ref.bal.txt/[Used gas by divers]
-* {repolink}/tests/commodity/ok/gas-blender-mix-log.ref.reg.txt/[Gas Blending entries (register)]
-* {repolink}/tests/commodity/ok/gas-blender-billing.ref.bal.txt/[Billing statement]
+* {repolink}/suite/commodity/ok/gas-blender-tanks.ref.bal.txt/[Tank pressures]
+* {repolink}/suite/commodity/ok/gas-blender-saldo.ref.bal.txt/[Used gas by divers]
+* {repolink}/suite/commodity/ok/gas-blender-mix-log.ref.reg.txt/[Gas Blending entries (register)]
+* {repolink}/suite/commodity/ok/gas-blender-billing.ref.bal.txt/[Billing statement]

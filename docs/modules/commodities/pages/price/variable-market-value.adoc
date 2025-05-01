@@ -1,0 +1,39 @@
+= Variable Market Value
+:page-date: 2025-03-15 00:00:00 Z
+:page-last_modified_at: 2025-04-04 00:00:00 Z
+
+
+== Use case
+
+Variable Market Value is used for link:/docs/commodities/[commodity] and
+link:/docs/currencies/[share] valuation analysis based on how they are evolving over the time.
+See xref:examples:solar-energy-value.adoc[Solar Energy Value] example how this could be utilized in real life.
+
+
+=== Price Data application policy
+
+`*txn-time*`::
+1. Used Price is based on rates noted in the pricedb. Possible costs recorded in the transactions are ignored.
+2. The price rate recorded in the pricedb, which has the same time as the transaction or the last rate before transaction time, is used.
+
+== Configuration
+
+Current Market Value mode is selected either by `price.lookup-type = "txn-time"` in xref:reference:tackler-toml.adoc[tackler.toml] or by CLI `--price.lookup-type=txn-time` option.
+
+.Variable Market Value and Report commodity settings in tackler.toml
+----
+[price]
+db-path = "journal/txns/price.db"
+lookup-type = "txn-time"
+...
+[Report]
+commodity = "EUR"
+----
+
+See `tackler --help` for all price related CLI options.
+
+
+== Examples
+
+See link:/docs/examples/solar-energy-value/[Solar Energy Value] example how this could be utilized in real life.
+

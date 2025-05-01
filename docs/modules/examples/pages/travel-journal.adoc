@@ -1,6 +1,6 @@
 = Travel Journal with Geo Location
 :page-date: 2019-05-05 00:00:00 Z
-:page-last_modified_at: 2019-05-09 00:00:00 Z
+:page-last_modified_at: 2025-03-08 00:00:00 Z
 
 This is a travel journal example how to utilize plaintext accounting with
 geographic location data.

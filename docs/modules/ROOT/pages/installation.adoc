@@ -1,15 +1,51 @@
 = Installation Manual
 :page-date: 2019-03-29 00:00:00 Z
-:page-last_modified_at: 2021-01-03 00:00:00 Z
+:page-last_modified_at: 2025-01-21 00:00:00 Z
 
 This is installation manual for tackler command line.
 
 To use tackler cli you will need
 
-  * Java Runtime Environment (Tackler requires at least Java 11 to run)
-  * Tackler command line binary (`tackler-cli-XX.YY.Z.jar`-file)
+  * Tackler command line binary
+  * Valid configuration file (xref:reference:tackler-toml.adoc[tackler.toml])
 
-To use an old version of tackler-mk1, you have to https://gitlab.com/e257/accounting/tackler/blob/main/docs/devel/build.adoc[build it yourself].
+To build the tackler binary, you need to have link:https://www.rust-lang.org/tools/install[Rust toolchain installed].
+
+
+== Build and install with Cargo
+
+[source,bash]
+----
+cargo install tackler
+----
+
+It will make the tackler command globally available, if you've allowed link:https://www.rust-lang.org/tools/install[Rust toolchain installation] to modify your PATH. If not, the binary is located at `CARGO_HOME/bin`, that's typically `~/.cargo/bin/tackler` on MacOS and Linux, and `C:\Users\<UserName>\.cargo\bin` on Windows.
+
+You can uninstall tackler by running  `cargo uninstall tackler`.
+
+== Build from source
+
+[source,bash]
+----
+# Get the source code
+git clone --recurse-submodules https://github.com/tackler-ng/tackler
+
+cd tackler
+
+# Check the releases
+git tag -l
+
+# Select the latest release, e.g. v25.01.1
+git checkout v25.01.1
+
+# Build the tackler
+cargo build --release --locked --bin tackler
+
+# Check the version info
+target/release/tackler --version
+
+tackler 25.1.1 (v25.01.1 - e730633c1ba23e6)
+----
 
 
 == Minimal setup
@@ -22,18 +58,20 @@ Tackler could be used with minimal quickstart setup just fine, but to get most o
 [[layout]]
 == Recommended Setup and layout
 
-Recommended layout and setup (the "installation") would be:
+You can create default journal setup with `tackler new journal` command. This will create a new journal setup with default configuration files and example transactions, as laid out below:
+
+Full setup would be:
 
 ----
 .
 ├── bin
-│   ├── tackler-cli.jar
-│   └── tackler.conf
+│   └── tackler
 └── journal
     ├── conf
-    │   ├── accounts.conf
-    │   ├── tackler.conf
-    │   └── tags.conf
+    │   ├── tackler.toml
+    │   ├── accounts.toml
+    │   ├── commodities.toml
+    │   └── tags.toml
     └── txns
         ├── ...
         ├── 2020
@@ -53,33 +91,24 @@ system to decide which is xref:journal:sharding.adoc[the best way to shard trans
 
 === Configuration Settings for Recommended Layout
 
-By default Tackler will try to find configuration file (`tackler.conf`) next to its jar-file. It's also possible to provide path to configuration with `--cfg` option, if you don't like to use auto discovery functionality or would like to e.g. use several different configuration files.
+Provide path to configuration with `--config` option.
 
-==== tackler.conf
+==== tackler.toml
 
-.bin/tackler.conf
+The tackler main configuration is file located under conf:
+
+.journal/conf/tackler.toml
+[source, toml]
 ----
-include required("../journal/conf/tackler.conf")
-----
-
-Actual configuration is located under journal:
-
-.journal/conf/tackler.conf
-----
-tackler {
-  core {
-    basedir = ../journal
-    input {
-      storage = fs
-      fs {
-        dir = "txns"
-        glob = "**.txn"
-      }
-    }
-    include required("./accounts.conf")
-    include required("./tags.conf")
-  }
-}
+[kernel.input]
+storage = "fs"
+fs  = { path = "..",      dir = "txns", suffix = "txn" }
+git = { repo = "../.git", dir = "txns", suffix = "txn", ref = "main" }
+...
+[transaction]
+accounts    = { path = "accounts.toml" }
+commodities = { path = "commodities.toml" }
+tags        = { path = "tags.toml" }
 ----
 
 This setup makes it possible to separate journal setup and data, and store relevant configuration next to transaction data (and possibly under version control).
@@ -87,61 +116,34 @@ This setup makes it possible to separate journal setup and data, and store relev
 See xref:reference:examples.adoc#backend-fs-or-git[Configuration Example: fs or git] how combine git based transaction storage with this setup.
 
 
-==== accounts.conf
+==== accounts.toml
 
 If there is missing or mistyped account, that will cause an error and tackler will stop processing journal.
-See xref:reference:accounts-conf.adoc[accounts.conf] for full documentation
+See xref:reference:accounts-toml.adoc[accounts.toml] for full documentation
 of Chart of Accounts and commodity listing.
 
-.journal/conf/accounts.conf
-[source,sh]
-----
-accounts {
+==== commodities.toml
 
-  strict = true
+If there is missing or mistyped commodities, that will cause an error
+and tackler will stop processing journal.
+See xref:reference:commodities-toml.adoc[commodities.toml] for full
+documentation  of Chart of Accounts and commodity listing.
 
-  permit-empty-commodity = true
 
-  chart-of-accounts = [
-    "Expenses:Ice_cream",
-    "Expenses:Lemonade",
-    "Assets:Cash"
-  ]
-}
-----
-
-==== tags.conf
+==== tags.toml
 
 If there is missing or mistyped tag, that will cause an error and tackler will stop processing journal.
-See xref:reference:tags-conf.adoc[tags.conf] for full documentation
+See xref:reference:tags-toml.adoc[tags.toml] for full documentation
 of Chart of Tags.
-
-.journal/conf/tags.conf
-[source,sh]
-----
-tags {
-   strict = true
-
-   chart-of-tags = [
-      "travel:ice·cream·spree",
-   ]
-}
-----
-
-With this setup, it is possible to run Tackler by:
-
- java -jar ./bin/tackler-cli.jar
-
-and it will just work.
-
 
 == Next steps
 
 See reference configuration files for full details:
 
-* xref:reference:tackler-conf.adoc[tackler.conf]
-* xref:reference:accounts-conf.adoc[accounts.conf]
-* xref:reference:tags-conf.adoc[tags.conf]
+* xref:reference:tackler-toml.adoc[tackler.toml]
+* xref:reference:accounts-toml.adoc[accounts.toml]
+* xref:reference:commodities-toml.adoc[commodities.toml]
+* xref:reference:tags-toml.adoc[tags.toml]
 
 xref:journal:git-storage.adoc[Git Storage Guide] has information how to use integrated version control features with Tackler.
 

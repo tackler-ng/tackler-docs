@@ -1,48 +1,110 @@
-= Balance Group report
+= Balance Group Report
 :page-date: 2019-03-29 00:00:00 Z
-:page-last_modified_at: 2019-10-05 00:00:00 Z
+:page-last_modified_at: 2025-04-06 00:00:00 Z
 
-Balance Group report is combined report of multiple balance reports 
-based on time selector.
+Balance Group Report is combined report of multiple balance reports
+based on time selector. Each Balance Group produces sum of selected accounts,
+and total of those account sums for the time period of that group (year, month, day, etc.).
 
+[NOTE]
+====
+Tackler's Balance family reports produce more information than what you find in other PTA tools. +
+ +
+The default Balance and Balance Group calculate sums for all accounts which have postings,
+but also for all children (aka account tree balance).
+In some cases this information of children balances is not needed,
+and Tackler supports two different balance family reports, Flat and Tree Balance Group Reports.
+====
 
-....
-BALANCE GROUPS BY MONTH
------------------------
-2019-01Z
---------
-                 0.00   -2.00  Assets
-                -2.00   -2.00  Assets:Cash
-                 0.00    2.00  Expenses
-                 2.00    2.00  Expenses:Ice_cream
-=====================
-                 0.00
-
-2019-02Z
---------
-                 0.00   -1.00  Assets
-                -1.50   -1.50  Assets:Cash
-                 0.00    1.50  Expenses
-                 1.50    1.50  Expenses:Lemonade
-=====================
-                 0.00
-....
-
-In above we can see that in January 2019 spending was dominated by ice cream
-and during February 2019 by lemonade.
+In examples belwo we can see that in June 2024 our spending was dominated by candy
+and December 2024 by ice cream.
 
 Available group operators to select balance groups are:
 `year`, `month`, `day`, `iso-week` and `iso-week-date`.
 
-link:https://en.wikipedia.org/wiki/ISO_week_date[ISO-8601 week date] rules are used 
+link:https://en.wikipedia.org/wiki/ISO_week_date[ISO-8601 week date] rules are used
 for `iso-week` and `iso-week-date`.
 
-Balance-group report provides handy way to produce subreports over reporting period, 
-for example weekly balance group reports could be used for detailed weekly reports
-with summarizing  monthly balance report.
+Balance-group report provides handy way to produce sub-reports over selected reporting period.
+For example weekly balance group reports could be used for detailed weekly reports
+combined with summarizing  monthly balance report.
 
 
-== Format
+
+== Flat Balance Group
+
+With flat Balance Group Report the balance is reported only for those accounts which have had postings.
+This is similar report what you will find in other PTA tools.
+
+
+.report.balance-group.type = "flat"
+....
+Report Time Zone
+        TZ name : UTC
+
+Balance Group Report
+--------------------
+2024-06
+-------
+                 2.50   Expenses:Sweets:Candy
+=====================
+                 2.50
+2024-09
+-------
+                12.00   Expenses:Food:FastFood
+=====================
+                12.00
+2024-12
+-------
+                 3.00   Expenses:Sweets:Ice·Cream
+=====================
+                 3.00
+....
+
+This report type is selected by configuration setting `report.balance-group.type = "flat"` in
+tackler's configuration file xref:reference:tackler-toml.adoc[tackler.toml].
+
+== Tree Balance Group
+
+With tree Balance Group Report the first column is postings for that account
+and second is cumulative sum of that account and all children.
+
+
+.report.balance-group.type = "tree"
+....
+Report Time Zone
+        TZ name : UTC
+
+Balance Group Report
+--------------------
+2024-06
+-------
+                 0.00    2.50  Expenses
+                 0.00    2.50  Expenses:Sweets
+                 2.50    2.50  Expenses:Sweets:Candy
+=====================
+                 2.50
+2024-09
+-------
+                 0.00    12.00  Expenses
+                 0.00    12.00  Expenses:Food
+                12.00    12.00  Expenses:Food:FastFood
+=====================
+                12.00
+2024-12
+-------
+                 0.00    3.00  Expenses
+                 0.00    3.00  Expenses:Sweets
+                 3.00    3.00  Expenses:Sweets:Ice·Cream
+=====================
+                 3.00
+....
+
+This report type is selected by configuration setting `report.balance-group.type = "tree"` in
+tackler's configuration file xref:reference:tackler-toml.adoc[tackler.toml].
+
+
+=== Format
 Output format of Balance-group report is same as balance report, 
 except that there are multiple subset balances included into same report.
 
@@ -61,11 +123,13 @@ Balance delta is based and calculated only by values reported on the first colum
 
 == Balance group report configuration
 
-
-Balance Groups are selected by `reports.balance-group.group-by` conf-setting.
-
-See xref:reference:tackler-conf.adoc[tackler.conf] and `reports.balance-group.*` for full
+See xref:reference:tackler-toml.adoc[tackler.toml] and `report.balance-group.*` for full
 information of balance group report configuration options.
+
+The flat and tree balances can be selected with `report.balance-group.type = "flat"`
+or `report.balance-group.type = "tree"` configuration settings.
+
+Balance Groups are selected by `report.balance-group.group-by` conf-setting.
 
 If `report-timezone` is set, then transaction timestamps are converted
 into report's time zone and zone info will not be displayed for balance groups.
@@ -80,20 +144,21 @@ for `report-timezone`. This will also change values of balance groups as transac
 move to different balance groups.
 ====
 
-=== Account selectors
+=== Account Selectors
 
-By default all accounts are included into balance-Group report, but that's not very
+By default, all accounts are included into balance-Group report, but that's not very
 interesting balance group report because balance over all accounts will be zero always.
 
-Balance-Group report accounts can be selected by Accounts Selectors. This can be done
-either by using global `reporting.accounts` (conf+cli) option or by using report specific
-`reports.balance-group.accounts` setting (conf-only). If report specific account selector
-is defined in configuration, it can not be overridden from command line.
+Balance-Group report accounts can be selected by Accounts Selectors.
+This can be done
+by cli option `--accounts`, global `report.accounts` configuration option
+or  by using report specific
+`report.balance-group.accounts` setting.
 
 [NOTE]
 ====
 If there are no accounts selected within some balance group time period,
-then that balance group is not is not reported (e.g. not included into reports).
+then that balance group is not reported (e.g. not included into reports).
 ====
 
 Balance delta is based and calculated only by values reported on the first column.
@@ -105,17 +170,17 @@ it will *not* be part of balance calculations.
 If Accounts Selector is used balance-group report, please be make sure that all intended accounts
 and especially *sub-accounts* are listed for report. +
  +
-For example: select only top-level "Assets" and all its sub-accounts: `"Assets(:.*)?"`
+For example: select only top-level "Assets" and all its sub-accounts: `"Assets(:.*)"`
 ====
 
 Compare following two reports:
 
-.`--reporting.accounts "e1(:.*)?"`
-----
+.`--accounts "e1(:.*)?"`
+....
 BALANCE GROUPS
 --------------
-2019-01 Z
----------
+2019-01
+-------
                  1.00    6.00  e1
                  2.00    5.00  e1:e2
                  3.00    3.00  e1:e2:e3
@@ -123,16 +188,16 @@ BALANCE GROUPS
                  6.00
 ----
 
-.`--reporting.accounts "e1"`
+.`--accounts "e1"`
 ----
 BALANCE GROUPS
 --------------
-2019-01 Z
----------
+2019-01
+-------
                  1.00    6.00  e1
 =====================
                  1.00
-----
+....
 
 These two reports demonstrates difference between balance group deltas and
 recursive balance group sums for specific account tree.
@@ -143,8 +208,7 @@ recursive balance group sums for specific account tree.
 
 Below are links to example balance-group reports with full auditing metadata.
 
-* {repolink}/tests/audit/ok/audit-1E2-04.ref.balgrp.txt/[Balange-group report with audit metadata]
-* {repolink}/tests/audit/ok/audit-1E2-04.ref.balgrp.json/[Balange-group JSON report with audit metadata]
+* {repolink}/suite/audit/ok/audit-1E2-04.ref.balgrp.txt/[Balange-group report with audit metadata]
 
 
 === Example output of balance-group report
@@ -161,8 +225,8 @@ transactions on week 2016-W01 and "e:ey2016:em01:ed03, ..." on week 2016-W02.
 ....
 BALANCE GROUPS
 --------------
-2016-W01 Z
-----------
+2016-W01
+--------
                  0.00   -8.0000005  a
                  0.00   -8.0000005  a:ay2016
            -8.0000005   -8.0000005  a:ay2016:am01
@@ -173,8 +237,8 @@ BALANCE GROUPS
             6.0000003    6.0000003  e:ey2016:em01:ed02
 =====================
             0.0000000
-2016-W02 Z
-----------
+2016-W02
+--------
                  0.00   -114.0000019  a
                  0.00   -114.0000019  a:ay2016
          -114.0000019   -114.0000019  a:ay2016:am01
@@ -194,13 +258,31 @@ BALANCE GROUPS
 
 == Example report with commodities
 
-Below is one entry of monthly based balance group report.
+Below are example balance group reports with mixed commodities in flat and tree form.
 
+The group-by set to month.
+
+.report.balance-group.type = "flat"
 ....
 BALANCE GROUPS
 --------------
-2017-05 Z
----------
+2017-05
+-------
+                 3.00        ACME  Assets:Stocks
+              -359.75        EUR   Assets:Cash
+==========================
+                 3.00 ACME
+              -359.75 EUR
+....
+
+And same report in tree form:
+
+.report.balance-group.type = "tree"
+....
+BALANCE GROUPS
+--------------
+2017-05
+-------
                  0.00           3.00 ACME  Assets
                  3.00           3.00 ACME  Assets:Stocks
                  0.00        -359.75 EUR   Assets
@@ -208,7 +290,4 @@ BALANCE GROUPS
 ==========================
                  3.00 ACME
               -359.75 EUR
-...
 ....
-
-

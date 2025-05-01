@@ -1,48 +1,39 @@
 = Usage Guide
 :page-date: 2019-03-29 00:00:00 Z
-:page-last_modified_at: 2019-10-05 00:00:00 Z
+:page-last_modified_at: 2024-12-20 00:00:00 Z
 
 This is general usage guide for tackler reporting engine.
 
-To use tackler you have to have
+To use tackler you have to have:
 
-  * Java Runtime Environment (Tackler requires at least Java 11 to run)
-  * Tackler binaries
+  * Tackler binary
   * Correct configuration for your setup
 
 And last but not least you need some transaction data to play with.
 
-If your installation follows xref:ROOT:installation.adoc#layout[recommended structure],
-then you can generate default reports immediately after 
-you put some transaction data under `txns`-directory.
+
+You could use {github-link}/examples[examples] and especially the simple case ({github-link}/examples/simple.toml[examples/simple.toml]) as a starting point.
+
 
 
 == CLI
 
 See xref:ROOT:installation.adoc[Installation Manual] for minimal setup and recommendations for production setups.
 
-After you have installed tackler and you have some transaction data you can run tackler with command:
+After you have installed and configured tackler, you can test it with command:
 
-   java -jar tackler-cli.jar
+tackler --config path/to/conf.toml
 
-(If you created minimal setup based on xref:ROOT:installation.adoc[Installation Manual])
-
-To skip automatic configuration discovery mechanism, you can provide path 
-to configuration file with `--cfg` argument.
-
-   java tackler-cli.jar --cfg=/path/to/my/tackler.conf
 
 See tackler's xref:reference:index.adoc[Configuration Manual],
-xref:reference:accounts-conf.adoc[accounts.conf]
+xref:reference:tackler-toml.adoc[tackler.toml],
+xref:reference:accounts-toml.adoc[accounts.toml],
+xref:reference:commodities-toml.adoc[commodities.toml] and
+xref:reference:tags-toml.adoc[tags.toml]
 for how to configure tackler.
 
 
 === Input and output
-
-`--basedir`:: 
-
-Provides base directory for all operations. All other relative paths are
-relative to the basedir.
 
 
 === Input
@@ -55,7 +46,7 @@ Input can be based on:
  ** Journal in single file 
  ** Journal data is in multiple files inside directory structure
  * Git storage
- ** (Journal is in single file)
+ ** Journal is in single file inside directory structure
  ** Journal data is in multiple files inside directory structure
 
 [[storage-selector]]
@@ -73,29 +64,26 @@ but running reports from `git`.
 
 Below is a storage configuration example for such dual setup.
 
+[source,toml]
 ----
-tackler {
-  core {
-    input {
+### In this example, "journal" repository is clone
+### and it's also used as a working copy.
+[input]
+# Reports are generated from journal committed to git.
+# This can be overriden by --input.storage "fs"
+storage = "git"
 
-      storage = git
+[fs]
+path = "journal"
+dir = "txns/2024"
+suffix = "txn"
 
-      # In this example, "accounting" repository is clone
-      # and is used as a working copy.
-      fs {
-        dir = "accounting/2019"
-        glob = "*.txn"
-      }
-
-      git {
-        repository = "accounting/.git"
-        ref = "master"
-        dir = "2019"
-        suffix = ".txn"
-      }
-    }
-  }
-}
+[git]
+repo = "journal/.git"
+# the 2024 is a branch which holds transactions related to year 2024
+ref = "2024"
+dir = "txns/2024"
+suffix = "txn"
 ----
 
 ==== Journal in single file
@@ -111,7 +99,7 @@ Path can be absolute or relative path to the basedir.
 If you like to use single journal file mode and define it
 by configuration, then  this can be done by putting journal file 
 in dedicated directory and define that directory as a root for 
-storage directory (`input.fs.dir`) with approriate glob. 
+storage directory (`input.fs.dir`) with approriate suffix.
 
 
 ==== Journal data is in multiple files inside directory structure
@@ -119,22 +107,20 @@ storage directory (`input.fs.dir`) with approriate glob.
 
 `--input.fs.dir`:: 
 
-Directory which holds `txn` -files (absolute or relative path to basedir).
+Directory (tree) which holds `txn` -files
 
-`--input.fs.glob`:: 
+`--input.fs.ext`::
 
-Glob to define which files are used as journals. For example:
-* `*.txn` Single folder and shallow directory structure
-* `**.txn` Deep directory structure with some sharding scheme
+The Extension or suffix of transaction files
 
-See xref:journal:sharding.adoc[Journal Sharding] for discussion of 
+See xref:journal:sharding.adoc[Journal Sharding] for discussion of
 possible sharding schemes.
 
 
 [[git-storage]]
 ==== Git storage
 
-Tackler journal data can be read directly from git, even without checkout working copy. 
+Tackler journal data can be read directly from git, even from bare repository (e.g. without working copy).
 
 See xref:journal:git-storage.adoc[git storage] for full information about git based storage.
 
@@ -159,7 +145,7 @@ Use single `commit-id` and tree defined by it. This can not be specified at the 
 `--input.git.dir=<dir-name>`::
 
 Top level directory of transaction data is defined by `dir-name`. All files inside this directory tree
-with xref:reference:tackler-conf.adoc[configured] suffix will be used as journal files.
+with xref:reference:tackler-toml.adoc[configured] suffix will be used as journal files.
 
 These options are mutually exclusive with filesystem storage arguments (`input.fs.*`).
 
@@ -176,13 +162,13 @@ If transaction is filtered away by txn filter, it will disappear from all calcul
 The effect is same as if transaction didn't exist in the first place.  Transactions can be filtered based on
 various attributes of single transaction, and different filters can be combined logically together.
 
-For full list of available filters and their syntax, see xref:usage:txn-filters.adoc[Transaction Filters]
+For full list of available filters and their syntax, see xref:./txn-filters.adoc[Transaction Filters]
 document.
 
 
 Transaction filter can be defined by providing filter definition as JSON with `--api-filter-def` option,
 and it can be plain JSON or encoded as base64 string. Base64 encoding will make it easy to use filters
-with xref:usage:index.adoc#txn-filters-shell[shell scripts].
+with xref:./index.adoc#txn-filters-shell[shell scripts].
 
 Belows is an example of filter to find all transactions where there is "ice-cream"
 on transaction's description field.
@@ -206,7 +192,7 @@ code as starting "#" and description starts as "txn-".
 --api-filter-def '{ "txnFilter": { "TxnFilterAND" : { "txnFilters" : [ { "TxnFilterTxnCode": { "regex": "#.*" } },  { "TxnFilterTxnDescription": { "regex": "txn-.*" } } ] } } }'
 ----
 
-See xref:usage:txn-filters.adoc[Transaction Filters] for list of all available filters and their syntax.
+See xref:./txn-filters.adoc[Transaction Filters] for list of all available filters and their syntax.
 
 
 [[txn-filters-shell]]
@@ -257,7 +243,7 @@ EOF
 Get reports for all transactions between 2019-01-15 10:00 and 15:30 on TZ=02:00
 
 ....
-tackler-cli.jar --api-filter-def \
+tackler --config path/to/conf.toml --api-filter-def \
    $(time_span_filter 2019-01-15TT10:00:00+02:00  2019-01-15T15:30:00+02:00)
 
 Filter:
@@ -289,7 +275,7 @@ time_window_filter () {
 Transaction data from last 5 years:
 
 ----
-tackler-cli.jar --api-filter-def \
+tackler --config path/to/conf.toml --api-filter-def \
    $(get_window_filter "2019-01-01" "-5 years")
 
 Filter:
@@ -302,7 +288,7 @@ Filter:
 Transaction data from last 30 days:
 
 ----
-tackler-cli.jar --api-filter-def \
+tackler --config path/to/conf.toml --api-filter-def \
    $(get_window_filter "2019-01-15" "-30 days")
 
 Filter:
@@ -315,7 +301,7 @@ Filter:
 Transaction data for Q1/2018:
 
 ----
-tackler-cli.jar --api-filter-def \
+tackler --config path/to/conf.toml --api-filter-def \
    $(get_window_filter "2018-01-01" "+3 months")
 
 Filter:
@@ -338,9 +324,9 @@ then either Txns must have either `uuid` or unique `time`, `code` or `descriptio
 
 ===== Selecting reports and exports
 
-Produced reports can be selected either by xref:reference:tackler-conf.adoc[configuration] or CLI options:
+Produced reports can be selected either by xref:reference:tackler-toml.adoc[configuration] or CLI options:
 
-`--reporting.reports report1 report2 ...`::
+`--reports report1 report2 ...`::
 
 Valid options are:
 xref:reports:report-balance.adoc[`balance`],
@@ -349,90 +335,62 @@ xref:reports:report-register.adoc[`register`]
 
 
 
-Produced exports can be selected either by xref:reference:tackler-conf.adoc[configuration] or CLI options:
+Produced exports can be selected either by xref:reference:tackler-toml.adoc[configuration] or CLI options:
 
 
-`--reporting.exports export1 export2`::
+`--exports export1 export2`::
 
-valid options are xref:reports:export-identity.adoc[`identity`]
-
-
-===== Selecting report formats
-
-Report formats can be selected either by xref:reference:tackler-conf.adoc[configuration] or CLI options:
-
-
-`--reporting.formats frmt1 frmt2`::
-
-Valid options are: `txt` and `json`
+valid options are xref:reports:export-equity.adoc[`equity`] and xref:reports:export-identity.adoc[`identity`]
 
 
 ===== Configuring used output scale of reports
 
-Report output scale (e.g. count of decimals) can be set either globally or based on report type.
+Report output scale (e.g. count of decimals) can be set globally.
 When values are truncated based on max scale setting, used rounding mode is HALF_UP.
 
-Example of global scale settings:
+Example of scale settings:
 ....
-reporting {
-  scale {
-    min = 2
-    max = 7
-  }
-}
+[report]
+scale = { min = 2, max = 4 }
 ....
 
-and report specific scale settings:
-....
-reports {
-   balance {
-     scale {
-        min = 2
-        max = 2
-     }
-   }
-}
-....
-
-See xref:reference:tackler-conf.adoc[tackler.conf] full documentation.
+See xref:reference:tackler-toml.adoc[tackler.toml] full documentation.
 
 
 ===== Selecting accounts for reports
 
-Accounts can be selected for reports either by setting global `reporting.accounts`
+Accounts can be selected for reports either by setting global `report.accounts`
 (conf-setting and command line) setting or with report specific selector.
 
 Default selection for reports is "all accounts" and it can be done with empty setting.
 
 [NOTE]
 ====
-See xref:reports:report-balance-group.adoc[Balance Group]
+See xref:reports:report-balance.adoc[Balance] and xref:reports:report-balance-group.adoc[Balance Group]
 for details how account selectors affects reports.
 ====
 
 Command line example:
 
-  --reporting.accounts "Assets(:.*)?" "Expenses(:.*)?"
+  --accounts "Assets(:.*)?" "Expenses(:.*)?"
 
 All accounts:
 
-  --reporting.accounts
+  --reporting.accounts ""
 
 
 Configuration example:
 
 ....
-reporting {
+[report]
   accounts = [ "Assets(:.*)?", "Expenses(:.*)?" ]
-}
 ....
 
 All accounts
 
 ....
-reporting {
+[report]
   accounts = [ ]
-}
 ....
 
 
@@ -449,32 +407,28 @@ and Balance Group report by weeks, or Balance report for week and Balance Group 
 
 Criteria could be: `year`, `month`, `date`, `iso-week`, `iso-week-date`
 
-GroupBy is set by xref:reference:tackler-conf.adoc[configuration (tackler.conf)].
+GroupBy is set by xref:reference:tackler-toml.adoc[configuration (tackler.toml)].
 
 
 ==== Output
 
+`--output.dir <directory>`:: will print reports to separate files,
+which are located in speficided directory.
 
-`--reporting.console=true`:: will print reports on console
-
-`--output <basename>`:: will print reports to separate files,
-which are named based on basename.
-
-Basename is path and name prefix for output reports, and it
-can be either absolute path or relative path to basedir.
+`--output.prefix <filename-prefix>`:: prefix to be used for individual report files..
 
 Actual file names will be:
 
 For reports:
 
-* `<output>.bal.txt`: xref:reports:report-balance.adoc[Balance report]
-* `<output>.balgrp.txt`: xref:reports:report-balance-group.adoc[Balance Groups report]
-* `<output>.reg.txt`: xref:reports:report-register.adoc[Registry report]
+* `<directory>/<prefix>.bal.txt`: xref:reports:report-balance.adoc[Balance report]
+* `<directory>/<prefix>.balgrp.txt`: xref:reports:report-balance-group.adoc[Balance Groups report]
+* `<directory>/<prefix>.reg.txt`: xref:reports:report-register.adoc[Registry report]
 
 For exports:
 
-* `<output>.equity.txn`: Equity report
-* `<output>.identity.txn`: Identity report
+* `<directory>/<prefix>.equity.txn`: Equity report
+* `<directory>/<prefix>.identity.txn`: Identity report
 
 Exports are special reports, which are valid input for Tackler.
 

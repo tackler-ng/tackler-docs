@@ -1,26 +1,67 @@
-= Balance report
+= Balance Report
 :page-date: 2019-03-29 00:00:00 Z
-:page-last_modified_at: 2019-10-05 00:00:00 Z
+:page-last_modified_at: 2025-04-06 00:00:00 Z
 
-Balance report is sum of selected accounts and sub-accounts.
+Balance Report produces sum of selected accounts, and total of those account sums.
 
+[NOTE]
+====
+Tackler's Balance family reports produce more information than what you find in other PTA tools. +
+ +
+The default Balance and Balance Group calculate sums for all accounts which have postings,
+but also for all children (aka account tree balance).
+In some cases this information of children balances is not needed,
+and Tackler supports two different balance family reports, Flat and Tree Balance Group Reports.
+====
+
+== Flat Balance
+
+With flat Balance Report the balance is reported only for those accounts which have had postings.
+This is similar report what you will find in other PTA tools.
+
+.report.balance.type = "flat"
 ....
-BALANCE
--------
-                 0.00   -2.00  Assets
-                -2.00   -2.00  Assets:Cash
-                 0.00    2.00  Expenses
-                 2.00    2.00  Expenses:Ice_cream
+Balance Report
+--------------
+                12.00   Expenses:Food:FastFood
+                 2.50   Expenses:Sweets:Candy
+                 3.00   Expenses:Sweets:Ice·Cream
 =====================
-                 0.00
+                17.50
 ....
 
-== Format
+This report type is selected by configuration setting `report.balance.type = "flat"` in
+tackler's configuration file xref:reference:tackler-toml.adoc[tackler.toml].
+
+== Tree Balance
+
+With tree Balance Report the first column is postings for that account
+and second is cumulative sum of that account and all children.
+
+.report.balance.type = "tree"
+....
+Balance Report
+--------------
+                 0.00    17.50  Expenses
+                 0.00    12.00  Expenses:Food
+                12.00    12.00  Expenses:Food:FastFood
+                 0.00     5.50  Expenses:Sweets
+                 2.50     2.50  Expenses:Sweets:Candy
+                 3.00     3.00  Expenses:Sweets:Ice·Cream
+=====================
+                17.50
+....
+
+This report type is selected by configuration setting `report.balance.type = "tree"` in
+tackler's configuration file xref:reference:tackler-toml.adoc[tackler.toml].
+
+
+=== Format
 
 First (the leftmost) sum is sum of postings which are directly debiting or crediting 
 that account (account tree node). If there are no such transactions,  then this first sum is zero.
 
-Second sum is recursive balance sum for that account tree (account and all its sub-accounts).
+Second sum is recursive balance for that account tree (account and all its sub-accounts).
 
 The sum reported under line is balance delta, e.g. value difference of reported accounts.
 
@@ -32,8 +73,11 @@ Balance delta is based and calculated only by values reported on the first colum
 
 == Balance report configuration
 
-See xref:reference:tackler-conf.adoc[tackler.conf] and `reports.balance.*` for full
+See xref:reference:tackler-toml.adoc[tackler.toml] and `report.balance.*` for full
 information of balance report configuration options.
+
+The flat and tree balances can be selected with `report.balance.type = "flat"`
+or `report.balance.type = "tree"` configuration settings.
 
 
 === Account selectors
@@ -41,10 +85,11 @@ information of balance report configuration options.
 By default all accounts are included into balance report, but that's not very
 interesting balance report because balance over all accounts will be zero always.
 
-Balance report accounts can be selected by Accounts Selectors. This can be done
-either by using global `reporting.accounts` (conf+cli) option or by using report specific
-`reports.balance.accounts` setting (conf-only). If report specific account selector
-is defined in configuration, it can not be overridden from command line.
+Balance report accounts can be selected by Accounts Selectors.
+This can be done
+by cli option `--accounts`, global `report.accounts` configuration option
+or  by using report specific
+`report.balance.accounts` setting
 
 Balance delta is based and calculated only by values reported on the first column.
 This means that if sub-account is not listed by balance report,
@@ -60,8 +105,8 @@ For example: select only top-level "Assets" and all its sub-accounts: `"Assets(:
 
 Compare following two reports:
 
-.`--reporting.accounts "e1(:.*)?"`
-----
+.`--accounts "e1(:.*)?"`
+....
 BALANCE
 -------
                  1.00    6.00  e1
@@ -69,16 +114,16 @@ BALANCE
                  3.00    3.00  e1:e2:e3
 =====================
                  6.00
-----
+....
 
-.`--reporting.accounts "e1"`
-----
+.`--accounts "e1"`
+....
 BALANCE
 -------
                  1.00    6.00  e1
 =====================
                  1.00
-----
+....
 
 These two reports demonstrates difference between balance delta and
 recursive balance sum for specific account tree.
@@ -89,14 +134,14 @@ recursive balance sum for specific account tree.
 
 Below are links to example balance reports with full auditing metadata.
 
-* {repolink}/tests/audit/ok/audit-1E2-04.ref.bal.txt/[Balange report with audit metadata]
-* {repolink}/tests/audit/ok/audit-1E2-04.ref.bal.json/[Balange JSON report with audit metadata]
+* {repolink}/suite/audit/ok/audit-1E2-04.ref.bal.txt/[Balange report with audit metadata]
 
 
 === Example output of balance report
 
 
-----
+.report.balance.type = "tree"
+....
 BALANCE
 -------
                  1.00    333.00  a
@@ -111,12 +156,26 @@ BALANCE
                 -9.00     -9.00  e:e0103
 =====================
                  0.00
-----
+....
 
 === Example report with commodities
 
-Below is example balance report with mixed commodities.
+Below are example balance reports with mixed commodities in flat and tree form:
 
+.report.balance.type = "flat"
+....
+BALANCE
+-------
+                 3.00        ACME  Assets:Stocks
+              -359.75        EUR   Assets:Cash
+==========================
+                 3.00 ACME
+              -359.75 EUR
+....
+
+And same report in tree form:
+
+.report.balance.type = "tree"
 ....
 BALANCE
 -------
@@ -128,5 +187,3 @@ BALANCE
                  3.00 ACME
               -359.75 EUR
 ....
-
-

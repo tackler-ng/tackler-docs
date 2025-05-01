@@ -1,0 +1,136 @@
+= Solar Energy Value
+:page-date: 2025-03-15 00:00:00 Z
+:page-last_modified_at: 2025-03-15 00:00:00 Z
+
+
+This example shows how you can track the value of produced energy with link:commodities:price/variable-market-value/[Variable Market Value] analysis.
+
+
+== Intro
+
+We have a solar energy setup, where we can use all produced energy locally at the site.
+So there is no need to sell the produced energy back to the grid.
+
+The amount of produced energy will vary greatly based on the time of the year, weather, and also
+based on how we could consume energy (either by using it, or by storing it into batteries).
+
+At the same time link:https://data.nordpoolgroup.com/[the price of electricity] will fluctuate on the grid.
+
+With this setup, it would be interesting to know what is the value of produced energy, even though no real
+commercial transactions have been happened between you and the local energy company.
+
+To answer that question, we will use xref:commodities:price/variable-market-value/[Variable Market Value] analysis.
+
+
+== Setup
+
+=== Produced Electrical Energy
+
+First you need to know how much energy we have produced over time.
+Ideally this should be the same period of time as what is used in the electricity market.
+In this example we will use one hour resolution.
+
+We will record produced energy to transactions by automated system,
+which will read it directly from the Solar Charge Controller.
+The amount of these automatically generated transactions won't be any problem to tacker,
+as it can easily process link:/news/2025/01/21/250_000_txns/[hundreds of thousands] transactions.
+
+----
+2024-03-20T08:00:00
+   SolarPanels:Array:1  0.4638 kWh
+   Sun
+
+2024-03-20T09:00:00
+   SolarPanels:Array:1  1.671 kWh
+   Sun
+
+2024-03-20T10:00:00
+   SolarPanels:Array:1  3.7428 kWh
+   Sun
+----
+
+With this setup we will have the energy data by hour, and we can use this information in the next steps.
+
+=== Price of Electrical Energy
+
+The price of electrical energy varies hour-by-hour, but there are other aspects to total price of it,
+including fixed contract fee, transfer costs and taxes.
+
+In this example we will use two different price models:
+
+Use-at-site::
+
+In this case we would like know how much it would have cost to buy used electricity.
+To calculate that we have to know what is the energy price with transfer fee included, with taxes.
+
+
+Sell-to-grid::
+
+In this case we would like know how much profit we would have made if the energy was sold back to grid.
+For net price of energy, we have to subtract from the energy price the transfer fees and taxes.
+
+
+We will use two different pricedb files for these use cases. The price of the energy is recorded as Euro cents.
+
+In the first case, we would have to had pay price and transfer fees, if we would have been bought the energy from the grid.
+
+.Use-at-Site pricedb:
+----
+P 2024-03-20T07:01:32 kWh 9.771 c
+P 2024-03-20T08:01:37 kWh 13.842 c
+P 2024-03-20T09:01:37 kWh 16.739 c
+----
+
+Compare this to price structure when produced energy is sold back to grid - the tax and transfer fees are subtracted from energy price:
+
+.Sold-to-grid pricedb:
+----
+P 2024-03-20T07:01:32 kWh 0 c
+P 2024-03-20T08:01:37 kWh 3.322 c
+P 2024-03-20T09:01:37 kWh 6.219 c
+----
+
+This highlights that price could go to zero or even negative when sold back to grid with fixed fees.
+
+== Produced Energy value
+
+=== Energy used at the site
+
+Total savings when all energy could be used on the site (unit is Euro cent):
+
+----
+tackler \
+   --config examples/solar.toml \
+   --reports balance
+----
+
+Balance report of energy value
+
+----
+include::partial$se-used.bal.txt[]
+----
+
+So for these four example days, the value of energy has been about 13.20 €.
+
+=== Energy sold to the grid
+
+Virtual value of energy, if it had been sold to grid (unit is Euro cent):
+
+----
+tackler \
+   --config examples/solar.toml \
+   --reports balance \
+   --pricedb examples/solar/txns/se-sold.db
+----
+
+Balance report of energy value
+
+----
+include::partial$se-sold.bal.txt[]
+----
+
+On the other hand, by selling it, we would have earned 3.38 € - that's about value of one portion of ice cream.
+
+== Full Example
+
+The full solar energy value example is located under link:https://github.com/tackler-ng/tackler/tree/main/examples[tackler example] folder, and it's executed as part of the Tackler's CI/CD jobs.

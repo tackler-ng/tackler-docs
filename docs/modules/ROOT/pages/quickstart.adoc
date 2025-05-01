@@ -1,128 +1,214 @@
 = Quickstart
-:page-date: 2019-03-29 00:00:00 Z
-:page-last_modified_at: 2021-01-03 00:00:00 Z
+:page-date: 2024-11-18 07:00:00 +02:00
+:page-last_modified_at: 2025-03-02 00:00:00 Z
 
+With Tackler-NG version v25.1.1 or higher, run:
 
-This is minimal quickstart setup for Tackler.
-
-[NOTE]
-====
-See
-xref:journal:format.adoc[Journal Format],
-xref:ROOT:installation.adoc[Installation Manual],
-xref:usage:index.adoc[Usage Guide],
-xref:reference:tackler-conf.adoc[tackler.conf],
-xref:reference:accounts-conf.adoc[accounts.conf] and
-xref:reference:examples.adoc[Configuration Examples]
-for how to configure tackler and use it with full-fledged production setup.
-====
-
-
-== Minimal Quickstart Setup
-
-=== 0. Get tackler-cli.jar
-
-To use an old version of tackler-mk1, you have to https://gitlab.com/e257/accounting/tackler/blob/main/docs/devel/build.adoc[build it yourself].
-
-
-=== 1. Make directory structure for demo setup
-
-[source,sh]
+[source,bash]
 ----
-mkdir tackler
-mkdir tackler/txns
-
-# Change current working directory to tackler demo folder
-cd tackler
-
-# "Install" tackler-cli.jar
-cp /path/to/tackler-cli-x.y.z.jar ./tackler-cli.jar
+cargo install --locked tackler
+tackler new journal
+tackler --config journal/conf/tackler.toml
 ----
 
 
+== Longer version of the same story
 
-=== 2. Create few transactions
+You need link:https://www.rust-lang.org/tools/install[Rust toolchain] to build tackler binary.
 
-[source,sh]
+[source,bash]
+.Build and install Tackler
 ----
-cat > txns/journal.txn << EOF
-2018-06-01 'First transaction
-  Expenses:Ice_cream  2
-  Assets:Cash
-
-2018-06-02 'Second transaction
-  Expenses:Lemonade  1
-  Assets:Cash
-EOF
+cargo install --locked tackler
 ----
 
-[NOTE]
-====
-The journal data file `txns/journal.txn` can not be empty,
-so there must be some transactions to play with it.
-====
+This will build and install tackler so that's available on your `PATH` environment variable. Assuming that you've followed default
+link:https://www.rust-lang.org/tools/install[Rust toolchain] installation. See xref:ROOT:installation.adoc[Installation Manual] for full instructions.  You can uninstall it by running  `cargo uninstall tackler`.
 
+== Creating a journal
 
-=== 3. Verify setup and content of tackler demo folder
+Once you have installed tackler, create default journal setup with:
 
-[source,sh]
+[source,bash]
 ----
-# Directory listing of tackler folder
-./tackler-cli.jar
-./txns/
-./txns/journal.txn
+tackler new my_journal
 ----
 
+This will create a new bookkeeping setup, with default configuration `my_journal/conf` and example transactions in `my_journal/txns` (feel free to modify or delete these transaction files).
 
-=== 4. Generate default reports
+The next step is to run default reports for the journal:
 
-[source,sh]
 ----
-# This command must be run inside 'tackler' folder, which was created abobe
-java -jar ./tackler-cli.jar --accounts.strict=false
+tackler --config my_journal/conf/tackler.toml
 ----
 
-==== 4.1. Resulting xref:reports:report-register.adoc[Register] Reports
+This will run Balance and Register reports by default. You can select which reports to run by using `--reports` option, see `tackler --reports` for more information.
 
-[source]
 ----
-# ... Log lines suppressed ...
-# ... There are legitime ERROR and WARNING about missing configuration ...
-# ... See Installation Manual how to configure tackler ...
-# 
-Txns size: 2
-
-BALANCE
--------
-                 0.00   -3.00  Assets
-                -3.00   -3.00  Assets:Cash
-                 0.00    3.00  Expenses
-                 2.00    2.00  Expenses:Ice_cream
-                 1.00    1.00  Expenses:Lemonade
+Balance Report
+--------------
+                 0.00    17.50  Expenses
+                 0.00    12.00  Expenses:Food
+                12.00    12.00  Expenses:Food:Fast-Food
+                 0.00     5.50  Expenses:Sweets
+                 2.50     2.50  Expenses:Sweets:Candy
+                 3.00     3.00  Expenses:Sweets:Ice·Cream
 =====================
-                 0.00
+                17.50
 
-
-REGISTER
---------
-2018-06-01 Z 'First transaction
-            Assets:Cash                                   -2.00              -2.00
-            Expenses:Ice_cream                             2.00               2.00
-----------------------------------------------------------------------------------
-2018-06-02 Z 'Second transaction
-            Assets:Cash                                   -1.00              -3.00
-            Expenses:Lemonade                              1.00               1.00
-----------------------------------------------------------------------------------
-
-
-Total processing time: 1284, parse: 464, reporting: 80
+Register Report
+---------------
+...
 ----
 
+
+[NOTE]
+====
 See
 xref:journal:format.adoc[Journal Format],
-xref:ROOT:installation.adoc[Installation Manual],
-xref:usage:index.adoc[Usage Guide],
-xref:reference:tackler-conf.adoc[tackler.conf],
-xref:reference:accounts-conf.adoc[accounts.conf] and
-xref:reference:examples.adoc[Configuration Examples]
-how to configure tackler and use it with full-fledged production setup.
+xref:reference:tackler-toml.adoc[tackler.toml],
+xref:reference:accounts-toml.adoc[accounts.toml],
+xref:reference:commodities-toml.adoc[commodities.toml] and
+xref:reference:tags-toml.adoc[tags.toml]
+for full documentation.
+====
+
+=== Strict Mode
+
+Tackler has a strict mode, which validates account names, commodity names and tags. This is useful for ensuring that all transaction data is correctly entered and that the reports are accurate. To enable strict mode, set `kernel.strict = true` in the  `tackler.toml` configuration file. You can enable strict mode with the default journal.
+
+== Journal examples and source code
+
+Tackler repository contains several example journals, which you can use to play and test tackler further: to test git integration, running tackler in audit mode, or playing with demo setup of 100_000 transactions.
+
+[source,bash]
+.Get source and test journals
+----
+git clone --recurse-submodules https://github.com/tackler-ng/tackler
+cd tackler
+----
+
+
+=== Simple example
+
+The
+link:https://github.com/tackler-ng/tackler/blob/main/examples/simple.toml[simple.toml]
+example uses filesystem based storage backend, no account name validations, no auditing features.
+
+==== Command
+
+[source,bash]
+----
+tackler --config examples/simple.toml
+----
+
+==== Output
+
+----
+Balance Report
+--------------
+                 0.00   12.00  Expenses:Food
+                12.00   12.00  Expenses:Food:Groceries
+                 0.00    3.32  Expenses:Sweets
+                 2.12    2.12  Expenses:Sweets:Ice·cream
+                 1.20    1.20  Expenses:Sweets:Salmiakki
+=====================
+                15.32
+----
+
+=== Let's play for real - Git storage and Audit mode
+
+The
+link:https://github.com/tackler-ng/tackler/blob/main/examples/audit.toml[audit.toml]
+example uses a bare git repository as transaction storage, and also strict and audit mode is activated by configuration. This means that all accounts, commodity names and tags are validated.  The triplet of git commit id, Txn Set Checksum and Account Selector Checksum provides an auditable (cryptographic) proof of transactions used by reports.
+
+==== Command
+
+[source,bash]
+----
+tackler --config examples/audit.toml
+----
+
+==== Output
+
+[source,bash]
+----
+Git Storage
+         commit : 4aa4e9797501c1aefc92f32dff30ab462dae5545
+      reference : txns-1E1
+      directory : txns
+         suffix : .txn
+        message : txns-1E1: 2016/12
+
+Txn Set Checksum
+        SHA-256 : 9b29071e1bf228cfbd31ca2b8e7263212e4b86e51cfee1e8002c9b795ab03f76
+       Set size : 10
+
+**********************************************************************************
+Account Selector Checksum
+        SHA-256 : 19d31a48bf9a8604a1128ccfd281511f961c5469748a97897a21fc0fa2a5f519
+
+Balance Report
+--------------
+                 0.00   -161.00  a:ay2016
+                -6.00     -6.00  a:ay2016:am02
+               -14.00    -14.00  a:ay2016:am03
+               -19.00    -19.00  a:ay2016:am04
+               -26.00    -26.00  a:ay2016:am05
+                -1.00     -1.00  a:ay2016:am07
+                -7.00     -7.00  a:ay2016:am08
+               -13.00    -13.00  a:ay2016:am09
+               -19.00    -19.00  a:ay2016:am10
+               -25.00    -25.00  a:ay2016:am11
+               -31.00    -31.00  a:ay2016:am12
+=====================
+              -161.00
+##################################################################################
+----
+
+=== Playing with 100_000 transactions
+
+The audit repository contains a branch which has set of 100_000 transactions, and it's named as `txns-1E5`.
+The following command will run the audit mode for the transactions in the branch `txns-1E5`
+and select only accounts starting with `a:ay2016:am1`, that's accounts for year 2016, months 10, 11 and 12.
+
+
+==== Command
+
+[source,bash]
+----
+tackler \
+    --config examples/audit.toml \
+    --input.git.ref txns-1E5 \
+    --accounts "a:ay2016:am1.*"
+----
+
+==== Output
+
+[source,bash]
+----
+Git Storage
+         commit : cb56fdcdd2b56d41fc08cc5af4a3b410896f03b5
+      reference : txns-1E5
+      directory : txns
+         suffix : .txn
+        message : txns-1E5: 2016/12
+
+Txn Set Checksum
+        SHA-256 : 27060dc1ebde35bebd8f7af2fd9815bc9949558d3e3c85919813cd80748c99a7
+       Set size : 100000
+
+**********************************************************************************
+Account Selector Checksum
+        SHA-256 : 49bfb37038bd82c1f23eeb3ea018a721b1f9503732493b7a6d7c96f187bc1505
+
+
+Balance Report
+--------------
+              -135619.00   -135619.00  a:ay2016:am10
+              -127126.00   -127126.00  a:ay2016:am11
+              -133433.00   -133433.00  a:ay2016:am12
+========================
+              -396178.00
+##################################################################################
+----

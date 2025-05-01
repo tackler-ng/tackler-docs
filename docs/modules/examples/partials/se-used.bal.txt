@@ -1,0 +1,13 @@
+Report Time Zone
+        TZ name : Europe/Helsinki
+
+Commodity Prices
+           Time : At txn time
+      Commodity : kWh
+          Value : - c
+
+Balance Report
+--------------
+              1320.98      1320.98 c  SolarPanels:Array:1
+=======================
+              1320.98 c

@@ -1,6 +1,6 @@
 = Transaction Filters
 :page-date: 2019-03-29 00:00:00 Z
-:page-last_modified_at: 2019-10-05 00:00:00 Z
+:page-last_modified_at: 2024-12-12 00:00:00 Z
 
 Transaction stream can be filtered to select which transactions are part of reports and calculations.
 
@@ -15,10 +15,8 @@ for single transactions.
 
 Usage of transaction filters:
 
-* See xref:usage:index.adoc#txn-filters[Usage Guide] for using transaction filters with
-`tackler-cli.jar` CLI application
-* See xref:reference:server-api.adoc[Server API document] for using transaction filters with embedded `tackler-core`
-* See xref:reference:client-api.adoc[Client API document] for data model of transaction filters for JS/JVM `tackler-api`
+* See xref:./index.adoc#txn-filters[Usage Guide] for using transaction filters with
+`tackler` CLI application
 * For actual definition of transaction filters, keep reading this document
 
 == Logical transaction filters
@@ -57,9 +55,6 @@ Transaction filters can be defined in and decoded from JSON.
 Regualar expression syntax used by Transaction filters is based on {regex-link}[Java regular expressions].
 
 Below is filter format definition syntax in JSON pseudo-format.
-
-For actual working JSON filter examples, see test suite of Transaction Filters:
-{gitlink}/core/src/test/scala/fi/e257/tackler/filter/TxnFilterJsonTest.scala[core -> tests -> filter -> TxnFilterJsonTest]
 
 
 ==== Top Level component
@@ -193,7 +188,7 @@ Txn UUID filter selects transactions which UUID is same as specified.
 ===== Geo Location
 
 Transaction Geo Filters selects transactions which geographic location is inside Bounding Box defined by the filter.
-See xref:usage:gis/txn-geo-filters.adoc[Transaction Geo Filters] documentation for how these filters selects transactions.
+See xref:gis/txn-geo-filters.adoc[Transaction Geo Filters] documentation for how these filters selects transactions.
 
 .2D Bounding Box (Latitude, Longitude)
 [source,json]
@@ -361,8 +356,5 @@ Posting Commodity selects transactions which have a posting with comment which m
   }
 }
 ----
-
-There are also several examples of complex Transaction filters in test suite:
-{gitlink}/core/src/test/scala/fi/e257/tackler/filter/TxnFilterJsonTest.scala[core -> tests -> filter -> TxnFilterJsonTest]
 
 

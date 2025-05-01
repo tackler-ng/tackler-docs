@@ -1,4 +1,5 @@
 * xref:index.adoc[Examples]
-** xref:examples:trimix-filling-station.adoc[]
-** xref:examples:travel-journal.adoc[]
+** xref:solar-energy-value.adoc[]
+** xref:trimix-filling-station.adoc[]
+** xref:travel-journal.adoc[]
 ** xref:filter-for-two-accounts.adoc[]

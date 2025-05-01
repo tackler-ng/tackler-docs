@@ -1,0 +1,44 @@
+= Commodity Price Manual
+:page-date: 2025-03-15 00:00:00 Z
+:page-last_modified_at: 2025-04-04 00:00:00 Z
+
+
+This manual describes how to use commodity prices with Tackler.
+
+== Detailed information
+
+* xref:journal:pricedb.adoc[PriceDB] file and format
+* Commodity and Share valuation models (Mark to Market models)
+** xref:./current-market-value.adoc[Current Market Value]
+** xref:./historic-market-value.adoc[Historic Market Value]
+** xref:./variable-market-value.adoc[Variable Market Value]
+
+== Summary
+
+There are three different use cases for initial price data support:
+
+1. Current valuation of commodities, shares and currencies
+2. Historical valuation of commodities, shares and currencies, at certain point in time
+3. Simulation with historical price data. For example
+.. Historical purchasing power of money analysis
+.. Market value analysis of produced commodity (e.g. electricity)
+
+=== Price Data lookup types
+
+`*last-price*`:: Last recorded rate in PriceDB
+
+`*given-time*`:: Before given timestamp
+
+`*txn-time*`:: At transaction time or nearest before the txn time
+
+See 
+xref:./current-market-value.adoc[Current Market Value],
+xref:./historic-market-value.adoc[Historic Market Value] and
+xref:./variable-market-value.adoc[Variable Market Value]
+for detailed information.
+
+
+== Features
+
+See xref:./features.adoc[Price Data Features] document for
+full listing of features to handle price data.

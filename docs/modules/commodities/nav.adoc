@@ -1,2 +1,8 @@
-* xref:commodities:commodities.adoc[]
-** xref:commodities:currencies.adoc[]
+
+* xref:commodities.adoc[]
+** xref:currencies.adoc[]
+** xref:price/index.adoc[]
+*** xref:price/current-market-value.adoc[]
+*** xref:price/historic-market-value.adoc[]
+*** xref:price/variable-market-value.adoc[]
+*** xref:price/features.adoc[]

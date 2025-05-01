@@ -1,8 +1,13 @@
 = Currencies, Shares, etc.
 :page-date: 2019-03-29 00:00:00 Z
-:page-last_modified_at: 2019-03-29 00:00:00 Z
+:page-last_modified_at: 2025-03-15 00:00:00 Z
 
-Currencies and shares are special xref:commodities:commodities.adoc[commodities] which have value without unit of measurement.
+[NOTE]
+====
+See xref:price/index.adoc[Commodity Price Manual] how to do Market Value analysis with currencies and shares.
+====
+
+Currencies and shares are special xref:./commodities.adoc[commodities] which have value without unit of measurement.
 
 Examples of currencies and shares are: EUR, USD, NOKIA, etc. Currencies
 and shares could be used as plain values without quantity unit.

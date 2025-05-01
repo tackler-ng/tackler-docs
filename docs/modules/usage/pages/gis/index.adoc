@@ -5,8 +5,8 @@
 Tackler supports geographic location with accounting journal and it can use transaction GIS data
 for generating accounting reports.
 
-See xref:usage:gis/txn-geo-location.adoc[Transaction Geo Location] for how to store geographic location with
-accounting transactions, and xref:usage:gis/txn-geo-filters.adoc[Transaction Geo Filters] how to select transactions based
+See xref:./txn-geo-location.adoc[Transaction Geo Location] for how to store geographic location with
+accounting transactions, and xref:./txn-geo-filters.adoc[Transaction Geo Filters] how to select transactions based
 on that information. Together these two features make it possible to do
 accounting and reporting based on area and place.
 

@@ -1,0 +1,113 @@
+= Historic Market Value
+:page-date: 2025-03-15 00:00:00 Z
+:page-last_modified_at: 2025-04-04 00:00:00 Z
+
+
+== Use case
+
+Historic Market Value, or historic Mark-to-Market (MTM) is used to display link:/docs/commodities/[commodity]
+and link:/docs/currencies/[share] values at the specified point in the past. In other words, this is
+"Market Value at given time" valuation done with the last market price before that given time.
+
+Typically this is feature is used with filters, e.g. producing quarterly results with historic valuation.
+
+
+=== Price Data application policy
+
+`*given-time*`::
+1. Used Price is based on rates noted in the pricedb. Possible costs recorded in the transactions are ignored.
+2. The latest price *before* `given-time` in the price db is used for the conversion.
+3. Prices with the same time as `given-time` or after are ignored
+
+
+[[timestamp]]
+=== Timestamp handling
+
+The `given-time` timestamp for `--price.before` uses the same logic as link:/docs/journal/format/[transaction timestamps]:
+
+Timestamp could be:
+
+* RFC3339 timestamp with offset information (`2024-12-31T14:15:16+02:00`)
+* Timestamp without zone or offset (`2024-12-31T14:15:16`), then the `kernel.timestamp.timezone` value is used as zone/offset.
+* Date (`2024-12-31`), then `kernel.timestamp.default-time` is used with `kernel.timestamp.timezone`.
+
+The resulting timestamp has always time and offset.
+
+
+[#historic-with-filters]
+==== Historic price data with filters
+
+Let's assume there are following price data entries (three entries per year, distributed evenly):
+
+----
+P 2024-03-31 ACME 240331.00 CAD
+P 2024-06-30 ACME 240630.00 CAD
+P 2024-09-30 ACME 240930.00 CAD
+P 2024-12-31 ACME 241231.00 CAD
+----
+
+Today is 2025-01-01 and we run filtering query which will include txns from (inclusive - exclusive) range `[ 2024-01-01 .. 2024-04-01 [` into our reports, that's 2024/Q1.
+
+To use the same conversion rate, which was used to generate the `2024/Q1` report, the price data lookup type should be `given-time` with the same value as filter's end time: `--price.before=2024-04-01`.
+
+The used price data for reporting would be 240331.00 CAD, (the `P 2024-03-31 ACME 240331.00 CAD` entry), which is the nearest earlier recorded price in the Price DB.  This will ensure that reported values are same, regardless if the report is run on 2024-04-01 or 2025-01-01.
+
+The `given-time` is using price before the specified time, so above is true even when there would be a record for 2024-04-01
+
+----
+P 2024-03-31 ACME 240331.00 CAD
+P 2024-04-01 ACME 240401.00 CAD
+P 2024-06-30 ACME 240630.00 CAD
+----
+
+So with above pricedb content `--price.before=2024-04-01` would pick the 240331.00 rate.
+
+== Configuration
+
+Current Market Value mode is selected   either by `price.lookup-type = "given-price"` in
+link:/docs/configuration/tackler-toml/[tackler.toml] or by CLI `--price.lookup-type=given-price` option.
+
+With `given-time` lookup-type, you must always provide the time with CLI `--price.before` option.
+
+.Current Market Value and Report commodity settings in tackler.toml
+----
+[price]
+db-path = "journal/txns/price.db"
+lookup-type = "given-time"
+...
+[Report]
+commodity = "EUR"
+----
+
+See `tackler --help` for all price related CLI options.
+
+
+== Example
+
+This is journal records from the 2024 spring - some lovely ice cream and one Golden Maple Leaf coin
+
+----
+include::example$gml-price-journal.txn[]
+----
+
+
+We would like to know what was the daily market value of GML at the time when it was acquired.
+To do that, we run report with price lookup at given time:
+
+----
+tackler \
+    --config examples/maple.toml \
+    --reports balance \
+    --accounts "Assets:Coins" \
+    --price.lookup-type given-time \
+    --price.before 2024-03-01 \
+    --report.commodity CAD
+----
+
+This will produce the following balance report:
+
+----
+include::example$gml-price-hist-240301.bal.txt[]
+----
+
+include::partial$example-location.adoc[]

@@ -1,54 +1,19 @@
 = Git Storage Guide
 :page-date: 2019-03-29 00:00:00 Z
-:page-last_modified_at: 2019-10-05 00:00:00 Z
+:page-last_modified_at: 2024-12-12 00:00:00 Z
 
 Tackler has integrated and native support for link:https://git-scm.com/[GIT] version control system.
 
-This means that tackler will process accounting data directly from Git repository, which could be "bare".
+Tackler can process accounting data directly from Git repository, also from bare repositories without a working copy.
+
 Point of history for accounting data could be selected by all normal Git's way of references, and
-version metadata will be included directly to the generated reports. This also means that  generated reports
-are always made out of well known and well defined state of accounting data.
+SCM metadata is included directly to the reports.
 
-This provides one key of the immutable audit trail of used accounting data. This audit trail can be printed e.g.
-on paper or transferred directly to accountant or escrow agent. See xref:usage:auditing.adoc[Accounting Auditing]
-if there is need for audit trail of used account data.
-
-See xref:journal:sharding.adoc[Transaction data sharding] for ideas how to store data inside git repository. It is
-really good idea to select feasible way to split up journal, so that possible merge conflicts
-could be kept at minimum.  Tackler supports happily one-transaction - one-journal-file mode.
-
-
-== Using GIT branches and references with Tackler
-
-Tackler supports use of multiple branches, and transactions sets can be referenced by standard git ways:
-
-* by link:https://git-scm.com/docs/gitglossary#def_ref[ref names] (e.g. `refs/heads/master`, `refs/tags/Y2016`),
-* by link:https://git-scm.com/docs/gitglossary#def_symref[symbolic refs] (`HEAD`, `master`, `Y2016`)
-* directly by link:https://git-scm.com/docs/gitglossary#def_object_name[commit ids] (short `a7938d9b` or long form `a7938d9b61958d2cabea7503a7be89191d4fb31e` are supported).
-
-Git storage backend can use git repository as
-link:https://git-scm.com/docs/gitglossary#def_bare_repository[bare repository] or as `.git`-directory inside cloned
-working copy.  This means that Tackler is always using committed, clean internal state of git repository.
-
-This has multiple advantages:
-
-* Transaction data can be read directly from link:https://git-scm.com/docs/gitglossary#def_pack[pack files] with bare repositories
-* Transaction data can be easily manipulated by server systems
-* Transaction data is always in "clean state" from git perspective and it is extremely well defined with recorded commit ids
-
-Git storage backend is performance tested up to one million (1E6) transactions and its performance is on par or better
-with filesystem based storage backend.
-
-Tackler's Git support is provided by link:http://www.eclipse.org/jgit/[JGit]. JGit is pure java implementation of
-the Git version control system.
-
-
-== Why to use git as transaction data storage?
+== Why to use Git as journal storage?
 
 There are several advantages to use git as storage system for account data.
-Git itself is very good link:https://git-scm.com/about[distributed version control system with many features].
-
-Git has some very important features for Tackler and accounting in general:
+Git itself is very good distributed SCM, and it has many
+important features for Tackler and accounting in general:
 
 * link:https://git-scm.com/about/info-assurance[Data assurance]
 ** Clean, possible audited, track record who has made or changed journal data
@@ -64,8 +29,48 @@ Git has some very important features for Tackler and accounting in general:
 ** Topics could be used for auditing  or handling cleared and uncleared transactions
 ** These topics can be merged together in aggregate branches
 
+== Organizing repostory content
+
+This provides one key of the immutable audit trail of used accounting data. This audit trail can be printed e.g.
+on paper or transferred directly to accountant or escrow agent. See xref:usage:auditing.adoc[Accounting Auditing]
+if there is need for audit trail of used account data.
+
+See xref:./sharding.adoc[Transaction data sharding] for ideas how to store data inside git repository. It is
+really good idea to select feasible way to split up journal, so that possible merge conflicts
+could be kept at minimum.  Tackler supports happily one-transaction - one-journal-file mode.
+
+
+== Using GIT branches and references with Tackler
+
+Tackler supports use of multiple branches, and transactions sets can be referenced by standard git ways:
+
+* by link:https://git-scm.com/docs/gitglossary#def_tag[tag] (`2016-closed`)
+* by link:https://git-scm.com/docs/gitglossary#def_brach[branch] (`main`, `Y2016`)
+* directly by link:https://git-scm.com/docs/gitglossary#def_object_name[commit id (object name)], both short `a7938d9b` and long forms `a7938d9b61958d2cabea7503a7be89191d4fb31e` are supported.
+
+Git storage backend can use git repository as
+link:https://git-scm.com/docs/gitglossary#def_bare_repository[bare repository] or as `.git`-directory inside cloned
+working copy.  This means that Tackler is always using committed, clean internal state of git repository.
+
+This has multiple advantages:
+
+* Transaction data can be read directly from link:https://git-scm.com/docs/gitglossary#def_pack[pack files] with bare repositories
+* Transaction data can be easily manipulated by server systems
+* Transaction data is always in "clean state" from git perspective and it is extremely well defined with recorded commit ids
+
+Git storage backend is performance tested up to one million (1E6) transactions and its performance is on par or better
+with filesystem based storage backend.
+
+Tackler's Git support is provided by link:https://github.com/GitoxideLabs/gitoxide/[Gitoxide].
+Gitoxide is a pure Rust implementation of the link:https://git-scm.com/[Git SCM].
+
+
 == Demo setup how to use git journal
 
+There is an example setup of git journal and audit setup on Tackler's repository, it's
+link:https://github.com/tackler-ng/tackler/blob/main/examples/audit.toml[examples/audit.toml].
+
+Or you can create the setup.
 First you have to create transaction data on git. This is just normal journal data,
 which is pushed to git repository.  It is possible to use either bare repository
 or git-folder from cloned working copy.
@@ -107,44 +112,19 @@ git push
 cd ..
 ....
 
-Then you have to configure git storage, see xref:reference:tackler-conf.adoc[tackler.conf] for full explanation, but it could be as simple as:
+Then you have to configure git storage, see xref:reference:tackler-toml.adoc[tackler.toml] for full explanation.
 
-....
-cat >> git-storage.conf << EOF
-tackler {
-  core {
-    basedir = .
-    input {
-      storage = git
-      git {
-        repository = "journal.git"
-        ref = "master"
-        dir = "txns"
-        suffix = ".txn"
-      }
-    }
-    reporting {
-      console = true
-      reports = [ "balance", "register" ]
-    }
-    accounts.strict = false
-  }
-}
-EOF
-....
-
-Save configuration e.g. as `git-storage.conf` and put it into `tackler` folder:
 
 ....
 ls tackler/
-git-storage.conf
+git-storage.toml
 journal.git
 ....
 
 
 Now you could run default reports by just running:
 
- java -jar tackler-cli.jar --cfg git-storage.conf
+ tackler --config git-storage.toml
 
 This will produce something like that:
 
@@ -194,7 +174,7 @@ If you like to see your financial situatiation before you went crazy with lemona
 
 Let's say that it was `49551a0f3418486e576ce9076506fe94e2dbddf6`. You could also use short form of commit id:
 
-  java -jar tackler-cli.jar --cfg tackler-demo.conf --input.git.commit 49551a0f
+  tackler --config git-storage.toml --input.git.commit 49551a0f
 
 This will generate reports from accounting data as it was by time of that commit:
 
@@ -242,17 +222,18 @@ how to use tackler with git.
 
 === Difference between refs and commits
 
-Tackler follows head of ref automatically, so ref is good way to follow
-accounting branch as it evolves.
+Tackler follows head of ref (`main`, `Y2016`) automatically, so ref is good way to follow
+accounting data in the branch as it evolves.
 
 On the other hand, commit ids are fixed in time and they do not change.
-Same way transaction data identified by commit id do not change over time.
+This also means that transaction data identified by commit id do not change over time,
+and it is possible to see as it was in the point-in-time.
 
-So by specifying transaction data with commit id you create an immutable,
+By specifying transaction data with commit id you create an immutable,
 persistent uniquely identified view to the journal. Tackler records used
-commit id on each report and it could be used to re-create same reports
-or additional reports if there is ever need in future.
+commit id on each report, and it could be used to re-create same reports
+or additional reports in the future.
 
-For long term referencing of some certain state it is also possible to create
-a git link:https://git-scm.com/docs/gitglossary#def_tag[tag].
+link:https://git-scm.com/docs/gitglossary#def_tag[Git tags] tags could be used similar
+way to create fixed reference for humans.
 

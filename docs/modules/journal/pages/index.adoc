@@ -8,8 +8,8 @@ Tackler supports journals on plain filesystem and on git repository.
 Tackler can use journal from single file or journal could be split into multiple different files. 
 There are options to configure directory setup from where tackler will scan journal files.
 
-See xref:journal:sharding.adoc[Transaction data sharding] for information of possible ways to 
-shard transaction data, and xref:journal:format.adoc[Journal Format] for description of journal syntax.
+See xref:sharding.adoc[Transaction data sharding] for information of possible ways to 
+shard transaction data, and xref:format.adoc[Journal Format] for description of journal syntax.
 
 Tackler accepts over 130 different languages, script and sign unicode blocks as valid account
 and commodity names, see xref:reference:charsets.adoc[Character Set] document for detailed information about
@@ -30,7 +30,7 @@ because used journal is always in committed state.
 Tackler also includes used commit id  into reports.
 
 For full details and examples, 
-see xref:journal:git-storage.adoc[Git Storage Manual]
+see xref:git-storage.adoc[Git Storage Manual]
 and xref:usage:auditing.adoc[Accounting Auditing], 
 
 

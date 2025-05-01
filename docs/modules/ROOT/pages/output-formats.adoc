@@ -1,0 +1,17 @@
+= Output Formats
+:page-date: 2024-04-23 00:00:00 Z
+:page-last_modified_at: 2025-04-23 00:00:00 Z
+
+
+[NOTE]
+====
+This is pre-release feature, and it's only available on the development version of tackler.
+====
+
+== Text format
+
+lorem ipsum
+
+== JSON format
+
+lorem ipsum

@@ -1,6 +1,6 @@
 = Reliability
 :page-date: 2019-03-29 00:00:00 Z
-:page-last_modified_at: 2020-12-27 00:00:00 Z
+:page-last_modified_at: 2025-03-31 00:00:00 Z
 
 [quote]
 ____
@@ -12,35 +12,33 @@ ____
 Tackler's operations and results must always be correct and trustworthy. If there are any errors with journal,
 then it will fail fast and hard and won't process dubious input as valid one.
 
-== Testing
+== Performance
 
-Tackler test coverage is better than *99.8%*.
+Tackler has excellent performance characteristics - it can process more than 700_000 txns per second
+on modern laptop. See xref:usage:performance.adoc[Performance Overview] for details.
+
+
+== Testing
 
 Foundation of tackler development is that all features must be tested logically and code-wise,
 and overall test coverage should be almost perfect.  Tackler is tested with functional and
 logical test sets to ensure that all code paths are covered by tests.
 
-Tackler has *106* tracked features. For those features, tackler has *571* test cases,
-tackler-cli is executed *181* times by test setup,
-and results are verified by *454* reference reports.
+Tackler has *115* tracked features.
+These features are verified by *495* tracked test cases.
+Tackler-ng is currently tested with *422* tests vectors,
+and test results are verified by *481* reference reports.
 
-With every integration test run, journal with
-{gitlink}/core/src/it/scala/fi/e257/tackler/parser/TacklerTxnsGitTest.scala#L114[*one hundred thousand* (100 000)] transactions is processed,
-*ten times*, to verify tackler's ability handle big journals.
+Part of the test setup is journal with
+{github-link}/tackler-core/tests/git_txns.rs#L103[*one hundred thousand* (100 000)] transactions.
+It is processed several times in a loop to verify tackler's ability handle repeatably journals with many transactions.
 
-Tackler is stress and performance tested with up to {gitlink}/perf/readme.adoc[*one million* (1E6)] transactions sets with external test setup.
-
-=== Performance
-
-On laptop, tackler can process over 40 000 txn/s. On server systems, tackler can easily read and process 50-60 thousand
-transactions per second.  Tackler's performance scales almost linearly with available CPU and memory.
-
-See xref:usage:performance.adoc[Performance Overview] for details or {gitlink}/docs/devel/build.adoc[test it yourself].
-
+Tackler is stress and performance tested with up to {github-link}/perf/index.adoc[*one million* (1E6)]
+transactions sets with external test setup.
 
 === Tackler Test Tracking Database
 
-{gitlink}/tests/tests.adoc[Tackler Test Tracking Database (T3DB)] tracks features
+{github-link}/suite/tests.adoc[Tackler Test Tracking Database (T3DB)] tracks features
 and tests for those features. T3DB is used to ensure that all features 
 and error paths for those features are tested, that test setup has as little as 
 possible of overlapping tests and prevent  duplicate test cases.
