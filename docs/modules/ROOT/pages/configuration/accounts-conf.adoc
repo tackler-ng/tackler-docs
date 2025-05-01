@@ -1,0 +1,161 @@
+= Accounts.conf
+:page-date: 2019-03-29 00:00:00 Z
+:page-last_modified_at: 2021-01-03 00:00:00 Z
+
+accounts.conf contains Chart of Accounts (CoA) for Tackler,
+and other accounts and commodities related settings.
+
+See xref:./tackler-conf.adoc[tackler.conf] for tackler's general configuration
+and xref:./tags-conf.adoc[tags.conf] for defining transaction tags.
+
+File format is 
+link:https://github.com/typesafehub/config/blob/master/HOCON.md[HOCON]
+(Human-Optimized Config Object Notation)
+
+[source,hocon]
+----
+# Accounts and commodity related settings
+accounts {
+
+  # Strict account and commodity name validation mode
+  #
+  # If set true, then Tackler will process and accept only accounts
+  # which are listed on Chart of Accounts (CoA).
+  # It is fatal error if account is not listed in CoA,
+  # and strict mode is set to be true at the same time.
+  #
+  # Same applies for commodities (see below).
+  #
+  # Valid values are (boolean): true, false
+  # CLI: --accounts.strict
+  strict = true
+
+  # Permit empty or missing units and commodities
+  #
+  # This option is used only when accounts.strict is true
+  #
+  # Default is false, which means that all postings
+  # must have commodity or unit. To allow posting without
+  # commodity, set this to true or disable strict mode.
+  #
+  # Valid values are (boolean): true, false
+  permit-empty-commodity = true
+
+  # Chart of Accounts
+  #
+  # This is a list of known account names.
+  #
+  # Names must be quoted ("name")
+  # and they are comma separated.
+  #
+  # Account names have following form:
+  #
+  #    TOPACCT[:SUBACCT[:...]]
+  #
+  # Top-account name (ID) must start with character,
+  # and after that there could be
+  # '_', '-', '·', numbers and characters.
+  #
+  # Sub-account name (SUBID) must be separated with ':',
+  # can start with numbers and can be all numeric.
+  #
+  # Characters can be a wide range of
+  # international UTF-8 characters.
+  #
+  # See https://tackler.e257.fi/docs/journal/charsets/ for full list.
+  #
+  # Or in other words:
+  #
+  #    account
+  #       = ID (':' (ID | SUBID))*
+  #
+  #    ID
+  #       = NameStartChar (NameChar)*
+  #
+  #    SUBID
+  #       = (NameStartChar | '0'..'9') (NameChar)*
+  #
+  #    NameStartChar
+  #       = '$' | '¢' | '£' | '¤' | '¥' // not in block 20A0-20CF
+  #       | '\u00B5' //  Micro Sign
+  #       | '\u00B9' | '\u00B2' | '\u00B3' // not in block 2070-209F
+  #       | '\u00B0' // Degree Sign
+  #       | '\u00BC' | '\u00BD' | '\u00BE' // not in block 2150-218F
+  #       | 'A'..'Z' | 'a'..'z'
+  #       | '\u00C0'..'\u00D6'
+  #       | '\u00D8'..'\u00F6'
+  #       | '\u00F8'..'\u02FF'
+  #       | '\u0370'..'\u037D'
+  #       | '\u037F'..'\u1FFF'
+  #       | '\u200C'..'\u200D'
+  #       | '\u2070'..'\u218F'
+  #       | '\u2C00'..'\u2FEF'
+  #       | '\u3001'..'\uD7FF'
+  #       | '\uF900'..'\uFDCF'
+  #       | '\uFDF0'..'\uFFFD'
+  #    NameChar
+  #       = NameStartChar
+  #       | '0'..'9'
+  #       | '-'
+  #       | '_'
+  #       | '\u00B7'
+  #       | '\u0300'..'\u036F'
+  #       | '\u203F'..'\u2040'
+  #
+  # Example Chart of Accounts (CoA):
+  chart-of-accounts = [
+    "Income",
+    "Income:Lottery",
+    "Expenses",
+    "Expenses:ice_cream",
+    "Expenses:jäätelö",
+    "Expenses:jäätelö:mansikka-vadelma",
+    "Expenses:crème·glacée",
+    "Expenses:мороженое",
+    "Expenses:アイスクリーム",
+    "Expenses:風:空",
+    "Assets",
+    "Assets:Banks:Acme_Inc",
+    "Assets:Cash",
+    "Credit·Card:1234567890"
+  ]
+
+  # List of commodities
+  #
+  # This is list of known commodities
+  #
+  # Commodity names have same restrictions
+  # as single top-account name element (ID)
+  #
+  # Name must start with character,
+  # and after that there could be
+  # '_', '-', '·', numbers and characters.
+  #
+  # Characters can be a wide range of
+  # international UTF-8 characters.
+  #
+  # See https://tackler.e257.fi/docs/journal/charsets/ for full list.
+  #
+  # Or in other words:
+  #
+  #    commodity
+  #       = NameStartChar (NameChar)*
+  #
+  #    NameStartChar
+  #       = <same as for account names>
+  #
+  #    NameChar
+  #       = <same as for account names>
+  #
+  # Example list of commodities:
+  commodities = [
+    "€",
+    "$",
+    "¥",
+    "EUR",
+    "USD",
+    "He·bar",
+    "O2·bar"
+  ]
+}
+----

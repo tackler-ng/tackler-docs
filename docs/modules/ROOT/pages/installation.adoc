@@ -1,0 +1,152 @@
+= Installation Manual
+:page-date: 2019-03-29 00:00:00 Z
+:page-last_modified_at: 2021-01-03 00:00:00 Z
+
+This is installation manual for tackler command line.
+
+To use tackler cli you will need
+
+  * Java Runtime Environment (Tackler requires at least Java 11 to run)
+  * Tackler command line binary (`tackler-cli-XX.YY.Z.jar`-file)
+
+Download the latest version of tackler-cli.jar from
+{jarlink}[here] or
+https://gitlab.com/e257/accounting/tackler/blob/main/docs/devel/build.adoc[build it yourself].
+
+
+== Minimal setup
+
+Minimal initial installation and setup is described in xref:quickstart.adoc[Quickstart Guide].
+
+Tackler could be used with minimal quickstart setup just fine, but to get most out of it (strict modes, git storage system, Audit trail functinality etc.), it must be configured properly. Below is recommended setup for production use.
+
+
+[[layout]]
+== Recommended Setup and layout
+
+Recommended layout and setup (the "installation") would be:
+
+----
+.
+├── bin
+│   ├── tackler-cli.jar
+│   └── tackler.conf
+└── journal
+    ├── conf
+    │   ├── accounts.conf
+    │   ├── tackler.conf
+    │   └── tags.conf
+    └── txns
+        ├── ...
+        ├── 2020
+        │   ├── ...
+        │   └── 12
+        │       ├── journal-1.txn
+        │       └── journal-2.txn
+        └── 2021
+            └── 01
+                ├── journal-1.txn
+                └── journal-2.txn
+----
+
+This setup uses year/month based sharding for transactions (the directory structure under `txns`).  It's up to for each
+system to decide which is xref:./journal/sharding.adoc[the best way to shard transaction data], or not to shard transactions at all.
+
+
+=== Configuration Settings for Recommended Layout
+
+By default Tackler will try to find configuration file (`tackler.conf`) next to its jar-file. It's also possible to provide path to configuration with `--cfg` option, if you don't like to use auto discovery functionality or would like to e.g. use several different configuration files.
+
+==== tackler.conf
+
+.bin/tackler.conf
+----
+include required("../journal/conf/tackler.conf")
+----
+
+Actual configuration is located under journal:
+
+.journal/conf/tackler.conf
+----
+tackler {
+  core {
+    basedir = ../journal
+    input {
+      storage = fs
+      fs {
+        dir = "txns"
+        glob = "**.txn"
+      }
+    }
+    include required("./accounts.conf")
+    include required("./tags.conf")
+  }
+}
+----
+
+This setup makes it possible to separate journal setup and data, and store relevant configuration next to transaction data (and possibly under version control).
+
+See xref:./configuration/examples.adoc#backend-fs-or-git[Configuration Example: fs or git] how combine git based transaction storage with this setup.
+
+
+==== accounts.conf
+
+If there is missing or mistyped account, that will cause an error and tackler will stop processing journal.
+See xref:./configuration/accounts-conf.adoc[accounts.conf] for full documentation
+of Chart of Accounts and commodity listing.
+
+.journal/conf/accounts.conf
+[source,sh]
+----
+accounts {
+
+  strict = true
+
+  permit-empty-commodity = true
+
+  chart-of-accounts = [
+    "Expenses:Ice_cream",
+    "Expenses:Lemonade",
+    "Assets:Cash"
+  ]
+}
+----
+
+==== tags.conf
+
+If there is missing or mistyped tag, that will cause an error and tackler will stop processing journal.
+See xref:./configuration/tags-conf.adoc[tags.conf] for full documentation
+of Chart of Tags.
+
+.journal/conf/tags.conf
+[source,sh]
+----
+tags {
+   strict = true
+
+   chart-of-tags = [
+      "travel:ice·cream·spree",
+   ]
+}
+----
+
+With this setup, it is possible to run Tackler by:
+
+ java -jar ./bin/tackler-cli.jar
+
+and it will just work.
+
+
+== Next steps
+
+See reference configuration files for full details:
+
+* xref:./configuration/tackler-conf.adoc[tackler.conf]
+* xref:./configuration/accounts-conf.adoc[accounts.conf]
+* xref:./configuration/tags-conf.adoc[tags.conf]
+
+xref:./journal/git-storage.adoc[Git Storage Guide] has information how to use integrated version control features with Tackler.
+
+Git and filesystem based production setup is described in xref:./configuration/examples.adoc#backend-fs-or-git[Configuration Example]
+
+xref:./journal/sharding.adoc[Transaction Data Sharding] has ideas for different storage schemes.

@@ -1,0 +1,130 @@
+= Quickstart
+:page-date: 2019-03-29 00:00:00 Z
+:page-last_modified_at: 2021-01-03 00:00:00 Z
+:page-permalink: /docs/quickstart/
+
+
+This is minimal quickstart setup for Tackler.
+
+[NOTE]
+====
+See
+xref:./journal/format.adoc[Journal Format],
+xref:./installation.adoc[Installation Manual],
+xref:./usage.adoc[Usage Guide],
+xref:./configuration/tackler-conf.adoc[tackler.conf],
+xref:./configuration/accounts-conf.adoc[accounts.conf] and
+xref:./configuration/examples.adoc[Configuration Examples]
+for how to configure tackler and use it with full-fledged production setup.
+====
+
+
+== Minimal Quickstart Setup
+
+=== 0. Get tackler-cli.jar
+
+Download tackler-cli.jar from {jarlink}[here] or
+https://gitlab.com/e257/accounting/tackler/blob/main/docs/devel/build.adoc[build it yourself].
+
+
+=== 1. Make directory structure for demo setup
+
+[source,sh]
+----
+mkdir tackler
+mkdir tackler/txns
+
+# Change current working directory to tackler demo folder
+cd tackler
+
+# "Install" tackler-cli.jar
+cp /path/to/tackler-cli-x.y.z.jar ./tackler-cli.jar
+----
+
+
+
+=== 2. Create few transactions
+
+[source,sh]
+----
+cat > txns/journal.txn << EOF
+2018-06-01 'First transaction
+  Expenses:Ice_cream  2
+  Assets:Cash
+
+2018-06-02 'Second transaction
+  Expenses:Lemonade  1
+  Assets:Cash
+EOF
+----
+
+[NOTE]
+====
+The journal data file `txns/journal.txn` can not be empty,
+so there must be some transactions to play with it.
+====
+
+
+=== 3. Verify setup and content of tackler demo folder
+
+[source,sh]
+----
+# Directory listing of tackler folder
+./tackler-cli.jar
+./txns/
+./txns/journal.txn
+----
+
+
+=== 4. Generate default reports
+
+[source,sh]
+----
+# This command must be run inside 'tackler' folder, which was created abobe
+java -jar ./tackler-cli.jar --accounts.strict=false
+----
+
+==== 4.1. Resulting xref:./report-balance.adoc[Balance] and xref:./report-register.adoc[Register] Reports
+
+[source]
+----
+# ... Log lines suppressed ...
+# ... There are legitime ERROR and WARNING about missing configuration ...
+# ... See Installation Manual how to configure tackler ...
+# 
+Txns size: 2
+
+BALANCE
+-------
+                 0.00   -3.00  Assets
+                -3.00   -3.00  Assets:Cash
+                 0.00    3.00  Expenses
+                 2.00    2.00  Expenses:Ice_cream
+                 1.00    1.00  Expenses:Lemonade
+=====================
+                 0.00
+
+
+REGISTER
+--------
+2018-06-01 Z 'First transaction
+            Assets:Cash                                   -2.00              -2.00
+            Expenses:Ice_cream                             2.00               2.00
+----------------------------------------------------------------------------------
+2018-06-02 Z 'Second transaction
+            Assets:Cash                                   -1.00              -3.00
+            Expenses:Lemonade                              1.00               1.00
+----------------------------------------------------------------------------------
+
+
+Total processing time: 1284, parse: 464, reporting: 80
+----
+
+See
+xref:./journal/format.adoc[Journal Format],
+xref:./installation.adoc[Installation Manual],
+xref:./usage.adoc[Usage Guide],
+xref:./configuration/tackler-conf.adoc[tackler.conf],
+xref:./configuration/accounts-conf.adoc[accounts.conf] and
+xref:./configuration/examples.adoc[Configuration Examples]
+how to configure tackler and use it with full-fledged production setup.

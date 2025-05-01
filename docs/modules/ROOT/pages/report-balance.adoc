@@ -1,0 +1,132 @@
+= Balance report
+:page-date: 2019-03-29 00:00:00 Z
+:page-last_modified_at: 2019-10-05 00:00:00 Z
+
+Balance report is sum of selected accounts and sub-accounts.
+
+....
+BALANCE
+-------
+                 0.00   -2.00  Assets
+                -2.00   -2.00  Assets:Cash
+                 0.00    2.00  Expenses
+                 2.00    2.00  Expenses:Ice_cream
+=====================
+                 0.00
+....
+
+== Format
+
+First (the leftmost) sum is sum of postings which are directly debiting or crediting 
+that account (account tree node). If there are no such transactions,  then this first sum is zero.
+
+Second sum is recursive balance sum for that account tree (account and all its sub-accounts).
+
+The sum reported under line is balance delta, e.g. value difference of reported accounts.
+
+[NOTE]
+====
+Balance delta is based and calculated only by values reported on the first column.
+====
+
+
+== Balance report configuration
+
+See xref:./configuration/tackler-conf.adoc[tackler.conf] and `reports.balance.*` for full
+information of balance report configuration options.
+
+
+=== Account selectors
+
+By default all accounts are included into balance report, but that's not very
+interesting balance report because balance over all accounts will be zero always.
+
+Balance report accounts can be selected by Accounts Selectors. This can be done
+either by using global `reporting.accounts` (conf+cli) option or by using report specific
+`reports.balance.accounts` setting (conf-only). If report specific account selector
+is defined in configuration, it can not be overridden from command line.
+
+Balance delta is based and calculated only by values reported on the first column.
+This means that if sub-account is not listed by balance report,
+it will *not* be part of balance calculations.
+
+[WARNING]
+====
+If Accounts Selector is used balance report, please be make sure that all intended accounts
+and especially *sub-accounts* are listed for report. +
+ +
+For example: select only top-level "Assets" and all its sub-accounts: `"Assets(:.*)?"`
+====
+
+Compare following two reports:
+
+.`--reporting.accounts "e1(:.*)?"`
+----
+BALANCE
+-------
+                 1.00    6.00  e1
+                 2.00    5.00  e1:e2
+                 3.00    3.00  e1:e2:e3
+=====================
+                 6.00
+----
+
+.`--reporting.accounts "e1"`
+----
+BALANCE
+-------
+                 1.00    6.00  e1
+=====================
+                 1.00
+----
+
+These two reports demonstrates difference between balance delta and
+recursive balance sum for specific account tree.
+
+
+== Example report
+
+
+Below are links to example balance reports with full auditing metadata.
+
+* {repolink}/tests/audit/ok/audit-1E2-04.ref.bal.txt/[Balange report with audit metadata]
+* {repolink}/tests/audit/ok/audit-1E2-04.ref.bal.json/[Balange JSON report with audit metadata]
+
+
+=== Example output of balance report
+
+
+----
+BALANCE
+-------
+                 1.00    333.00  a
+                 0.00    332.00  a:a1
+                 0.00    332.00  a:a1:a2
+                27.40    327.40  a:a1:a2:b
+               300.00    300.00  a:a1:a2:b:c
+                 4.60      4.60  a:a1:a2:c
+                 0.00   -333.00  e
+              -322.00   -322.00  e:e0101
+                -2.00     -2.00  e:e0102
+                -9.00     -9.00  e:e0103
+=====================
+                 0.00
+----
+
+=== Example report with commodities
+
+Below is example balance report with mixed commodities.
+
+....
+BALANCE
+-------
+                 0.00           3.00 ACME  Assets
+                 3.00           3.00 ACME  Assets:Stocks
+                 0.00        -359.75 EUR   Assets
+              -359.75        -359.75 EUR   Assets:Cash
+==========================
+                 3.00 ACME
+              -359.75 EUR
+....
+
+
