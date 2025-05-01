@@ -1,0 +1,12 @@
+= Tackler Documentation
+
+This is https://tackler.e257.fi/docs/[Tackler] documentation project.
+
+== Documentation Toolchain
+
+The documentation is generated with https://antora.org/[Antora] toolchain.
+
+== License
+
+Tackler documentation is licensed under the link:./LICENSE[Apache License, version 2.0].
+
