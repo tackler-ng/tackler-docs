@@ -1,10 +1,39 @@
 = Tackler Documentation
 
-This is https://tackler.e257.fi/docs/[Tackler] documentation project.
+This is a project for https://tackler.e257.fi/docs/[Tackler's documentation].
 
-== Documentation Toolchain
+Documentation is based to  https://docs.asciidoctor.org/asciidoc/latest/[AsciiDoc], 
+and docs are generated with https://antora.org/[Antora] toolchain.
 
-The documentation is generated with https://antora.org/[Antora] toolchain.
+
+== AsciiDoc
+
+.Antora's AsciiDoc documentation
+* https://docs.antora.org/antora/latest/asciidoc/[Antora's AsciiDoc Primer]
+** https://docs.antora.org/antora/latest/page/xref/[How to use internal links with Antora (xref)]
+
+.AsciiDoc Language Documentation
+* https://docs.asciidoctor.org/asciidoc/latest/syntax-quick-reference/[AsciiDoc Syntac Quick Reference]
+* https://asciidoctor.org/docs/asciidoc-writers-guide/[AsciiDoc Writer’s Guide]
+* https://docs.asciidoctor.org/asciidoc/latest/[AsciiDoc Language Definition]
+
+
+== How to build local copy of the documentation
+
+
+.Get Tackler's Antora playbook
+----
+git clone https://github.com/tackler-ng/tacker-docs-play
+----
+
+.Get Tackler's documentation (this project)
+----
+cd tackler-docs-play/workspace
+git clone https://github.com/tackler-ng/tackler-docs
+----
+
+Then follow `README.adoc` under `tackler-docs-play` for how to build (locally) the docs.
+
 
 == License
 
