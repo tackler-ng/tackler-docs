@@ -1,15 +1,16 @@
 = Credits
 :page-date: 2019-03-29 00:00:00 Z
-:page-last_modified_at: 2025-03-15 00:00:00 Z
+:page-last_modified_at: 2025-05-02 00:00:00 Z
 
 
-Tackler has been originally written by e257.fi from scratch.
+Tackler has been written by e257.fi and individual Contributors.
+
 Following projects have provided valuable contributions,
 feedback, inspiration and ideas for this work.
 
 Thank you for your help!
 
-Components (used with Tackler):
+== Components
 
  * link:https://github.com/marshallpierce/rust-base64[base64]
  * link:https://github.com/clap-rs/clap[clap]
@@ -17,9 +18,10 @@ Components (used with Tackler):
  * link:https://github.com/Byron/gitoxide[gix]
  * link:https://github.com/Byron/gitoxide[gix-hash]
  * link:https://github.com/dtolnay/indoc[indoc]
-* link:https://github.com/BurntSushi/jiff[jiff]
+ * link:https://github.com/BurntSushi/jiff[jiff]
  * link:https://github.com/rust-itertools/itertools[itertools]
- * link:https://github.com/tikv/jemallocator[tikv-jemallocator]
+ * link:https://github.com/microsoft/mimalloc[mimalloc]
+ * link:https://github.com/purpleprotocol/mimalloc_rust[mimalloc_rust]
  * link:https://github.com/rust-lang/log[log]
  * link:https://github.com/rust-lang/regex[regex]
  * link:https://github.com/paupino/rust-decimal[rust_decimal]
@@ -33,8 +35,7 @@ Components (used with Tackler):
  * link:https://github.com/BurntSushi/walkdir[walkdir]
  * link:https://github.com/winnow-rs/winnow[winnow]
 
-
-Build-tools (used to build Tackler):
+== Build tools
 
  * Build, Release and Publish
     ** link:https://doc.rust-lang.org/cargo/[cargo]
@@ -45,7 +46,13 @@ Build-tools (used to build Tackler):
  * Test
     ** link:https://github.com/bheisler/criterion.rs[Criterion.rs]
 
-Documentation and Site:
+== Documentation
+
+* link:https://docs.asciidoctor.org/asciidoc/latest/[AsciiDoc]
+* link:https://antora.org/[Antora]
+* link:https://gitlab.com/antora/antora-ui-default[Antora default UI]
+
+== Site
 
 * link:https://asciidoctor.org/[Asciidoctor]
 * link:https://github.com/asciidoctor/jekyll-asciidoc[Asciidoctor / jekyll-asciidoc]
@@ -56,10 +63,9 @@ Documentation and Site:
 * link:https://fonts.google.com/specimen/Cousine[Cousine Font]
 
 
-Ideas and inspiration:
+== Ideas and inspiration
 
  * link:http://ledger-cli.org/[Ledger]
  * link:http://furius.ca/beancount/[Beancount]
  * link:http://hledger.org/[hledger]
-
 

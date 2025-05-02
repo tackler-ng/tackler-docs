@@ -62,7 +62,7 @@ File scanning starts from top level directory identified by `input.fs.dir` setti
 From performance point of view, sharding is beneficial maybe after 
 tens or hundreds of thousands of transactions. This is affect *heavily* by used
 Operating System, filesystem and used hardware.  See 
-xref:usage:performance.adoc[Performance Testing] for further details.
+xref:ROOT:features/performance.adoc[Performance Testing] for further details.
 
 
 === Example of week based sharding

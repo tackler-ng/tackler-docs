@@ -435,5 +435,5 @@ Exports are special reports, which are valid input for Tackler.
 
 == Accounting Auditing and Assurance
 
-See document xref:usage:auditing.adoc[Accounting Auditing and Assurance] for information how Tackler reports could support
+See document xref:auditing:index.adoc[Accounting Auditing and Assurance] for information how Tackler reports could support
 accounting auditing and assurance actions.

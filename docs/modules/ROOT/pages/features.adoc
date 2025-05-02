@@ -2,9 +2,9 @@
 :page-date: 2019-03-29 00:00:00 Z
 :page-last_modified_at: 2025-04-18 00:00:00 Z
 
-* Tackler has excellent performance - it can process xref:usage:performance.adoc[700_000 txn/s] on modern laptop
+* Tackler has excellent performance - it can process xref:ROOT:features/performance.adoc[700_000 txn/s] on modern laptop
 
-* Tackler is written in link:https://www.rust-lang.org/[Rust] and it's xref:reliability.adoc[well tested]
+* Tackler is written in link:https://www.rust-lang.org/[Rust] and it's xref:ROOT:features/reliability.adoc[well tested]
 
 * Integrated xref:journal:git-storage.adoc[journal storage with Git SCM] (and plain files too!)
 
@@ -15,7 +15,7 @@
 *** xref:commodities:price/historic-market-value.adoc[Historic Market Value]
 *** xref:commodities:price/variable-market-value.adoc[Variable Market Value]
 
-* Audit trail for xref:usage:auditing.adoc[Accounting Auditing]
+* Audit trail for xref:auditing:index.adoc[Accounting Auditing]
 
 * Accounting based on link:usage:gis/index.adoc[Geo Location (GIS)]
 

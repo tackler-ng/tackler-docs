@@ -1,7 +1,5 @@
 * xref:index.adoc[]
 ** xref:txn-filters.adoc[]
-** xref:auditing.adoc[]
 ** xref:gis/index.adoc[]
 *** xref:gis/txn-geo-filters.adoc[]
 *** xref:gis/txn-geo-location.adoc[]
-** xref:performance.adoc[]

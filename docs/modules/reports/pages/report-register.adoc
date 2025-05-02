@@ -26,7 +26,7 @@ Register report will list for each transaction its date, code and txn subject (n
 Also it will report metadata, e.g. `uuid` and `location` if transaction has these.
 
 Register report will print out xref:usage:gis/txn-geo-location.adoc[transaction geo location]
-and uuid for xref:usage:auditing.adoc[accounting auditing] if transaction has set location or uuid.
+and uuid for xref:auditing:index.adoc[accounting auditing] if transaction has set location or uuid.
 
 On the right side of report, first column is posting amount for account on that transaction.
 Second column on the right side is running total of that account with reported transactions.
@@ -110,7 +110,7 @@ Below are links to example register reports:
 
 * Register reports with xref:usage:gis/index.adoc[geo location information]
 ** {repolink}/suite/location/ok/basic-01.ref.reg.txt[Register report with Geo Location]
-* Register reports with xref:usage:auditing.adoc[audit metadata]
+* Register reports with xref:auditing:index.adoc[audit metadata]
 ** {repolink}/suite/audit/ok/audit-1E2-04.ref.reg.txt/[Register report with audit metadata]
 * Register reports with Transaction Tags
 ** {repolink}/suite/tags/ok/basic-01.ref.reg.txt/[Register report with Txn Tags]

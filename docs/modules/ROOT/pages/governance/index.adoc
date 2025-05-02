@@ -1,3 +1,37 @@
 = Governance
 
 
+== Tackler Release Schedule
+
+[cols=5*]
+|===
+|Release Line |Latest Release |Status |GA |EOL
+
+|Tackler NG / Mk-II
+|24.04.2
+|Active
+|2024-11-17
+|TBD
+
+|Tackler Mk-I
+|22.12.2
+|EOL
+|2017-04-25
+|2022-12-29
+|===
+
+General Availability (GA):: The date when release line was released for general availability. 
+
+Active:: Release line is being actively improved.
+
+End of Life (EOL):: The date after which the release line is no longer supported and no new releases are made for it.
+
+
+== Version Policy
+
+Tackler uses CalVer versioning, based on year, month and index (`0Y-YM-INDEX`).
+
+Tackler won't break backward journal compatibility between releases without grace period. 
+The last backward incompatible journal format change was on 
+https://tackler.e257.fi/news/2019/03/17/format-change/[17 Mar 2019].
+

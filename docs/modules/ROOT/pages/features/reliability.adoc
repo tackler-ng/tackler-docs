@@ -15,7 +15,7 @@ then it will fail fast and hard and won't process dubious input as valid one.
 == Performance
 
 Tackler has excellent performance characteristics - it can process more than 700_000 txns per second
-on modern laptop. See xref:usage:performance.adoc[Performance Overview] for details.
+on modern laptop. See xref:ROOT:features/performance.adoc[Performance Overview] for details.
 
 
 == Testing

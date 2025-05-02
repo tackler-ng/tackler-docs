@@ -96,8 +96,8 @@ with larger data sets.  Tackler's unit tests includes test cases up to one hundr
 
 For further info, see:
 
- * xref:ROOT:reliability.adoc[Reliability]
- * xref:usage:performance.adoc[Overview of Performance testing]
+ * xref:ROOT:features/reliability.adoc[Reliability]
+ * xref:ROOT:features/performance.adoc[Overview of Performance testing]
  * {github-link}/suite/tests.adoc[Tackler Test Tracking Database (T3DB)]
 
 

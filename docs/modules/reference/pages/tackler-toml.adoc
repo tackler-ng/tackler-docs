@@ -1,16 +1,13 @@
 = Tackler.toml
 :page-date: 2024-11-18 07:00:00 +02:00
 :page-last_modified_at: 2025-01-20 00:00:00 Z
-
+:page-toclevels: 5
 
 This is the main Tackler-NG configuration file.
 
 Starting with tackler version v25.1.1, you can create default bookkeeping setup easily by running:
 [source,bash]
 ----
-# test
-a=b
-echo "$a"
 tackler new my_journal
 tackler --config my_journal/conf/tackler.toml
 ----
@@ -37,6 +34,8 @@ File format is link:https://toml.io/en/[TOML]
 Relative paths are always relative to the used configuration-file.
 ====
 
+== `kernel`
+
 [source,ini]
 ----
 ### The main configuration file for Tackler-NG
@@ -52,7 +51,12 @@ Relative paths are always relative to the used configuration-file.
 ### Valid options are: true | false
 ### CLI: --strict.mode
 strict = true
+----
 
+=== `kernel.timestamp`
+
+[source,ini]
+----
 ### Configuration Options for Timestamp
 [kernel.timestamp]
 ### Default time value for timestamps
@@ -63,8 +67,12 @@ strict = true
 ### See also "kernel.timestamp.timezone" and "report.report-timezone"
 ### about transaction timezones and txn timestamps on reports.
 default-time = 00:00:00
+----
 
-### Default Timezone of Timestamp
+==== `kernel.timestamp.timezone`
+
+[source,ini]
+----
 [kernel.timestamp.timezone]
 ### Default timezone which is used with txn timestamp
 ### if it does not have an offset.
@@ -98,8 +106,14 @@ default-time = 00:00:00
 ### It's an error to have both defined at the same time.
 name = "Europe/Helsinki"
 #offset = "-07:00"
+----
 
-### Settings related to audit features
+=== `kernel.audit`
+
+Settings related to xref:auditing:index.adoc[Account Auditing] functionality.
+
+[source,ini]
+----
 [kernel.audit]
 ### Hash algorithm
 ###
@@ -114,15 +128,26 @@ hash = "SHA-256"
 ### Valid options are: true | false
 ### CLI: --audit.mode
 mode = true
+----
 
+=== `kernel.input`
+
+[source,ini]
+----
 ### Transaction Input Configuration
 [kernel.input]
 ### Type of input storage system
 ###
 ### Valid options are: "fs" | "git"
 storage = "fs"
+----
 
-### Filesystem based input storage
+==== `kernel.input.fs`
+
+Settings for xref:journal:fs-storage.adoc[Filesystem storage]
+
+[source,ini]
+----
 [kernel.input.fs]
 ### Path to the FS-storage
 ###
@@ -141,8 +166,14 @@ dir = "txns"
 ###
 ### CLI: --input.fs.ext
 suffix = "txn"
+----
 
-### Git SCM based input storage
+==== `kernel.input.git`
+
+Settings for xref:journal:git-storage.adoc[Git SCM storage]
+
+[source,ini]
+----
 [kernel.input.git]
 ### Path to git repository
 ###
@@ -184,8 +215,14 @@ ref = "main"
 dir = "txns"
 ### Suffix of file names which are processed as transactions.
 suffix = "txn"
+----
 
-### Commodity Price Settings
+== Price
+
+Settings for xref:commodities:price/index.adoc[Commodity Price Settings]
+
+[source,ini]
+----
 [price]
 ### Path to price database file
 ###
@@ -201,12 +238,18 @@ db-path = "journal/txns/price.db"
 ### Valid options are: "none", "txn-time", "last-price", "given-time"
 ### CLI: --price.lookup-type
 lookup-type = "none"
+----
 
-############################################################################
+== `transaction`
 
-### Transaction Data Configuration
-###
-### See the actual files for information about the content
+Transaction Data Configuration
+
+=== `transaction.accounts`
+
+Settings for xref:reference:accounts-toml.adoc[Transaction Accounts: accounts.toml]
+
+[source,ini]
+----
 [transaction.accounts]
 ### Path to accounts data
 ###
@@ -214,7 +257,14 @@ lookup-type = "none"
 ###
 ### Set the value to string "none", to disable the Chart of Accounts.
 path = "journal/conf/accounts.toml"
+----
 
+=== `transaction.commodities`
+
+Settings for xref:reference:commodities-toml.adoc[Transaction Commodities: commodities.toml]
+
+[source,ini]
+----
 [transaction.commodities]
 ### Path to commodities data
 ###
@@ -223,7 +273,14 @@ path = "journal/conf/accounts.toml"
 ### Set the value to "none", to disable the Chart of Commodities,
 ### in that case, empty commodities are allowed by default.
 path = "journal/conf/commodities.toml"
+----
 
+=== `transaction.tags`
+
+Settings for xref:reference:tags-toml.adoc[Transaction Tags: tags.toml]
+
+[source,ini]
+----
 [transaction.tags]
 ### Path to tags data
 ###
@@ -231,10 +288,14 @@ path = "journal/conf/commodities.toml"
 ###
 ### Set the value to "none", to disable the Chart of Tags
 path = "journal/conf/tags.toml"
+----
 
-############################################################################
+== `report`
 
-### Report Configuration
+Settings for xref:reports:index.adoc[reports]
+
+[source,ini]
+----
 [report]
 ### Timezone setting for reports
 ###
@@ -302,9 +363,14 @@ accounts = [ ]
 ### max can't be negative or smaller than min value
 ### Maximum value of min and max is 28 decimals.
 scale = { min = 2, max = 7 }
+----
 
+=== `report.balance`
 
-### Balance Report
+Settings for xref:reports:report-balance.adoc[Balance Report]
+
+[source,ini]
+----
 [report.balance]
 ### Report title
 title = "Balance Report"
@@ -313,9 +379,14 @@ title = "Balance Report"
 ### If set, this will override 'report.accounts'
 ### See 'report.accounts' for further info.
 #accounts = [ ]
+----
 
+=== `report.balance-group`
 
-### Balance Group Report
+Settings for xref:reports:report-balance.adoc[Balance Group Report]
+
+[source,ini]
+----
 [report.balance-group]
 title = "Balance Group Report"
 ### Group by criteria
@@ -332,9 +403,14 @@ group-by = "month"
 ### If set, this will override 'report.accounts'
 ### See 'report.accounts' for further info.
 # accounts = [ ]
+----
 
+=== `report.register`
 
-### Register Report
+Settings for xref:reports:report-balance.adoc[Register Report]
+
+[source,ini]
+----
 [report.register]
 ### Report title
 title = "Register Report"
@@ -355,10 +431,14 @@ timestamp-style = "seconds"
 ### If set, this will override 'report.accounts'
 ### See 'report.accounts' for further info.
 # accounts = [ ]
+----
 
-############################################################################
+== `export`
 
-### Export Configuration
+Settings for xref:reports:index.adoc[exports]
+
+[source,ini]
+----
 [export]
 ### Exports to generate
 ###
@@ -367,8 +447,14 @@ timestamp-style = "seconds"
 ### Valid options are: "equity", "identity"
 ### CLI: --exports
 targets = [ ]
+----
 
-### Equity Export
+=== `export.equity`
+
+Settings for xref:reports:index.adoc[Equity Exports]
+
+[source,ini]
+----
 [export.equity]
 # Account name of Equity txn's target account
 equity-account = "Equity:Balance"
@@ -377,11 +463,8 @@ equity-account = "Equity:Balance"
 ### If set, this will override 'report.accounts'
 ### See 'report.accounts' for further info.
 # accounts = [ ]
-
-###
-### Identity
-###
-### There are no configuration options for identity export
-###
-############################################################################
 ----
+
+== Identity
+
+There are no configuration options for identity export

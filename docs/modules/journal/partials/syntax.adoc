@@ -220,7 +220,7 @@ This is planned feature. See xref:commodities:currencies.adoc[Currencies]
 This is transaction's unique identifier (link:https://en.wikipedia.org/wiki/Universally_unique_identifier[UUID]). +
  +
 Transaction UUID is mandatory if `txn-set-checksum` calculation is activated.
-See xref:usage:auditing.adoc[Accounting Auditing] and xref:reference:tackler-toml.adoc[tackler.toml]
+See xref:auditing:index.adoc[Accounting Auditing] and xref:reference:tackler-toml.adoc[tackler.toml]
 for further information. +
  +
 Transactions must have UUIDs, if deterministic, stable

@@ -13,6 +13,7 @@ nav:
 - modules/usage/nav.adoc
 - modules/reports/nav.adoc
 - modules/commodities/nav.adoc
+- modules/auditing/nav.adoc
 - modules/reference/nav.adoc
 - modules/examples/nav.adoc
 - modules/ROOT/governance.adoc

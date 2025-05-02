@@ -31,7 +31,7 @@ Tackler also includes used commit id  into reports.
 
 For full details and examples, 
 see xref:git-storage.adoc[Git Storage Manual]
-and xref:usage:auditing.adoc[Accounting Auditing], 
+and xref:auditing:index.adoc[Accounting Auditing], 
 
 
 == Filesystem storage

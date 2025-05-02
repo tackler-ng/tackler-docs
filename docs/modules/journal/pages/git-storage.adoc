@@ -32,7 +32,7 @@ important features for Tackler and accounting in general:
 == Organizing repostory content
 
 This provides one key of the immutable audit trail of used accounting data. This audit trail can be printed e.g.
-on paper or transferred directly to accountant or escrow agent. See xref:usage:auditing.adoc[Accounting Auditing]
+on paper or transferred directly to accountant or escrow agent. See xref:auditing:index.adoc[Accounting Auditing]
 if there is need for audit trail of used account data.
 
 See xref:./sharding.adoc[Transaction data sharding] for ideas how to store data inside git repository. It is
