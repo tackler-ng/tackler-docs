@@ -3,3 +3,4 @@
 ** xref:trimix-filling-station.adoc[]
 ** xref:travel-journal.adoc[]
 ** xref:filter-for-two-accounts.adoc[]
+** xref:production-setups.adoc[]

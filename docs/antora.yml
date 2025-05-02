@@ -16,4 +16,4 @@ nav:
 - modules/auditing/nav.adoc
 - modules/reference/nav.adoc
 - modules/examples/nav.adoc
-- modules/ROOT/governance.adoc
+- modules/ROOT/governance_nav.adoc

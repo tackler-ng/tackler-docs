@@ -1,3 +1,4 @@
 * xref:governance/index.adoc[]
+** xref:governance/contributing.adoc[]
 ** xref:governance/credits.adoc[]
 ** xref:governance/licenses.adoc[]

@@ -11,7 +11,7 @@ Tackler configuration is controlled by configuration files and command line opti
 * Account names: xref:reference:accounts-toml.adoc[accounts.toml]
 * Commodity names: xref:reference:accounts-toml.adoc[accounts.toml]
 * Transaction Tag names: xref:reference:tags-toml.adoc[tags.toml]
-* Examples for production systems: xref:reference:examples.adoc[Example Setups]
+* Examples for production systems: :example:production-setups.adoc[Example Setups]
 
 
 == Configuration discovery

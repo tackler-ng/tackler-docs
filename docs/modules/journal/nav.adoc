@@ -1,5 +1,6 @@
 * xref:index.adoc[]
 ** xref:git-storage.adoc[]
+*** xref:git-storage/primer.adoc[]
 ** xref:sharding.adoc[]
 ** xref:format.adoc[]
 ** xref:pricedb.adoc[]

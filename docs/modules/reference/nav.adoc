@@ -4,5 +4,4 @@
 ** xref:accounts-toml.adoc[accounts.toml]
 ** xref:commodities-toml.adoc[commodities.toml]
 ** xref:tags-toml.adoc[tags.toml]
-** xref:examples.adoc[Example Setups]
 

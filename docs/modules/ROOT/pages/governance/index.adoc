@@ -1,4 +1,4 @@
-= Governance
+= Project Governance
 
 
 == Tackler Release Schedule
@@ -8,7 +8,7 @@
 |Release Line |Latest Release |Status |GA |EOL
 
 |Tackler NG / Mk-II
-|24.04.2
+|25.04.2
 |Active
 |2024-11-17
 |TBD

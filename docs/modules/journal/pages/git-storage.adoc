@@ -2,6 +2,11 @@
 :page-date: 2019-03-29 00:00:00 Z
 :page-last_modified_at: 2024-12-12 00:00:00 Z
 
+[NOTE]
+====
+See xref:journal:git-storage/primer.adoc[] how to initialize and take in use git storage in just few steps.
+====
+
 Tackler has integrated and native support for link:https://git-scm.com/[GIT] version control system.
 
 Tackler can process accounting data directly from Git repository, also from bare repositories without a working copy.
@@ -67,10 +72,19 @@ Gitoxide is a pure Rust implementation of the link:https://git-scm.com/[Git SCM]
 
 == Demo setup how to use git journal
 
-There is an example setup of git journal and audit setup on Tackler's repository, it's
+[NOTE]
+====
+See xref:journal:git-storage/primer.adoc[] how to initialize and take in use git storage in just few steps.
+====
+
+There is a long, step by step example involving multiple commits to
+illustrate how git can be used.  See xref:journal:git-storage/primer.adoc[] how to do it in just few steps.
+
+There is also setup of git journal and audit setup on Tackler's repository, it's
 link:https://github.com/tackler-ng/tackler/blob/main/examples/audit.toml[examples/audit.toml].
 
-Or you can create the setup.
+=== Demo setup with multiple commits
+
 First you have to create transaction data on git. This is just normal journal data,
 which is pushed to git repository.  It is possible to use either bare repository
 or git-folder from cloned working copy.

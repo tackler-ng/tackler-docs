@@ -1,17 +1,16 @@
-= Configuration Examples
+= Production Setups
 :page-date: 2019-10-06 00:00:00 Z
-:page-last_modified_at: 2024-12-01 00:00:00 Z
 
 This document has configuration examples of tackler for real life use.
 
-== Example of Production Setup
+== Accounting system with Auxiliary tooling
 
 This setup has two main features:
 
-* Setup is done so that it is using version control for the setup itself and also for permanent journal data.
+* Setup is done so that it is using version control for the setup itself and also for the journal data.
 
-* Tackler is configured so that it is possible switch back and forth between journal on filesystem
-and journal data stored on version control.
+* Tackler is configured so that it is possible switch back and forth between filesystem
+and git based journal storage.
 
 The first version control setup (auxiliary repository) contains all tools, scripts
 and documentation how to use and interpreter journal, for example description of Chart of Accounts, etc.

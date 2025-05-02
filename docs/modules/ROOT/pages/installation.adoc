@@ -113,7 +113,7 @@ tags        = { path = "tags.toml" }
 
 This setup makes it possible to separate journal setup and data, and store relevant configuration next to transaction data (and possibly under version control).
 
-See xref:reference:examples.adoc#backend-fs-or-git[Configuration Example: fs or git] how combine git based transaction storage with this setup.
+See :example:production-setups.adoc#backend-fs-or-git[Configuration Example: fs or git] how combine git based transaction storage with this setup.
 
 
 ==== accounts.toml
@@ -147,6 +147,6 @@ See reference configuration files for full details:
 
 xref:journal:git-storage.adoc[Git Storage Guide] has information how to use integrated version control features with Tackler.
 
-Git and filesystem based production setup is described in xref:reference:examples.adoc#backend-fs-or-git[Configuration Example]
+Git and filesystem based production setup is described in :example:production-setups.adoc#backend-fs-or-git[Configuration Example]
 
 xref:journal:sharding.adoc[Transaction Data Sharding] has ideas for different storage schemes.
