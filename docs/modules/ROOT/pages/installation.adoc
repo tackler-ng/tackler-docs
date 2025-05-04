@@ -1,6 +1,5 @@
 = Installation Manual
-:page-date: 2019-03-29 00:00:00 Z
-:page-last_modified_at: 2025-01-21 00:00:00 Z
+
 
 This is installation manual for tackler command line.
 
@@ -9,56 +8,85 @@ To use tackler cli you will need
   * Tackler command line binary
   * Valid configuration file (xref:reference:tackler-toml.adoc[tackler.toml])
 
-To build the tackler binary, you need to have link:https://www.rust-lang.org/tools/install[Rust toolchain installed].
+To build the tackler binary, you need to have
+link:https://www.rust-lang.org/tools/install[Rust toolchain installed].
 
 
 == Build and install with Cargo
 
+Easiest way to install tackler is to use the Rust package manager, Cargo.
+
+If you run the following command, it will download the source code, build the
+binary and install it in your system under `CARGO_HOME/bin` (typically
+`~/.cargo/bin` on MacOS and Linux, and `C:\Users\<UserName>\.cargo\bin` on
+Windows).
+
+.Install tackler with Cargo
 [source,bash]
 ----
 cargo install tackler
 ----
 
-It will make the tackler command globally available, if you've allowed link:https://www.rust-lang.org/tools/install[Rust toolchain installation] to modify your PATH. If not, the binary is located at `CARGO_HOME/bin`, that's typically `~/.cargo/bin/tackler` on MacOS and Linux, and `C:\Users\<UserName>\.cargo\bin` on Windows.
-
 You can uninstall tackler by running  `cargo uninstall tackler`.
 
 == Build from source
 
+If you want to build the tackler from source, you can do so by cloning the
+repository and building it with Cargo. It will take care of all dependencies
+and build the binary for you. Make sure to use `--release` flag to build the
+release version of the binary.
+
 [source,bash]
 ----
 # Get the source code
-git clone --recurse-submodules https://github.com/tackler-ng/tackler
+$ git clone --recurse-submodules https://github.com/tackler-ng/tackler
 
-cd tackler
+$ cd tackler
 
-# Check the releases
-git tag -l
+# List available releases
+$ git tag -l
 
-# Select the latest release, e.g. v25.01.1
-git checkout v25.01.1
+# Select the latest release, e.g. v25.04.2
+$ git checkout v25.04.2
 
-# Build the tackler
-cargo build --release --locked --bin tackler
+# Build tackler, use --release flag!
+$ cargo build --release --locked --bin tackler
 
 # Check the version info
-target/release/tackler --version
+$ target/release/tackler --version
 
-tackler 25.1.1 (v25.01.1 - e730633c1ba23e6)
+tackler 25.4.2 (v25.04.2 - 64a0214ad5e58ca)
 ----
 
 
 == Minimal setup
 
-Minimal initial installation and setup is described in xref:ROOT:quickstart.adoc[Quickstart Guide].
+Minimal initial installation and setup is described in xref:ROOT:quickstart.adoc[Quickstart Guide]. In essense, it's:
 
-Tackler could be used with minimal quickstart setup just fine, but to get most out of it (strict modes, git storage system, Audit trail functinality etc.), it must be configured properly. Below is recommended setup for production use.
+.Minimal setup
+----
+$ tackler new journal
+$ tackler --config journal/conf/tackler.toml
+----
+
+Tackler could be used with the minimal quickstart setup just fine.
+
+But to get the most out of it and for example use
+xref:reference:tackler-toml.adoc#kernel[strict account data validating],
+xref:commodities:price/index.adoc[Commodities Price Data],
+xref:journal:git-storage.adoc[Git SCM data storage],
+xref:auditing:index.adoc[Accounting Audit functionality],
+it must be configured properly.
+
+Below is recommended setup for production use.
 
 
 [[layout]]
 == Recommended Setup and layout
 
-You can create default journal setup with `tackler new journal` command. This will create a new journal setup with default configuration files and example transactions, as laid out below:
+You can create default journal setup with `tackler new journal` command. This
+will create a new journal setup with default configuration files and example
+transactions, as laid out below:
 
 Full setup would be:
 
@@ -85,8 +113,13 @@ Full setup would be:
                 └── journal-2.txn
 ----
 
-This setup uses year/month based sharding for transactions (the directory structure under `txns`).  It's up to for each
-system to decide which is xref:journal:sharding.adoc[the best way to shard transaction data], or not to shard transactions at all.
+This setup uses year/month based sharding for transactions (the directory
+structure under `txns`).  It's up to for each
+system to decide which is xref:journal:sharding.adoc[the best way to shard
+transaction data], or not to shard transactions at all.
+
+The xref:examples:production-setups.adoc[] has more information about how to
+extend this with external data (readmes, documentation, etc.) for the journal.
 
 
 === Configuration Settings for Recommended Layout
@@ -113,12 +146,13 @@ tags        = { path = "tags.toml" }
 
 This setup makes it possible to separate journal setup and data, and store relevant configuration next to transaction data (and possibly under version control).
 
-See :example:production-setups.adoc#backend-fs-or-git[Configuration Example: fs or git] how combine git based transaction storage with this setup.
+See xref:examples:production-setups.adoc#backend-fs-or-git[Configuration Example: fs or git] how combine git based transaction storage with this setup.
 
 
 ==== accounts.toml
 
-If there is missing or mistyped account, that will cause an error and tackler will stop processing journal.
+If there is missing or mistyped account, that will cause an error and tackler
+will stop processing journal.
 See xref:reference:accounts-toml.adoc[accounts.toml] for full documentation
 of Chart of Accounts and commodity listing.
 
@@ -132,7 +166,8 @@ documentation  of Chart of Accounts and commodity listing.
 
 ==== tags.toml
 
-If there is missing or mistyped tag, that will cause an error and tackler will stop processing journal.
+If there is missing or mistyped tag, that will cause an error and tackler will
+stop processing journal.
 See xref:reference:tags-toml.adoc[tags.toml] for full documentation
 of Chart of Tags.
 
@@ -147,6 +182,8 @@ See reference configuration files for full details:
 
 xref:journal:git-storage.adoc[Git Storage Guide] has information how to use integrated version control features with Tackler.
 
-Git and filesystem based production setup is described in :example:production-setups.adoc#backend-fs-or-git[Configuration Example]
+Git and filesystem based production setup is described in
+xref:examples:production-setups.adoc#backend-fs-or-git[Configuration Example]
 
-xref:journal:sharding.adoc[Transaction Data Sharding] has ideas for different storage schemes.
+xref:journal:sharding.adoc[Transaction Data Sharding] has ideas for different
+storage schemes.

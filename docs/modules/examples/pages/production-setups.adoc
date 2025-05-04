@@ -1,5 +1,5 @@
-= Production Setups
-:page-date: 2019-10-06 00:00:00 Z
+= Production Setup
+
 
 This document has configuration examples of tackler for real life use.
 
@@ -7,20 +7,24 @@ This document has configuration examples of tackler for real life use.
 
 This setup has two main features:
 
-* Setup is done so that it is using version control for the setup itself and also for the journal data.
+* Setup is done so that it is using version control for the setup itself and
+  also for the journal data.
 
-* Tackler is configured so that it is possible switch back and forth between filesystem
-and git based journal storage.
+* Tackler is configured so that it is possible switch back and forth between
+  filesystem and git based journal storage.
 
-The first version control setup (auxiliary repository) contains all tools, scripts
-and documentation how to use and interpreter journal, for example description of Chart of Accounts, etc.
+The first version control setup (auxiliary repository) contains all tools,
+scripts and documentation how to use and interpreter journal, for example
+description of Chart of Accounts, etc.
 
-The second version control setup (journal) contains all accounting data and all accounting related settings.
-Accounting data and settings (Chart of Accounts, report configurations) should be kept in same repository,
-so that both will evolve in sync over time, and it should be possible to re-run reports from past.
+The second version control setup (journal) contains all accounting data and all
+accounting related settings. Accounting data and settings (Chart of Accounts,
+report configurations) should be kept in same repository, so that both will
+evolve in sync over time, and it should be possible to re-run reports from past.
 
-Backend, which is used normally for daily operations, can be either filesystem or git based,
-and it is possible to switch between backends by command line argument.
+Backend, which is used normally for daily operations, can be either filesystem
+or git based, and it is possible to switch between backends by command line
+argument.
 
 
 === Directory and Version Control Structure
@@ -62,7 +66,8 @@ books/      # This is: git clone /path/to/books.git
 
 === Journal repository
 
-The journal repository should be plain checkout of journal data. It could also be a submodule if needed.
+The journal repository should be plain checkout of journal data. It could also
+be a submodule if needed.
 
 If it's just plain checkout, then it must be ignored in the
 books -repositorys git config.
@@ -79,7 +84,8 @@ books -repositorys git config.
 [[backend-fs-or-git]]
 === Backend configuration: filesystem or Git
 
-With this setup it is possible to use either filesystem or git backend at the same time.
+With this setup it is possible to use either filesystem or git backend at the
+same time.
 
 Switching between backends can be done on the fly with CLI option:
 
