@@ -57,5 +57,5 @@ xref:usage:txn-filters.adoc#txn-posting-commodity[Commodities]
 ** Civil date and time up to nanosecond resolution (without timezones)
 ** Support for timezones
 
-* Tackler has extensive xref:ROOT:tour-of-tackler.adoc[user and developer documentation]
+* Tackler has extensive xref:ROOT:index.adoc[user and developer documentation]
 

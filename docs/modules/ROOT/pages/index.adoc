@@ -1,0 +1,63 @@
+= Tour of Tackler
+
+== Overview
+
+Tackler is an open-source accounting tool designed for managing plain text
+journals. It supports double-entry bookkeeping and provides features for
+filtering, reporting, and exporting financial data. Tackler emphasizes
+simplicity, scalability, and compatibility with version control systems like Git.
+
+=== Key Features
+
+*Plain Text Journals*::
+Tackler uses human-readable plain text files to store financial transactions,
+supporting both single-file and directory-based journal structures.
+
+*Version Control Integration*::
+Journals can be stored in Git repositories, enabling collaboration, change
+tracking, and data integrity.
+
+*Filtering Transactions*::
+Tackler provides powerful transaction filters, such as time-based filters, to
+extract specific subsets of data. All transaction attributes are filterable, and
+tackler also supports logical operators to combine several filters for complex
+queries.
+
+*Reporting*::
+It generates various reports, including balance, balance group, and register
+reports, with customizable account selection and grouping options.
+
+*Exporting*::
+Tackler supports exporting data in formats compatible with its input, such as
+equity and identity exports.
+
+*Scalability*::
+Tackler has excellent performance characteristics, even with very large
+datasets. It handles large datasets efficiently, and has native support for data
+sharding and directory-based journal structures.
+
+*Customization*::
+Users can configure report scales, account selection, and output formats via
+configuration files or command-line options.
+
+*Advanced Features*::
+Includes support for currencies, price data, GIS-based accounting, and
+accounting auditing.
+
+== Getting started
+
+* xref:quickstart.adoc[]
+* xref:journal:format.adoc[]
+* xref:ROOT:installation.adoc[]
+* xref:usage:index.adoc[]
+
+
+== Advanced topics
+
+* xref:journal:git-storage.adoc[]
+* xref:usage:txn-filters.adoc[]
+* xref:commodities:currencies.adoc[]
+** xref:commodities:price/index.adoc[]
+* xref:auditing:index.adoc[]
+* xref:usage:gis/index.adoc[]
+
