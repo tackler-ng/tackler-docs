@@ -1,6 +1,4 @@
 = License information
-:page-date: 2019-03-29 00:00:00 Z
-:page-last_modified_at: 2025-01-21 00:00:00 Z
 
 Tackler is licensed under the Apache License, Version 2.0.
 
@@ -26,6 +24,8 @@ Licenses of components used in tackler:
 * {repolink}/docs/licenses/itertools-LICENSE.txt/[itertools]
 * {repolink}/docs/licenses/jiff-LICENSE.txt/[jiff]
 * {repolink}/docs/licenses/log-LICENSE.txt/[log]
+* https://github.com/microsoft/mimalloc/blob/main/LICENSE[mimalloc]
+* https://github.com/purpleprotocol/mimalloc_rust/blob/master/LICENSE.txt[mimalloc_rust]
 * {repolink}/docs/licenses/regex-LICENSE.txt/[regex]
 * {repolink}/docs/licenses/regex-UNICODE-LICENSE.txt/[regex-UNICODE]
 * {repolink}/docs/licenses/rust_decimal-LICENSE.txt/[rust_decimal]
@@ -34,12 +34,16 @@ Licenses of components used in tackler:
 * {repolink}/docs/licenses/serde_regex-LICENSE.txt/[serde_regex]
 * {repolink}/docs/licenses/sha2-LICENSE.txt/[sha2]
 * {repolink}/docs/licenses/sha3-LICENSE.txt/[sha3]
-* {repolink}/docs/licenses/tikv-jemallocator-LICENSE.txt/[tikv-jemallocator]
 * {repolink}/docs/licenses/toml-LICENSE.txt/[toml]
 * {repolink}/docs/licenses/uuid-LICENSE.txt/[uuid]
 * {repolink}/docs/licenses/walkdir-LICENSE.txt/[walkdir]
 * {repolink}/docs/licenses/winnow-LICENSE.txt/[winnow LICENSE]
 * {repolink}/docs/licenses/winnow-COPYRIGHT.txt/[winnow COPYRIGHT]
+
+Tackler's documentation:
+
+* https://gitlab.com/antora/antora/-/blob/main/LICENSE[Antora]
+* https://gitlab.com/antora/antora-ui-default/-/blob/master/LICENSE[Antora default UI]
 
 Tackler's site:
 
@@ -47,4 +51,3 @@ Tackler's site:
 * {siterepolink}/licenses/GITGRAPHJS-LICENSE.txt/[GitGraph.JS]
 * {siterepolink}/licenses/LATO-LICENSE.txt/[Lato Font]
 * {siterepolink}/licenses/COUSINE-LICENSE.txt/[Cousine Font]
-
