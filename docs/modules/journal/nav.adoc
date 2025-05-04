@@ -1,4 +1,5 @@
 * xref:index.adoc[]
+** xref:fs-storage.adoc[]
 ** xref:git-storage.adoc[]
 *** xref:git-storage/primer.adoc[]
 ** xref:sharding.adoc[]

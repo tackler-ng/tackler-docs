@@ -1,4 +1,63 @@
 = Filesystem Storage Guide
-:page-date: 2025-05-02 00:00:00 Z
-:page-last_modified_at: 2025-05-02 00:00:00 Z
 
+
+
+Tackler's filesystem storage allows journals to
+be stored and accessed directly from the
+filesystem. It supports two options for
+organizing journal data:
+
+
+1. **Single File by command line argument**:
+The entire journal is stored in a single plain
+text file. The path to the journal file is
+given as command line argument.
++
+This is the simplest way to manage the journal
+It is ideal for analysing ad-hoc datasets,
+especially when those are not part of the
+official journal.
+
+
+2. **Journal Directory**:
+The journal is stored under directory, and it could be split into multiple files,
+typically at the transaction level, and could also be stored
+in a nested directories
++
+This approach, known as sharding, is useful for managing large
+datasets or organizing data by specific criteria.
+
+
+See xref:sharding.adoc[] and xref:examples:production-setups.adoc[] for examples of how to set up production level journal structure.
+
+== Filesystem and Git SCM Storage Backends
+
+There is relationship between Tackler's filesystem storage and Git SCM storage
+backends.
+
+When using Git storage with Tackler's filesystem structure, the journal files
+(either a single file or a directory structure) are stored in a Git repository.
+This allows version control, collaboration, and tracking of changes to the
+journal data over time.
+
+Here's how the filesystem structure integrates with Git:
+
+Single File::
+The journal is stored as a single plain text file in the Git repository.
+Changes to the journal are committed to Git, enabling a complete history of
+modifications. This is suitable for single person setup, when there is minimal
+change for merge conflicts.
+
+
+Journal Directory::
+The journal is organized into multiple files or nested directories, which are
+stored in the Git repository. This structure is ideal for large datasets or when
+sharding is used. Each file or directory can represent a subset of the data, and
+Git tracks changes to individual files, making it easier to manage and review
+updates. This also minimize possibility of merge conflicts, as each file can be
+edited individually.
+
+Using Git with Tackler's filesystem storage ensures data integrity, provides a
+backup mechanism, and facilitates collaboration among multiple users.
+
+See xref:git-storage.adoc[Git Storage Manual] for more details on how to use Git with Tackler.

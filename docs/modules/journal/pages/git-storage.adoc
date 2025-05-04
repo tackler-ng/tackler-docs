@@ -1,4 +1,4 @@
-= Git Storage Guide
+= Git SCM Storage Guide
 :page-date: 2019-03-29 00:00:00 Z
 :page-last_modified_at: 2024-12-12 00:00:00 Z
 
@@ -7,7 +7,7 @@
 See xref:journal:git-storage/primer.adoc[] how to initialize and take in use git storage in just few steps.
 ====
 
-Tackler has integrated and native support for link:https://git-scm.com/[GIT] version control system.
+Tackler has integrated and native support for link:https://git-scm.com/[Git SCM] version control system.
 
 Tackler can process accounting data directly from Git repository, also from bare repositories without a working copy.
 

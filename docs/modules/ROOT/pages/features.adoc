@@ -6,18 +6,19 @@
 
 * Tackler is written in link:https://www.rust-lang.org/[Rust] and it's xref:ROOT:features/reliability.adoc[well tested]
 
-* Integrated xref:journal:git-storage.adoc[journal storage with Git SCM] (and plain files too!)
+
+* Integrated, navite support for  xref:journal:git-storage.adoc[Git SCM based journal storage], normal xref:journal:fs-storage.adoc[filesystem based journal] is also supported.
 
 * Support for xref:commodities:commodities.adoc[Commodities], xref:commodities:currencies.adoc[Currencies and Shares]
 ** Commodity xref:journal:pricedb.adoc[Price Database] support
-** link:commodities:price.adoc[Mark-to-Market (MTM)] and other valuation analysis methods
+** xref:commodities:price/index.adoc[Mark-to-Market (MTM)] and other valuation analysis methods
 *** xref:commodities:price/current-market-value.adoc[Current Market Value]
 *** xref:commodities:price/historic-market-value.adoc[Historic Market Value]
 *** xref:commodities:price/variable-market-value.adoc[Variable Market Value]
 
 * Audit trail for xref:auditing:index.adoc[Accounting Auditing]
 
-* Accounting based on link:usage:gis/index.adoc[Geo Location (GIS)]
+* Accounting based on xref:usage:gis/index.adoc[Geo Location (GIS)]
 
 * xref:reference:accounts-toml.adoc[Chart of Accounts] with strict account and xref:reference:commodities-toml.adoc[commodity name] validation
 
@@ -56,5 +57,5 @@ xref:usage:txn-filters.adoc#txn-posting-commodity[Commodities]
 ** Civil date and time up to nanosecond resolution (without timezones)
 ** Support for timezones
 
-* Tackler has extensive link:/docs/[user and developer documentation]
+* Tackler has extensive xref:ROOT:tour-of-tackler.adoc[user and developer documentation]
 

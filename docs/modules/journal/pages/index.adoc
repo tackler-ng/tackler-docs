@@ -1,41 +1,62 @@
 = Journal
-:page-date: 2019-03-29 00:00:00 Z
-:page-last_modified_at: 2019-04-22 00:00:00 Z
 
 
-Tackler supports journals on plain filesystem and on git repository.
+A plain text accounting journal is a simple, human-readable format used to record
+financial transactions. It typically consists of entries that detail the date,
+accounts involved, amounts, currencies or commodities, and optional metadata.
+This format is used in plain text accounting systems for its simplicity and easy
+of editing.
 
-Tackler can use journal from single file or journal could be split into multiple different files. 
-There are options to configure directory setup from where tackler will scan journal files.
+In the context of Tackler, a plain text journal can be stored as a single file
+or split into multiple files. Tackler supports over 130 languages and Unicode
+blocks for account and commodity names. The journal syntax is described in the
+xref:journal:format.adoc[Journal Format].
 
-See xref:sharding.adoc[Transaction data sharding] for information of possible ways to 
-shard transaction data, and xref:format.adoc[Journal Format] for description of journal syntax.
+Tackler has in build support for creating default journal setup,
+which includes all basic files and settings, and it's ready to be used.
 
-Tackler accepts over 130 different languages, script and sign unicode blocks as valid account
-and commodity names, see xref:reference:charsets.adoc[Character Set] document for detailed information about
-valid character sets.
-
-
-== Git storage
-
-Tackler has native, integrated support for Git. This means that journal data 
-is read directly from git and for that reason all Git's reference notations
-are supported: branches, tags, symbolic version selectors and 
-plain commit ids.
-
-This also means that State of Journal is extremely well defined
-and reported  when Git storage is used.
-There won't be any fuzz if working copy was in clean state or not, 
-because used journal is always in committed state.
-Tackler also includes used commit id  into reports.
-
-For full details and examples, 
-see xref:git-storage.adoc[Git Storage Manual]
-and xref:auditing:index.adoc[Accounting Auditing], 
+.Create a new journal and run default reports
+[.source, shell]
+----
+$ tackler new journal
+$ tackler --config journal/conf/tackler.toml
+----
 
 
-== Filesystem storage
+== Journal files
 
-Journal is read directly from filesystem storage as plain file or set of files, 
-when filesystem storage is used. See xref:ROOT:installation.adoc[Installation Manual] 
-for further info.
+The accounting data can be split into multiple files, and this technique of
+splitting journal into multiple files is called _sharding_. There are several
+strategies for different sharding schemes, and these are discussed in more
+details xref:journal:sharding.adoc[Transaction Data Sharding] chapter.
+
+However, you don't have to do journal sharding, if you don't need this feature.
+Tackler can work with a single file as well.
+
+The journal can be stored either on a filesystem or in a Git repository.
+The choice of storage type depends on your needs and preferences, and it's
+typical to configure the journal so that you switch between these two storage
+types on the fly.
+
+You don't have to make decision now, as Tackler can work with both types of
+storage and it's easy to switch between them.
+
+=== Filesystem storage
+
+This is the easiest and most straightforward way to start.
+Journal is read directly from filesystem storage as plain file or set of files,
+when filesystem storage is used. See xref:fs-storage.adoc[Filesystem Storage Guide] for further info.
+
+=== Git storage
+
+Tackler has native, integrated support for https://git-scm.com/[Git SCM].
+This means that it can read journal data directly from git repository,
+and Git's normal ways to reference data are supported: branches, tags, symbolic version selectors and  plain commit ids.
+
+This also means that the State of Journal is well-defined and
+the state (used journal data) is recorded into reports when Git storage is used.
+
+See xref:git-storage.adoc[Git Storage Manual]
+and xref:auditing:index.adoc[Accounting Auditing],
+for further details on how to use Git storage and
+how to audit the journal data used to produce the accounting reports.
