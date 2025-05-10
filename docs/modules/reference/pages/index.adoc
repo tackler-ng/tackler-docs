@@ -6,19 +6,23 @@ Tackler configuration is controlled by configuration files and command line opti
 
 == Reference configuration and examples
 
-
-* Main tackler configuration file: xref:reference:tackler-toml.adoc[tackler.toml]
-* Account names: xref:reference:accounts-toml.adoc[accounts.toml]
-* Commodity names: xref:reference:accounts-toml.adoc[accounts.toml]
-* Transaction Tag names: xref:reference:tags-toml.adoc[tags.toml]
-* Examples for production systems: :example:production-setups.adoc[Example Setups]
+* Arguments for xref:reference:command-line.adoc[]
+* Tackler xref:reference:journal-reference.adoc[]
+* Transaction xref:reference:timestamps.adoc[]
+* Configuration files
+  ** Main configuration file: xref:reference:tackler-toml.adoc[tackler.toml]
+  ** Account names: xref:reference:accounts-toml.adoc[accounts.toml]
+  ** Commodity names: xref:reference:accounts-toml.adoc[accounts.toml]
+  ** Transaction Tag names: xref:reference:tags-toml.adoc[tags.toml]
+* Examples for production systems: xref:examples:production-setups.adoc[]
 
 
 == Configuration discovery
 
 Path to the tackler configuration file is mandatory option.
 The philosophy of the configuration is "what you see is what you get",
-e.g. there aren't any internal defaults for configuration.
+e.g. there aren't many internal defaults for configuration,
+and unknown configuration keys will cause an error.
 
 === Merging configurations to active set
 

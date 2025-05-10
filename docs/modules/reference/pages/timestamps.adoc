@@ -1,4 +1,4 @@
-= Timestamps
+= Timestamp Format
 
 Tackler has support for rich notations of time with
 different accuracy.
