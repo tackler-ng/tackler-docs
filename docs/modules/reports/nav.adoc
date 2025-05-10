@@ -1,7 +1,7 @@
 * xref:index.adoc[]
-** xref:formats.adoc[]
 ** xref:report-balance.adoc[]
 ** xref:report-balance-group.adoc[]
 ** xref:report-register.adoc[]
 ** xref:export-equity.adoc[]
 ** xref:export-identity.adoc[]
+** xref:formats.adoc[]

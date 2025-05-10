@@ -1,6 +1,6 @@
 name: tackler
 title: Tackler
-version: 25.04.2
+version: 25.05.1
 start_page: index.adoc
 asciidoc:
   attributes:
