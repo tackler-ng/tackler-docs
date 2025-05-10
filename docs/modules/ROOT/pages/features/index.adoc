@@ -1,11 +1,10 @@
 = Features
-:page-date: 2019-03-29 00:00:00 Z
-:page-last_modified_at: 2025-04-18 00:00:00 Z
 
 * Tackler has excellent performance - it can process xref:ROOT:features/performance.adoc[700_000 txn/s] on modern laptop
 
 * Tackler is written in link:https://www.rust-lang.org/[Rust] and it's xref:ROOT:features/reliability.adoc[well tested]
 
+* Logical and simple xref:journal:format.adoc[journal format]
 
 * Integrated, navite support for  xref:journal:git-storage.adoc[Git SCM based journal storage], normal xref:journal:fs-storage.adoc[filesystem based journal] is also supported.
 
@@ -24,8 +23,6 @@
 
 * xref:reference:tags-toml.adoc[Transaction Tags] with strict name validation
 
-* Logical and simple xref:journal:format.adoc[journal format]
-
 * Multiple report and export types:
 
 ** xref:reports:report-balance.adoc[Balance], 
@@ -34,6 +31,7 @@ and xref:reports:report-register.adoc[Register] Reports
 
 ** xref:reports:export-equity.adoc[Equity] and xref:reports:export-identity.adoc[Identity] Exports
 
+* xref:reports:formats.adoc[Text and JSON] report formats
 
 * xref:usage:txn-filters.adoc[Transaction Filters]
 ** Logical operators xref:usage:txn-filters.adoc#logic-ops[AND, OR, NOT] to combine multiple filters
@@ -50,7 +48,7 @@ xref:usage:txn-filters.adoc#txn-posting-amount[Amounts],
 xref:usage:txn-filters.adoc#txn-posting-comment[Comments],
 xref:usage:txn-filters.adoc#txn-posting-commodity[Commodities]
 
-* Supports wide range of xrefreference:charsets.adoc[Unicode characters, scripts and languages]
+* Supports wide range of xref:reference:charsets.adoc[Unicode characters, scripts and languages]
 
 * Support for real xref:journal:format.adoc#timestamps[transaction timestamps]
 ** Plain dates

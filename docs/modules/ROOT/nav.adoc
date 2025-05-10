@@ -1,5 +1,5 @@
 * xref:quickstart.adoc[]
-* xref:features.adoc[]
+* xref:features/index.adoc[]
 ** xref:features/performance.adoc[]
 ** xref:features/reliability.adoc[]
 * xref:installation.adoc[]
