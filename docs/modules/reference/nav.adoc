@@ -1,4 +1,6 @@
 * xref:index.adoc[Reference]
+** xref:command-line.adoc[]
+** xref:timestamps.adoc[]
 ** xref:journal-reference.adoc[]
 ** xref:tackler-toml.adoc[tackler.toml]
 ** xref:accounts-toml.adoc[accounts.toml]

@@ -3,23 +3,12 @@
 :page-last_modified_at: 2025-01-20 00:00:00 Z
 
 
-This is Tackler-NG configuration file to define transaction commodities and shares.
+This is configuration file to define transaction commodities, currencies
+and shares.
 
-Starting with tackler version v25.1.1, you can create default bookkeeping setup easily by running:
-----
-tackler new my_journal
-tackler --config my_journal/conf/tackler.toml
-----
+include::reference:partial$tacker-new.adoc[]
 
-[NOTE]
-====
-See
-xref:./tackler-toml.adoc[tackler.toml],
-xref:./accounts-toml.adoc[accounts.toml],
-xref:./commodities-toml.adoc[commodities.toml] and
-xref:./tags-toml.adoc[tags.toml]
-for full configuration options.
-====
+include::reference:partial$config.adoc[]
 
 File format is link:https://toml.io/en/[TOML]
 

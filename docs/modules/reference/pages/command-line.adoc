@@ -1,0 +1,252 @@
+= Command Line Interface
+:page-toclevels: 5
+
+
+Use `tackler --config path/to/tackler.toml` to run configured reports and exports.
+
+The name of the configuration file could be anything,
+but xref:reference:tackler-toml.adoc[tackler.toml]
+is used as reference for clarity through this documentation.
+
+Some of the configuration settings can be overridden by command line arguments. See below for available  xref:#options[options].
+
+include::partial$config.adoc[]
+
+== Commands
+
+=== `new <name>`
+
+Create a new journal and configuration setup as `name`.
+
+You can run it as:
+
+`tackler --config name/conf/tackler.toml`
+
+
+=== `init`
+
+Initialize journal at the current working directory.
+
+You can run it as:
+
+`tackler --config ./conf/tackler.toml`
+
+
+=== `report`
+
+This is the default action: it runs reports and exports specified by configuration and cli options.
+
+
+=== help
+
+Print this message or the help of the given subcommand.
+
+
+== Configuration
+
+=== `--config <config-file>`
+
+Mandatory argument, this is the path to configuration used by journal setup.
+
+== Accounting Auditing
+
+See xref:auditing:index.adoc[] for full documentation.
+
+=== `--strict.mode <true|false>`
+
+Enable strict txn data mode
+
+Turn on strict validation of transactions (accounts, commodities and tags).
+
+Possible values: `true`, `false`
+
+
+=== `--audit.mode <true|false>`
+
+Enable Txn set audit mode
+
+Produce checksums for transaction data and account selectors. All transactions have to have txn `uuid` when audit mode is enabled.
+
+Possible values: `true`, `false`
+
+
+== Output
+
+=== `--output.dir <directory>`
+
+Path to output directory
+
+Reports are created under this directory, so that files have name prefix set by `--output.prefix`.
+
+
+=== `--output.prefix <filename>`
+
+Prefix for report filenames.
+
+Full filenames will be
+
+* Reports
+  ** TXT: `prefix.bal.txt`, `prefix.balgrp.txt`, `prefix.reg.txt`
+  ** JSON: `prefix.bal.json`, `prefix.balgrp.json`, `prefix.reg.json`
+
+* Exports
+** `prefix.equity.txn`, `prefix.identity.txn`
+
+
+== Input
+
+Options related to accounting xref:journal:index.adoc[] input.
+
+=== `--input.file <filename>`
+
+Path to single transaction journal file. Relative path is relative to the current working directory.
+
+=== `--input.storage <fs|git>`
+
+Select used transaction storage
+
+Possible values: `fs`, `git`
+
+
+=== FS Storage
+
+See xref:journal:fs-storage.adoc[] for full documentation.
+
+==== `--input.fs.path <path>`
+
+Filesystem path to journal directory
+
+This is the root of journal, see also `--input.fs.dir`
+
+
+==== `--input.fs.dir <txns-directory>`
+
+The transaction directory inside journal
+
+This is the root node of txn tree inside journal See also `--input.fs.path`
+
+
+==== `--input.fs.ext <extension>`
+
+Txn file extension
+
+
+=== GIT SCM Storage
+
+See xref:journal:git-storage.adoc[] for full documentation.
+
+==== `--input.git.repository <path>`
+
+Path to git repository
+
+Path to `.git` directory or bare git-repository.
+
+This could be a path to `.git` directory inside working copy
+
+==== `--input.git.ref <refname>`
+
+Git reference name
+
+==== `--input.git.commit <commit-id>`
+
+Git object name (commit id)
+
+==== `--input.git.dir <txns-directory>`
+
+Path (inside git repository) to transaction directory
+
+This could be a root or node of txn shard tree
+
+==== `--input.git.ext <extension>`
+
+Txn file extension
+
+== Reporting
+
+Options related reporting
+
+=== `--accounts <regex>...`
+
+Account selectors for reports and exports
+
+List of patterns (regex) for account names.
+
+These are full match regular expressions, and they try to match full account name. Use wildcard patterns `.\*`, `(:.*)?`, etc. when needed.
+
+Use empty string `""` to list all accounts
+
+[[reports]]
+=== `--reports <type>...`
+
+List of Reports to generate
+
+The list is space separated
+
+Possible values: `register`, `balance`, `balance-group`
+
+=== `--group-by <group>`
+
+Group-by -selector for 'balance-group' report
+
+Possible values: `year`, `month`, `date`, `iso-week`, `iso-week-date`
+
+=== `--formats <type>...`
+
+List of report formats.
+
+Possible values: `txt`, `json`
+
+
+=== `--exports <type>...`
+
+List of Exports to generate
+
+The list is space separated
+
+Possible values: `identity`, `equity`
+
+
+== Commodity Price
+
+=== `--pricedb <pricedb-file>`
+
+Path to single PriceDB file
+
+=== `--report.commodity <commodity>`
+
+Name of the commodity to do the reports in
+
+=== `--price.lookup-type <lookup-type>`
+
+Type of price lookup method
+
+Possible values: `none`, `txn-time`, `last-price`, `given-time`
+
+=== `--price.before <time>`
+
+Timestamp to use for price lookup. This either partial or full `<ISO-8066-timestamp>`. The same rules applies as with txn timestamps: if time or zone is missing, then xref:reference:tackler-toml.adoc[configured default] is used.
+
+== Filters
+
+=== `--api-filter-def <filter>`
+
+Txn Filter definition in JSON.
+
+See xref:usage:txn-filters.adoc[] for documentation of
+available filters. There are also transaction filter
+examples under xref:examples:index.adoc[].
+
+The filter definition could be ascii armored with base64
+encoding. The ascii armor must have prefix 'base64:'
+
+`base64:eyJ0eG5GaWx0ZXIiOnsiTnVsbGFyeVRSVUUiOnt9fX0K`
+
+
+===  `-h, --help`
+
+Print help (see a summary with '-h')
+
+
+=== `-V, --version`
+
+Print version

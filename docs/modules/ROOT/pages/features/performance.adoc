@@ -2,8 +2,8 @@
 :page-date: 2019-03-29 00:00:00 Z
 :page-last_modified_at: 2025-04-17 00:00:00 Z
 
-Tackler-NG has excellent performance and it can process from 250_000 to 700_000
-txns per second on modern laptop.
+Tackler has excellent performance and it can process from 250_000 to 700_000
+transactions per second on modern laptop.
 
 **What does it mean to process 250_000 txns per sec?**
 
@@ -21,10 +21,11 @@ Journal with a transaction in every minute, for one year - that's journal with a
 
 These times are real wall clock values.
 
-At the same time tackler can easily process journals with over one million transactions.
+At the same time tackler can easily process journals with millions of
+transactions.
 
-A million transaction journal is comparable to 3 000 transactions per day for one year.
-Or 100 transactions in every hour, every day, for one year.
+A million transaction journal is comparable to 3 000 transactions per day for on
+year. Or 100 transactions in every hour, every day, for one year.
 
 == Performance benchmarks
 
@@ -56,9 +57,9 @@ footprint, which is 2-4x smaller than memory usage of those other tools.
 
 |1e6
 |1.41 sec
-|1450 MB
+|1.45 GB
 |3.95 sec
-|1470 MB
+|1.47 GB
 
 | Performance
 2+| +700_000 txn / s

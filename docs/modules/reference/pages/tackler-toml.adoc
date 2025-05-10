@@ -3,29 +3,25 @@
 :page-last_modified_at: 2025-01-20 00:00:00 Z
 :page-toclevels: 5
 
-This is the main Tackler-NG configuration file.
+This is the main Tackler configuration file. The name of the configuration file
+could be anything, but `tackler.toml` is  used as reference for clarity through
+this documentation.
 
-Starting with tackler version v25.1.1, you can create default bookkeeping setup easily by running:
-[source,bash]
-----
-tackler new my_journal
-tackler --config my_journal/conf/tackler.toml
-----
+include::reference:partial$tacker-new.adoc[]
 
-Some of the configuration settings can be overridden by CLI options (marked as "CLI:" below).  There are no default configuration settings, so all non-optional values must be explicitly defined in this configuration.
+Some of the configuration settings can be overridden by command line arguments.
+See xref:reference:command-line.adoc[] for available options.
 
+The configuration settings which can be overridden by CLI options are marked as "CLI:" below.
 
-[NOTE]
-====
-See
-xref:./tackler-toml.adoc[tackler.toml],
-xref:./accounts-toml.adoc[accounts.toml],
-xref:./commodities-toml.adoc[commodities.toml] and
-xref:./tags-toml.adoc[tags.toml]
-for full configuration options.
-====
+There are only few optional configuration settings, and all non-optional values
+must be explicitly defined in this configuration. Also the configuration will
+error out if there are any unknown keys. This will protect against misspellings
+in the configuration.
 
-File format is link:https://toml.io/en/[TOML]
+File format of tackler configuration is link:https://toml.io/en/[TOML].
+
+include::reference:partial$config.adoc[]
 
 == Reference Configuration
 
@@ -38,9 +34,6 @@ Relative paths are always relative to the used configuration-file.
 
 [source,ini]
 ----
-### The main configuration file for Tackler-NG
-###
-### The format is TOML (https://toml.io/en/)
 [kernel]
 ### Stric mode
 ###
@@ -57,7 +50,6 @@ strict = true
 
 [source,ini]
 ----
-### Configuration Options for Timestamp
 [kernel.timestamp]
 ### Default time value for timestamps
 ###
@@ -126,6 +118,7 @@ hash = "SHA-256"
 ### This turns audit mode on or off.
 ###
 ### Valid options are: true | false
+###
 ### CLI: --audit.mode
 mode = true
 ----
@@ -139,6 +132,8 @@ mode = true
 ### Type of input storage system
 ###
 ### Valid options are: "fs" | "git"
+###
+### CLI: --input.storage
 storage = "fs"
 ----
 
@@ -152,11 +147,13 @@ Settings for xref:journal:fs-storage.adoc[Filesystem storage]
 ### Path to the FS-storage
 ###
 ### If the directory path is relative, then it's based on this file.
-### When CLI --input.fs.dir is supplied, this option is ignored.
+###
+### CLI: --input.fs.path
 path = "journal"
 ###
 ### This is root directory of txn shard structure,
 ### the scanning starts from here.
+###
 ### CLI: --input.fs.dir
 dir = "txns"
 ### Filename suffix
@@ -191,7 +188,7 @@ Settings for xref:journal:git-storage.adoc[Git SCM storage]
 ### selected by 'kernel.input.storage'
 ### The 'repo' key is an alias for 'repository'
 ###
-### CLI: --input.git.repository
+### CLI: --input.git.repo, --input.git.repository
 repo = "journal.git"
 ### Git reference name
 ###
@@ -229,13 +226,16 @@ Settings for xref:commodities:price/index.adoc[Commodity Price Settings]
 ### If the path is relative, then it's based on this file.
 ###
 ### Set the value to "none", if this feature is not in use
-###   CLI: --pricedb
+###
+### CLI: --pricedb
 db-path = "journal/txns/price.db"
 ### Commodity Price lookup type
 ###
 ### Commodity Price functionality is not activated when this is 'none'
 ### See also 'report.commodity'.
+###
 ### Valid options are: "none", "txn-time", "last-price", "given-time"
+###
 ### CLI: --price.lookup-type
 lookup-type = "none"
 ----
@@ -313,6 +313,8 @@ report-timezone = "Europe/Helsinki"
 ### Report commodity when Commodity Price is activated.
 ### If strict mode is on 'kernel.strict = true', then this
 ### commodity has to be defined in Chart of Commodities.
+###
+### CLI: --report.commodity
 commodity = "name"
 
 ### Reports to generate
@@ -320,6 +322,7 @@ commodity = "name"
 ### This is a list of report targets to generate.
 ###
 ### Valid options are: "balance", "balance-group", "register"
+###
 ### CLI: --reports
 targets = [ "balance", "balance-group", "register" ]
 
@@ -445,6 +448,7 @@ Settings for xref:reports:index.adoc[exports]
 ### This is a list of exports targets to generate.
 ###
 ### Valid options are: "equity", "identity"
+###
 ### CLI: --exports
 targets = [ ]
 ----

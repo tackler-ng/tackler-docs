@@ -1,23 +1,37 @@
 = Quickstart
-:page-date: 2024-11-18 07:00:00 +02:00
-:page-last_modified_at: 2025-03-02 00:00:00 Z
 
-With Tackler-NG version v25.1.1 or higher, run:
+To use tackler, you will need tackler binary and an accounting journal.
 
+.Install tackler binary
 [source,bash]
 ----
 cargo install --locked tackler
+----
+
+.Create journal example
+----
 tackler new journal
 tackler --config journal/conf/tackler.toml
 ----
+
+**That's it, you are all done!**
+
+You are now ready to start your accounting journey. Feel free to add, modify or
+delete transaction files under the `journal/txns` directory. After all, it's
+your journal. Tackler will pick up automatically all files ending as `.txn`
+under that directory.
+
+See
+xref:journal:index.adoc[] and
+xref:reference:command-line.adoc[] how to get started with tackler.
 
 
 == Longer version of the same story
 
 You need link:https://www.rust-lang.org/tools/install[Rust toolchain] to build tackler binary.
 
-[source,bash]
 .Build and install Tackler
+[source,bash]
 ----
 cargo install --locked tackler
 ----
@@ -29,21 +43,27 @@ link:https://www.rust-lang.org/tools/install[Rust toolchain] installation. See x
 
 Once you have installed tackler, create default journal setup with:
 
+.Create journal template
 [source,bash]
 ----
-tackler new my_journal
+tackler new journal
 ----
 
-This will create a new bookkeeping setup, with default configuration `my_journal/conf` and example transactions in `my_journal/txns` (feel free to modify or delete these transaction files).
+This will create a new bookkeeping setup, with default configuration `journal/conf` and example transactions in `journal/txns` (feel free to modify or delete these transaction files).
 
 The next step is to run default reports for the journal:
 
+.Run example reports
 ----
-tackler --config my_journal/conf/tackler.toml
+tackler \
+   --config journal/conf/tackler.toml
 ----
 
-This will run Balance and Register reports by default. You can select which reports to run by using `--reports` option, see `tackler --reports` for more information.
+This will run Balance and Register reports by default. You can select which
+reports to run by using `--reports` option, see xref:reference:command-line.adoc#reports[tackler --reports] for more
+information.
 
+.Example reports
 ----
 Balance Report
 --------------
@@ -61,28 +81,19 @@ Register Report
 ...
 ----
 
+include::reference:partial$config.adoc[]
 
-[NOTE]
-====
-See
-xref:journal:format.adoc[Journal Format],
-xref:reference:tackler-toml.adoc[tackler.toml],
-xref:reference:accounts-toml.adoc[accounts.toml],
-xref:reference:commodities-toml.adoc[commodities.toml] and
-xref:reference:tags-toml.adoc[tags.toml]
-for full documentation.
-====
-
-=== Strict Mode
-
-Tackler has a strict mode, which validates account names, commodity names and tags. This is useful for ensuring that all transaction data is correctly entered and that the reports are accurate. To enable strict mode, set `kernel.strict = true` in the  `tackler.toml` configuration file. You can enable strict mode with the default journal.
 
 == Journal examples and source code
 
-Tackler repository contains several example journals, which you can use to play and test tackler further: to test git integration, running tackler in audit mode, or playing with demo setup of 100_000 transactions.
+Tackler repository contains several example journals, which you can use to play
+and test tackler further:
+to test xref:journal:git-storage.adoc[git integration],
+running tackler in xref:auditing:index.adoc[audit mode],
+or playing with demo setup of one hundred thousand transactions.
 
+.Get source code and test journals
 [source,bash]
-.Get source and test journals
 ----
 git clone --recurse-submodules https://github.com/tackler-ng/tackler
 cd tackler
@@ -104,6 +115,7 @@ tackler --config examples/simple.toml
 
 ==== Output
 
+[source, text]
 ----
 Balance Report
 --------------
@@ -120,7 +132,12 @@ Balance Report
 
 The
 link:https://github.com/tackler-ng/tackler/blob/main/examples/audit.toml[audit.toml]
-example uses a bare git repository as transaction storage, and also strict and audit mode is activated by configuration. This means that all accounts, commodity names and tags are validated.  The triplet of git commit id, Txn Set Checksum and Account Selector Checksum provides an auditable (cryptographic) proof of transactions used by reports.
+example uses a bare git repository as transaction storage, and also strict and
+audit mode is activated by configuration. This means that all accounts,
+commodity names and tags are validated.  The triplet of git commit id, Txn Set
+Checksum and Account Selector Checksum provides an
+xref:auditing:index.adoc[auditable (cryptographic) proof of transactions]
+used by reports.
 
 ==== Command
 
@@ -131,47 +148,52 @@ tackler --config examples/audit.toml
 
 ==== Output
 
-[source,bash]
+[source, text]
 ----
 Git Storage
-         commit : 4aa4e9797501c1aefc92f32dff30ab462dae5545
-      reference : txns-1E1
+      reference : set-1e1
       directory : txns
-         suffix : .txn
-        message : txns-1E1: 2016/12
+      extension : txn
+         commit : ed6e4b10de2daea8d143569c473d14a9b09c3270
+         author : tackler <accounting@example.com>
+           date : 2016-11-25 09:36:00 +0000
+        subject : set-1e1: 2016-11-25
 
 Txn Set Checksum
-        SHA-256 : 9b29071e1bf228cfbd31ca2b8e7263212e4b86e51cfee1e8002c9b795ab03f76
-       Set size : 10
+        SHA-256 : 4a0eb2f8836447a025030a87136c047b4a737031162f593cb00f390c6ba113a3
+       set size : 10
 
 **********************************************************************************
 Account Selector Checksum
-        SHA-256 : 19d31a48bf9a8604a1128ccfd281511f961c5469748a97897a21fc0fa2a5f519
+        SHA-256 : df4714ff3f5bd031a8256df95863a8085f740b436f1b47febb45c9eb9aaa9e9e
+       selector : 'a:.*'
+
 
 Balance Report
 --------------
-                 0.00   -161.00  a:ay2016
-                -6.00     -6.00  a:ay2016:am02
-               -14.00    -14.00  a:ay2016:am03
-               -19.00    -19.00  a:ay2016:am04
-               -26.00    -26.00  a:ay2016:am05
-                -1.00     -1.00  a:ay2016:am07
-                -7.00     -7.00  a:ay2016:am08
-               -13.00    -13.00  a:ay2016:am09
-               -19.00    -19.00  a:ay2016:am10
-               -25.00    -25.00  a:ay2016:am11
-               -31.00    -31.00  a:ay2016:am12
+                -1.00   a:ay2016:am01
+                -6.00   a:ay2016:am02
+               -14.00   a:ay2016:am03
+               -19.00   a:ay2016:am04
+               -26.00   a:ay2016:am05
+                -2.00   a:ay2016:am07
+                -7.00   a:ay2016:am08
+               -13.00   a:ay2016:am09
+               -19.00   a:ay2016:am10
+               -25.00   a:ay2016:am11
 =====================
-              -161.00
+              -132.00
 ##################################################################################
 ----
 
-=== Playing with 100_000 transactions
+=== Journal with one hundred thousand transactions
 
-The audit repository contains a branch which has set of 100_000 transactions, and it's named as `txns-1E5`.
-The following command will run the audit mode for the transactions in the branch `txns-1E5`
-and select only accounts starting with `a:ay2016:am1`, that's accounts for year 2016, months 10, 11 and 12.
+The audit repository contains a branch which has set of 100_000 transactions,
+and it's named as `set-1e5`.
 
+The following command will run reports in the audit mode with the journal data
+in branch `set-1e5`.  Only accounts starting as `a:ay2016:am1` are selected
+into reports.
 
 ==== Command
 
@@ -179,36 +201,39 @@ and select only accounts starting with `a:ay2016:am1`, that's accounts for year 
 ----
 tackler \
     --config examples/audit.toml \
-    --input.git.ref txns-1E5 \
+    --input.git.ref set-1e5 \
     --accounts "a:ay2016:am1.*"
 ----
 
 ==== Output
 
-[source,bash]
+[source, text]
 ----
 Git Storage
-         commit : cb56fdcdd2b56d41fc08cc5af4a3b410896f03b5
-      reference : txns-1E5
+      reference : set-1e5
       directory : txns
-         suffix : .txn
-        message : txns-1E5: 2016/12
+      extension : txn
+         commit : 4648a2994b41ed341b544a148b3060fd2d267d79
+         author : tackler <accounting@example.com>
+           date : 2016-12-31 17:41:24 +0000
+        subject : set-1e5: 2016-12-31
 
 Txn Set Checksum
-        SHA-256 : 27060dc1ebde35bebd8f7af2fd9815bc9949558d3e3c85919813cd80748c99a7
-       Set size : 100000
+        SHA-256 : 2f4bc22df78502182aa27037d8d0f72462adb018be3e768399e0b803fa75baa7
+       set size : 100000
 
 **********************************************************************************
 Account Selector Checksum
         SHA-256 : 49bfb37038bd82c1f23eeb3ea018a721b1f9503732493b7a6d7c96f187bc1505
+       selector : 'a:ay2016:am1.*'
 
 
 Balance Report
 --------------
-              -135619.00   -135619.00  a:ay2016:am10
-              -127126.00   -127126.00  a:ay2016:am11
-              -133433.00   -133433.00  a:ay2016:am12
+              -135619.00   a:ay2016:am10
+              -127126.00   a:ay2016:am11
+              -133402.00   a:ay2016:am12
 ========================
-              -396178.00
+              -396147.00
 ##################################################################################
 ----

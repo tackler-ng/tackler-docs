@@ -1,4 +1,4 @@
-= Journal
+= Tackler Journal
 
 
 A plain text accounting journal is a simple, human-readable format used to record
@@ -15,12 +15,7 @@ xref:journal:format.adoc[Journal Format].
 Tackler has in build support for creating default journal setup,
 which includes all basic files and settings, and it's ready to be used.
 
-.Create a new journal and run default reports
-[.source, shell]
-----
-$ tackler new journal
-$ tackler --config journal/conf/tackler.toml
-----
+include::reference:partial$tacker-new.adoc[]
 
 
 == Journal files

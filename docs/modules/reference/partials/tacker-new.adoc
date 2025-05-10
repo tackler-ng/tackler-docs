@@ -1,0 +1,11 @@
+
+[TIP]
+====
+Use `tackler new` to create a functional template journal:
+[source,bash]
+----
+tackler new journal
+tackler --config journal/conf/tackler.toml
+----
+====
+

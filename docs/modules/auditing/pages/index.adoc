@@ -50,11 +50,19 @@ to demonstrate how to externally calculate Txn Set Checksum.
 See xref:#examples[examples] section and {github-link}/docs/tep/tep-1007.adoc[TEP-1007: Txn Set Checksum]
 for more infromation.
 
+== Correctness of Accounting Data
+
+Tackler has a strict mode, which validates account names,
+commodity names and tags. This is useful for ensuring that
+all transaction data is correctly entered and that the
+reports are accurate. To enable strict mode, set `kernel
+.strict = true` in xref:reference:tackler-toml.adoc[tackler.toml]  configuration file.
+
+You can enable strict mode with the template journal.
+
+include::reference:partial$tacker-new.adoc[]
 
 === Validation of accounts
-
-In strict mode, Tackler will only accept pre-defined accounts.  Strict account name validation
-makes it impossible that transaction would leak into unknown account.
 
 If accounting system allows usage of undefined accounts and doesn't enforce account name validation, it is possible to
 loose or leak value into unknown, not tracked accounts, even when transactions still balance internally perfectly.

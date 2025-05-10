@@ -3,7 +3,7 @@
 
 == Tackler Release Schedule
 
-[cols=5*]
+[frame=none, cols=5*, grid=rows]
 |===
 |Release Line |Latest Release |Status |GA |EOL
 

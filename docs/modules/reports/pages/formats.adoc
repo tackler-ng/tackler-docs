@@ -1,0 +1,9 @@
+= Output Formats
+
+Tackler has support for text and JSON output formats.
+
+== JSON Format
+
+The json format is supposed for human usage, e.g. all values are already formatted similar way as in text based reports.
+
+Also numbers are represented as strings, so there won't be precision or rounding differences between txt and json reports.

@@ -1,0 +1,34 @@
+= Timestamps
+
+Tackler has support for rich notations of time with
+different accuracy.
+
+The timestamp could be just plain date, or it could date-time with timezone (offset) information. The precision of time is up to nanosecond.
+
+.Examples of timestamp formats
+----
+YYYY-MM-DD
+YYYY-MM-DDTHH:MM:SS[.SSS]
+YYYY-MM-DDTHH:MM:SS[.SSS]Z
+YYYY-MM-DDTHH:MM:SS[.SSS]±hh:mm
+----
+
+.Example timestamps
+----
+2016-12-31
+2016-12-31T13:01:01
+2016-12-31T13:01:01.123
+2016-12-31T13:01:01Z
+2016-12-31T13:01:01+00:00
+2016-12-31T13:01:01.123456789+02:00
+----
+
+These are
+link:https://en.wikipedia.org/wiki/ISO_8601[ISO-8601] dates
+and times with up to nanosecond resolution.
+
+* If time part is missing then `default-time` defined in
+  xref:reference:tackler-toml.adoc#kernel-timestamp[tackler.toml] is used.
+
+* If Offset is missing then offset based on timezone/offset defined in
+  xref:reference:tackler-toml.adoc#kernel-timestamp-timezone[tackler.toml] is used.

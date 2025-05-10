@@ -1,0 +1,11 @@
+
+[NOTE]
+====
+See
+xref:reference:tackler-toml.adoc[tackler.toml],
+xref:reference:accounts-toml.adoc[accounts.toml],
+xref:reference:commodities-toml.adoc[commodities.toml] and
+xref:reference:tags-toml.adoc[tags.toml]
+for full configuration options.
+====
+

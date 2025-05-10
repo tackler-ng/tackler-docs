@@ -1,6 +1,5 @@
 = Reliability
-:page-date: 2019-03-29 00:00:00 Z
-:page-last_modified_at: 2025-03-31 00:00:00 Z
+
 
 [quote]
 ____
@@ -24,10 +23,10 @@ Foundation of tackler development is that all features must be tested logically 
 and overall test coverage should be almost perfect.  Tackler is tested with functional and
 logical test sets to ensure that all code paths are covered by tests.
 
-Tackler has *115* tracked features.
-These features are verified by *495* tracked test cases.
-Tackler-ng is currently tested with *422* tests vectors,
-and test results are verified by *481* reference reports.
+Tackler has *120* tracked features.
+These features are verified by *508* tracked test cases.
+Tackler is tested with *436* tests vectors,
+and test results are verified by *672* reference reports.
 
 Part of the test setup is journal with
 {github-link}/tackler-core/tests/git_txns.rs#L103[*one hundred thousand* (100 000)] transactions.

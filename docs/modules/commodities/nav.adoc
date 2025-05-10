@@ -1,5 +1,5 @@
 
-* xref:commodities.adoc[]
+* xref:index.adoc[]
 ** xref:currencies.adoc[]
 ** xref:price/index.adoc[]
 *** xref:price/current-market-value.adoc[]
