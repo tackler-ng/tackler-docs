@@ -1,30 +1,30 @@
 = Migration: CLI Options
-:page-date: 2019-03-29 00:00:00 Z
-:page-last_modified_at: 2024-12-01 00:00:00 Z
 
 
 [cols="3,3,2",width=100%]
 |===
-|Tackler                | Tackler-NG    | Comments
+|Tackler-Mk1            | Tackler-NG    | Comments
 
 |--cfg                  | --config | mandatory
 |--accounts.strict      | --strict.mode | 24.11.2
 |                       | --audit.mode |
 |--api-filter-def       | --api-filter-der |
-|--basedir              | removed, see --output.dir |
+|--basedir              2+| removed, see --output.dir
 |--input.storage        | --input.storage |
 |--input.file           | --input.file |
+|                       | --input.fs.path |
 |--input.fs.dir         | --input.fs.dir |
-|--input.fs.glob        | --input.fs.suffix |
-|                       | --input.git.repository |
+|--input.fs.glob        | --input.fs.ext |
+|                       | --input.git.repo |
 |--input.git.commit     | --input.git.commit | 24.12.1
 |--input.git.dir        | --input.git.dir |
 |--input.git.ref        | --input.git.ref |
+|                       | --input.git.ext | 25.05.1
 |--output               | --output.dir  | 24.11.2
 |                       | --output.name | 24.11.2
 
 |--reporting.accounts   | --accounts |
-|--reporting.console    | removed |
+|--reporting.console    2+| removed
 |--reporting.exports    | --exports |
 |--reporting.formats    | --formats | 25.05.1
 |--reporting.reports    | --reports |

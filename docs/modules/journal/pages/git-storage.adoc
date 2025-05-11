@@ -1,18 +1,20 @@
 = Git SCM Storage Guide
-:page-date: 2019-03-29 00:00:00 Z
-:page-last_modified_at: 2024-12-12 00:00:00 Z
+
+Tackler has integrated and native support for
+link:https://git-scm.com/[Git SCM] version control system.
+
+This means that Tackler can process accounting data directly from Git
+repository, including from bare repositories without a working copy.
+
+Accounting data version and the point of time could be selected by all
+normal Git's way of references (branches, tags, commits), and SCM metadata
+is included into the reports.
 
 [NOTE]
 ====
 See xref:journal:git-storage/primer.adoc[] how to initialize and take in use git storage in just few steps.
 ====
 
-Tackler has integrated and native support for link:https://git-scm.com/[Git SCM] version control system.
-
-Tackler can process accounting data directly from Git repository, also from bare repositories without a working copy.
-
-Point of history for accounting data could be selected by all normal Git's way of references, and
-SCM metadata is included directly to the reports.
 
 == Why to use Git as journal storage?
 

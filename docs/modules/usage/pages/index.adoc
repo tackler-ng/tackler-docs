@@ -76,14 +76,14 @@ storage = "git"
 [fs]
 path = "journal"
 dir = "txns/2024"
-suffix = "txn"
+ext = "txn"
 
 [git]
 repo = "journal/.git"
 # the 2024 is a branch which holds transactions related to year 2024
 ref = "2024"
 dir = "txns/2024"
-suffix = "txn"
+ext = "txn"
 ----
 
 ==== Journal in single file

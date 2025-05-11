@@ -1,6 +1,4 @@
 = tackler.toml
-:page-date: 2024-11-18 07:00:00 +02:00
-:page-last_modified_at: 2025-01-20 00:00:00 Z
 :page-toclevels: 5
 
 This is the main Tackler configuration file. The name of the configuration file
@@ -156,13 +154,14 @@ path = "journal"
 ###
 ### CLI: --input.fs.dir
 dir = "txns"
-### Filename suffix
+### Filename Extension
 ###
-### This is transaction file extension, e.g. all files with
-### this suffix are included into input.
+### This is transaction file extension, all files with
+### this extension are included into input under
+### the 'input.fs.dir' directory.
 ###
 ### CLI: --input.fs.ext
-suffix = "txn"
+ext = "txn"
 ----
 
 ==== `kernel.input.git`
@@ -210,8 +209,14 @@ ref = "main"
 ###
 ### CLI: --input.git.dir
 dir = "txns"
-### Suffix of file names which are processed as transactions.
-suffix = "txn"
+### Filename Extension
+###
+### This is transaction file extension, all files with
+### this extension are included into input under
+### the 'input.git.dir' directory.
+###
+### CLI: --input.git.ext
+ext = "txn"
 ----
 
 == Price
