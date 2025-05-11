@@ -1,4 +1,4 @@
-= Git Primer
+= Git SCM Primer
 :page-date: 2025-05-02 00:00:00 Z
 
 This primer will show in few steps how to initialize git storage and start using
