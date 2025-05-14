@@ -4,14 +4,23 @@
 
 Tackler is an open-source accounting tool designed for managing plain text
 journals. It supports double-entry bookkeeping and provides features for
-filtering, reporting, and exporting financial data. Tackler emphasizes
-simplicity, scalability, and compatibility with version control systems like Git.
+filtering, market value analysis, reporting, and exporting financial data.
+
+Tackler emphasizes simplicity, reliability and integrity of the accounting journal.
 
 === Key Features
 
 *Plain Text Journals*::
 Tackler uses human-readable plain text files to store financial transactions,
-supporting both single-file and directory-based journal structures.
+supporting both single-file and directory-based journal structures.  There are no
+restrictions on account or commodity names - users are free to choose the best fitting
+conventions. Account and commodity names support rich set of Unicode characters
+and languages.
+
+*Strong Emphasis on Correctness*::
+The project and Tackler tool has strong focus on correctness and reliability.
+This includes correctness of the software but also the correctness of
+the journal data.
 
 *Version Control Integration*::
 Journals can be stored in Git repositories, enabling collaboration, change
@@ -22,6 +31,9 @@ Tackler provides powerful transaction filters, such as time-based filters, to
 extract specific subsets of data. All transaction attributes are filterable, and
 tackler also supports logical operators to combine several filters for complex
 queries.
+
+*Market Value Analysis*::
+Tackler has support for multiple market value analysis modes.
 
 *Reporting*::
 It generates various reports, including balance, balance group, and register
@@ -36,12 +48,8 @@ Tackler has excellent performance characteristics, even with very large
 datasets. It handles large datasets efficiently, and has native support for data
 sharding and directory-based journal structures.
 
-*Customization*::
-Users can configure report scales, account selection, and output formats via
-configuration files or command-line options.
-
 *Advanced Features*::
-Includes support for currencies, price data, GIS-based accounting, and
+Includes support for currencies, GIS-based accounting, and
 accounting auditing.
 
 == Getting started

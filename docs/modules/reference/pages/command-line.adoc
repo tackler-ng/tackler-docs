@@ -8,7 +8,8 @@ The name of the configuration file could be anything,
 but xref:reference:tackler-toml.adoc[tackler.toml]
 is used as reference for clarity through this documentation.
 
-Some of the configuration settings can be overridden by command line arguments. See below for available  xref:#options[options].
+Some of the configuration settings can be overridden by command line
+arguments. See below for details.
 
 include::partial$config.adoc[]
 
@@ -37,13 +38,14 @@ You can run it as:
 This is the default action: it runs reports and exports specified by configuration and cli options.
 
 
-=== help
+=== `help`
 
 Print this message or the help of the given subcommand.
 
 
 == Configuration
 
+[[config]]
 === `--config <config-file>`
 
 Mandatory argument, this is the path to configuration used by journal setup.
@@ -52,6 +54,7 @@ Mandatory argument, this is the path to configuration used by journal setup.
 
 See xref:auditing:index.adoc[] for full documentation.
 
+[[strict-mode]]
 === `--strict.mode <true|false>`
 
 Enable strict txn data mode
@@ -61,6 +64,7 @@ Turn on strict validation of transactions (accounts, commodities and tags).
 Possible values: `true`, `false`
 
 
+[[audit-mode]]
 === `--audit.mode <true|false>`
 
 Enable Txn set audit mode
@@ -72,6 +76,7 @@ Possible values: `true`, `false`
 
 == Output
 
+[[output-dir]]
 === `--output.dir <directory>`
 
 Path to output directory
@@ -79,6 +84,7 @@ Path to output directory
 Reports are created under this directory, so that files have name prefix set by `--output.prefix`.
 
 
+[[output-prefix]]
 === `--output.prefix <filename>`
 
 Prefix for report filenames.
@@ -97,10 +103,12 @@ Full filenames will be
 
 Options related to accounting xref:journal:index.adoc[] input.
 
+[[input-file]]
 === `--input.file <filename>`
 
 Path to single transaction journal file. Relative path is relative to the current working directory.
 
+[[input-storage]]
 === `--input.storage <fs|git>`
 
 Select used transaction storage
@@ -112,6 +120,7 @@ Possible values: `fs`, `git`
 
 See xref:journal:fs-storage.adoc[] for full documentation.
 
+[[input-fs-path]]
 ==== `--input.fs.path <path>`
 
 Filesystem path to journal directory
@@ -119,6 +128,7 @@ Filesystem path to journal directory
 This is the root of journal, see also `--input.fs.dir`
 
 
+[[input-fs-dir]]
 ==== `--input.fs.dir <txns-directory>`
 
 The transaction directory inside journal
@@ -126,6 +136,7 @@ The transaction directory inside journal
 This is the root node of txn tree inside journal See also `--input.fs.path`
 
 
+[[input-fs-ext]]
 ==== `--input.fs.ext <extension>`
 
 Txn file extension
@@ -135,28 +146,33 @@ Txn file extension
 
 See xref:journal:git-storage.adoc[] for full documentation.
 
-==== `--input.git.repository <path>`
+[[input-git-repo]]
+==== `--input.git.repo <path>`
 
-Path to git repository
+Path to git repository, alias `--input.git.repository`
 
 Path to `.git` directory or bare git-repository.
 
 This could be a path to `.git` directory inside working copy
 
+[[input-git-ref]]
 ==== `--input.git.ref <refname>`
 
 Git reference name
 
+[[input-git-commit]]
 ==== `--input.git.commit <commit-id>`
 
 Git object name (commit id)
 
+[[input-git-dir]]
 ==== `--input.git.dir <txns-directory>`
 
 Path (inside git repository) to transaction directory
 
 This could be a root or node of txn shard tree
 
+[[input-git-ext]]
 ==== `--input.git.ext <extension>`
 
 Txn file extension
@@ -165,6 +181,7 @@ Txn file extension
 
 Options related reporting
 
+[[accounts]]
 === `--accounts <regex>...`
 
 Account selectors for reports and exports
@@ -184,12 +201,14 @@ The list is space separated
 
 Possible values: `register`, `balance`, `balance-group`
 
+[[group-by]]
 === `--group-by <group>`
 
-Group-by -selector for 'balance-group' report
+Group-by -selector for `balance-group` report, see xref:reports:report-balance-group.adoc[] for details.
 
 Possible values: `year`, `month`, `date`, `iso-week`, `iso-week-date`
 
+[[formats]]
 === `--formats <type>...`
 
 List of report formats.
@@ -197,6 +216,7 @@ List of report formats.
 Possible values: `txt`, `json`
 
 
+[[exports]]
 === `--exports <type>...`
 
 List of Exports to generate
@@ -208,26 +228,47 @@ Possible values: `identity`, `equity`
 
 == Commodity Price
 
+See xref:commodities:price/index.adoc[] for details.
+
+[[pricedb]]
 === `--pricedb <pricedb-file>`
 
 Path to single PriceDB file
 
+[[report-commodity]]
 === `--report.commodity <commodity>`
 
 Name of the commodity to do the reports in
 
+[[price-lookup-type]]
 === `--price.lookup-type <lookup-type>`
 
-Type of price lookup method
+Type of price lookup method, Possible values are:
 
-Possible values: `none`, `txn-time`, `last-price`, `given-time`
+`none`, `last-price`, `given-time`, `txn-time`
 
+These have following meaning:
+
+`none`:: Disabled
+
+`last-price`:: xref:commodities:price/current-market-value.adoc[]
+
+`given-time`:: xref:commodities:price/historic-market-value.adoc[]
+
+`txn-time`:: xref:commodities:price/variable-market-value.adoc[]
+
+
+[[price-before]]
 === `--price.before <time>`
 
-Timestamp to use for price lookup. This either partial or full `<ISO-8066-timestamp>`. The same rules applies as with txn timestamps: if time or zone is missing, then xref:reference:tackler-toml.adoc[configured default] is used.
+Timestamp to use for price lookup. This either partial or full
+`<ISO-8066-timestamp>`. The same rules applies as with txn timestamps: if
+time or zone is missing, then
+xref:reference:tackler-toml.adoc[configured default] is used.
 
 == Filters
 
+[[api-filter-def]]
 === `--api-filter-def <filter>`
 
 Txn Filter definition in JSON.
@@ -244,7 +285,7 @@ encoding. The ascii armor must have prefix 'base64:'
 
 ===  `-h, --help`
 
-Print help (see a summary with '-h')
+Print help (see a summary with '-h', more verbose with `--help`)
 
 
 === `-V, --version`

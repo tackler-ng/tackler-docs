@@ -1,9 +1,9 @@
 = Performance
 
 Tackler has excellent performance and it can process
-from 250_000 to 700_000 transactions per second on modern laptop.
+from 250 000 to 700 000 transactions per second on modern laptop.
 
-**What does it mean to process 250_000 txns per sec?**
+**What does it mean to process 250 000 txns per sec?**
 
 0.03 seconds (30 milliseconds)::
 
@@ -35,33 +35,33 @@ footprint, which is 2-4x smaller than memory usage of those other tools.
 |===
 |Set Size 2+| Macbook Pro M3 2+|i5-8250U @ 1.60GHz
 
-|1e3: 1_000
+|1e3 = 1 000
 >|0.03 sec
 >|5 MB
 >|0.02 sec
 >|12 MB
 
-|1e4: 10_000
+|1e4 = 10 000
 >|0.05 sec
 >|18 MB
 >|0.15 sec
 >|24 MB
 
-|1e5: 100_000
+|1e5 = 100 000
 >|0.17 sec
 >|128 MB
 >|0.40 sec
 >|135 MB
 
-|1e6: 1_000_000
+|1e6 = 1 000 000
 >|1.41 sec
 >|1.45 GB
 >|3.95 sec
 >|1.47 GB
 
 | Performance
-2+| +700_000 txn / s
-2+| +250_000 txn / s
+2+| +700 000 txn / s
+2+| +250 000 txn / s
 |===
 
 You can easily check the performance on your own system with

@@ -4,6 +4,7 @@ version: 25.05.1
 start_page: index.adoc
 asciidoc:
   attributes:
+    release-version: "25.05.1"
     source-language: text@
     table-caption: false
 nav:

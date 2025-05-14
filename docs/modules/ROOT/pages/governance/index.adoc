@@ -8,10 +8,10 @@
 |Release Line |Latest Release |Status |GA |EOL
 
 |Tackler NG / Mk-II
-|25.04.2
+|{release-version}
 |Active
 |2024-11-17
-|TBD
+|
 
 |Tackler Mk-I
 |22.12.2
@@ -29,7 +29,7 @@ End of Life (EOL):: The date after which the release line is no longer supported
 
 == Version Policy
 
-Tackler uses CalVer versioning, based on year, month and index (`0Y-YM-INDEX`).
+Tackler uses CalVer versioning, based on year, month and index (`YY-MM-INDEX`).
 
 Tackler won't break backward journal compatibility between releases without grace period. 
 The last backward incompatible journal format change was on 
