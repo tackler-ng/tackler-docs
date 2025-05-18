@@ -7,8 +7,8 @@ Tackler is licensed under the Apache License, Version 2.0.
 
 [WARNING]
 Tackler is distributed on an *"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND*,
-either express or implied. See the {repolink}/LICENSE/[License] for the specific language
-governing permissions and limitations under the {repolink}/LICENSE/[License].
+either express or implied. See the LICENSE for the specific language
+governing permissions and limitations under the LICENSE.
 
 
 == Licenses of other components
@@ -24,8 +24,8 @@ Licenses of components used in tackler:
 * {repolink}/docs/licenses/itertools-LICENSE.txt/[itertools]
 * {repolink}/docs/licenses/jiff-LICENSE.txt/[jiff]
 * {repolink}/docs/licenses/log-LICENSE.txt/[log]
-* https://github.com/microsoft/mimalloc/blob/main/LICENSE[mimalloc]
-* https://github.com/purpleprotocol/mimalloc_rust/blob/master/LICENSE.txt[mimalloc_rust]
+* {repolink}/docs/licenses/mimalloc-LICENSE.txt[mimalloc]
+* {repolink}/docs/licenses/mimalloc_rust-LICENSE.txt[mimalloc_rust]
 * {repolink}/docs/licenses/regex-LICENSE.txt/[regex]
 * {repolink}/docs/licenses/regex-UNICODE-LICENSE.txt/[regex-UNICODE]
 * {repolink}/docs/licenses/rust_decimal-LICENSE.txt/[rust_decimal]

@@ -1,19 +1,22 @@
 = Contributing Guide
 
 
-Tackler consists of multiple projects and repositories, and all kind of help would be welcomed. It could ideas, code contributions or working with documentation.
+Tackler consists of multiple projects and repositories, and all kind of help would be welcomed.
+It could be ideas, code contributions or writing documentation.
 
 Tackler:: The plain text accounting tool, written in Rust
- * GH: https://github.com/tackler-ng/tackler[tackler-ng/tackler]
+ * GH: {url-gh-tackler}[tackler-ng/tackler]
 
-Tackler Documentation:: Documentation for Tackler
- * GH: https://github.com/tackler-ng/tackler-docs[tackler-ng/tackler-docs]
+Tackler Documentation:: Documentation for Tackler, written in broken English
+ * GH: {url-gh-tackler-docs}[tackler-ng/tackler-docs]
 
 PTA-Generator:: Plain text accounting test data generator, written in Rust
- * GH: https://github.com/tackler-ng/pta-generator[tackler-ng/pta-generator]
+ * GH: {url-gh-pta-generator}[tackler-ng/pta-generator]
 
 Antora UI for Tackler Documentation::
- * GH: https://github.com/tackler-ng/antora-ui-tackler[tackler-ng/antora-ui-tackler]
+ * GH: {url-gh-tackler-ui}[tackler-ng/antora-ui-tackler]
  * Licensed under the Mozilla Public License Version 2.0
 
-All tackler-ng project are covered by the same https://github.com/tackler-ng/tackler/blob/main/CODE_OF_CONDUCT.md[Code of Conduct], and licensed under e Apache License, version 2.0, except Antora UI for Tackler Documentation.
+All tackler-ng projects are covered by the same
+{url-gh-tackler}/blob/main/CODE_OF_CONDUCT.md[Code of Conduct],
+and licensed under Apache License, version 2.0, except Antora UI for Tackler Documentation.
