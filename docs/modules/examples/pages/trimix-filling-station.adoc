@@ -162,24 +162,24 @@ Test data and setup is described below.
 === Test data
 
 * Test steps
-** link:https://github.com/tackler-ng/tackler/blob/main/tests/sh/gas-blender.sh#L28[Mixer log]
-** link:https://github.com/tackler-ng/tackler/blob/main/tests/sh/gas-blender.sh#L48[Storage tank pressures]
-** link:https://github.com/tackler-ng/tackler/blob/main/tests/sh/gas-blender.sh#L68[Mixer Saldo]
-** link:https://github.com/tackler-ng/tackler/blob/main/tests/sh/gas-blender.sh#L88[Billing]
+** {url-repo-tackler}/blob/main/tests/sh/gas-blender.sh#L28[Mixer log]
+** {url-repo-tackler}/blob/main/tests/sh/gas-blender.sh#L48[Storage tank pressures]
+** {url-repo-tackler}/blob/main/tests/sh/gas-blender.sh#L68[Mixer Saldo]
+** {url-repo-tackler}/blob/main/tests/sh/gas-blender.sh#L88[Billing]
 * link:https://github.com/tackler-ng/tackler-tests/tree/main/commodity/ok/gas-blender[Accounting data]
 
 === Configuration
 
-* {repolink}/suite/commodity/gb-stock.toml/[General configuration for Gas Blending system]
-* {repolink}/suite/commodity/gb-accounts.toml/[Chart of Accounts]
-* {repolink}/suite/commodity/gb-billing.toml/[Configuration for billing reports]
+* {content-repo}/suite/commodity/gb-stock.toml/[General configuration for Gas Blending system]
+* {content-repo}/suite/commodity/gb-accounts.toml/[Chart of Accounts]
+* {content-repo}/suite/commodity/gb-billing.toml/[Configuration for billing reports]
 
 
 === Reports
 
 Example reports
 
-* {repolink}/suite/commodity/ok/gas-blender-tanks.ref.bal.txt/[Tank pressures]
-* {repolink}/suite/commodity/ok/gas-blender-saldo.ref.bal.txt/[Used gas by divers]
-* {repolink}/suite/commodity/ok/gas-blender-mix-log.ref.reg.txt/[Gas Blending entries (register)]
-* {repolink}/suite/commodity/ok/gas-blender-billing.ref.bal.txt/[Billing statement]
+* {content-repo}/suite/commodity/ok/gas-blender-tanks.ref.bal.txt/[Tank pressures]
+* {content-repo}/suite/commodity/ok/gas-blender-saldo.ref.bal.txt/[Used gas by divers]
+* {content-repo}/suite/commodity/ok/gas-blender-mix-log.ref.reg.txt/[Gas Blending entries (register)]
+* {content-repo}/suite/commodity/ok/gas-blender-billing.ref.bal.txt/[Billing statement]

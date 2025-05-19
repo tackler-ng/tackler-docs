@@ -65,7 +65,7 @@ footprint, which is 2-4x smaller than memory usage of those other tools.
 |===
 
 You can easily check the performance on your own system with
-https://github.com/tackler-ng/pta-generator[pta-generator] tool.
+{url-repo-pta-generator}[pta-generator] tool.
 
 
 == Test results
@@ -86,14 +86,14 @@ or *better* performance as filesystem backend.
 There are five runs for each report type, the fastest and slowest run are removed from results,
 and then the remaining three values are used to calculate average.
 
-Test setup and full results are described on {github-link}/perf/index.adoc[Performance Readme] document.
+Test setup and full results are described on {url-repo-tackler}/blob/main/perf/readme.adoc[Performance Readme] document.
 
 
 == Test data
 
 Performance testing is done with artificial transaction data
 which mimics real journal. Test data is generated with
-https://github.com/tackler-ng/pta-generator[pta-generator],
+{url-repo-pta-generator}[pta-generator],
 which can also generate ledger and beancount compatible journal formats.
 
 Tests are done with all  report and format types. Account validation is turned on, (e.g. `strict.mode=true`),

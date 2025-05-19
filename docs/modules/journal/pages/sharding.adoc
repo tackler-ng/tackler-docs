@@ -97,7 +97,7 @@ tackler\
 == How to Test Shard Schemes
 
 Tool called
-https://github.com/tackler-ng/pta-generator[pta-generator] can be
+{url-repo-pta-generator}[pta-generator] can be
 used to generate test transactions with different sharding schemes.
 
 The pta-generator is used to generate test data for tackler's performance
@@ -119,7 +119,7 @@ on its own file: `txns/2024/05/15/filename.txn`
 
 === PTA-Generator Installation
 
-See https://github.com/tackler-ng/pta-generator[pta-generator] repository
+See {url-repo-pta-generator}[pta-generator] repository
 for details, but installation can be done as:
 
 [source, bash]

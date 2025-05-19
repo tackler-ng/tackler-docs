@@ -218,7 +218,7 @@ cargo install --locked \
 ----
 
 Tackler `main` branch should build and pass
-link:https://github.com/tackler-ng/tackler/actions/workflows/ci.yml[CI/CD pipeline]
+{url-repo-tackler}/actions/workflows/ci.yml[CI/CD pipeline]
 all the time.
 
 

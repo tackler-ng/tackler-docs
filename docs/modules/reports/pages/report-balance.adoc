@@ -134,7 +134,7 @@ recursive balance sum for specific account tree.
 
 Below are links to example balance reports with full auditing metadata.
 
-* {repolink}/suite/audit/ok/audit-1E2-04.ref.bal.txt/[Balange report with audit metadata]
+* {content-repo}/suite/audit/ok/audit-1E2-04.ref.bal.txt/[Balange report with audit metadata]
 
 
 === Example output of balance report

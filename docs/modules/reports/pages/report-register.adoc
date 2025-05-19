@@ -109,11 +109,11 @@ See 'timezone', 'report-timezone' options in xref:reference:tackler-toml.adoc[ta
 Below are links to example register reports:
 
 * Register reports with xref:usage:gis/index.adoc[geo location information]
-** {repolink}/suite/location/ok/basic-01.ref.reg.txt[Register report with Geo Location]
+** {content-repo}/suite/location/ok/basic-01.ref.reg.txt[Register report with Geo Location]
 * Register reports with xref:auditing:index.adoc[audit metadata]
-** {repolink}/suite/audit/ok/audit-1E2-04.ref.reg.txt/[Register report with audit metadata]
+** {content-repo}/suite/audit/ok/audit-1E2-04.ref.reg.txt/[Register report with audit metadata]
 * Register reports with Transaction Tags
-** {repolink}/suite/tags/ok/basic-01.ref.reg.txt/[Register report with Txn Tags]
+** {content-repo}/suite/tags/ok/basic-01.ref.reg.txt/[Register report with Txn Tags]
 
 === Example output of register report
 

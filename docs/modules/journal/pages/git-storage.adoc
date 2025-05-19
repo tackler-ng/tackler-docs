@@ -83,7 +83,7 @@ There is a long, step by step example involving multiple commits to
 illustrate how git can be used.  See xref:journal:git-storage/primer.adoc[] how to do it in just few steps.
 
 There is also setup of git journal and audit setup on Tackler's repository, it's
-link:https://github.com/tackler-ng/tackler/blob/main/examples/audit.toml[examples/audit.toml].
+{url-repo-tackler}/blob/main/examples/audit.toml[examples/audit.toml].
 
 === Demo setup with multiple commits
 

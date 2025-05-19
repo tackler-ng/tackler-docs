@@ -32,6 +32,6 @@ field.
 
 == Example export
 
-See {repolink}/suite/audit/ok/audit-1E2-04.ref.equity.txn/[Equity export with audit metadata]
+See {content-repo}/suite/audit/ok/audit-1E2-04.ref.equity.txn/[Equity export with audit metadata]
 for example of equity report with full metadata.
 

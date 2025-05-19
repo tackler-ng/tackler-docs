@@ -208,7 +208,7 @@ recursive balance group sums for specific account tree.
 
 Below are links to example balance-group reports with full auditing metadata.
 
-* {repolink}/suite/audit/ok/audit-1E2-04.ref.balgrp.txt/[Balange-group report with audit metadata]
+* {content-repo}/suite/audit/ok/audit-1E2-04.ref.balgrp.txt/[Balange-group report with audit metadata]
 
 
 === Example output of balance-group report

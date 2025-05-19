@@ -7,10 +7,14 @@ asciidoc:
     release-version: "25.05.1"
     source-language: text@
     table-caption: false
-    url-gh-tackler: https://github.com/tackler-ng/tackler
-    url-gh-tackler-docs: https://github.com/tackler-ng/tackler-docs
-    url-gh-tackler-ui: https://github.com/tackler-ng/antora-ui-tackler
-    url-gh-pta-generator: https://github.com/tackler-ng/pta-generator
+    url-repo-tackler: https://github.com/tackler-ng/tackler
+    url-repo-tackler-docs: https://github.com/tackler-ng/tackler-docs
+    url-repo-tackler-t3db: https://github.com/tackler-ng/tackler-t3db
+    url-repo-tackler-ui: https://github.com/tackler-ng/antora-ui-tackler
+    url-repo-pta-generator: https://github.com/tackler-ng/pta-generator
+    content-repo: link:/repo
+    content-site: link:/repo
+    url-regex: https://docs.rs/regex/1.11.1/regex/index.html#syntax
 nav:
 - modules/ROOT/nav.adoc
 - modules/journal/nav.adoc

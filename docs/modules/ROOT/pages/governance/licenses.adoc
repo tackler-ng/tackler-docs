@@ -2,8 +2,8 @@
 
 Tackler is licensed under the Apache License, Version 2.0.
 
-* {repolink}/LICENSE/[LICENSE]
-* {repolink}/NOTICE/[NOTICE]
+* {content-repo}/LICENSE/[LICENSE]
+* {content-repo}/NOTICE/[NOTICE]
 
 [WARNING]
 Tackler is distributed on an *"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND*,
@@ -15,39 +15,39 @@ governing permissions and limitations under the LICENSE.
 
 Licenses of components used in tackler:
 
-* {repolink}/docs/licenses/base64-LICENSE.txt/[base64]
-* {repolink}/docs/licenses/clap-LICENSE.txt/[clap]
-* {repolink}/docs/licenses/digest-LICENSE.txt/[digest]
-* {repolink}/docs/licenses/gix-hash-LICENSE.txt/[gix-hash]
-* {repolink}/docs/licenses/gix-LICENSE.txt/[gix]
-* {repolink}/docs/licenses/indoc-LICENSE.txt/[indoc]
-* {repolink}/docs/licenses/itertools-LICENSE.txt/[itertools]
-* {repolink}/docs/licenses/jiff-LICENSE.txt/[jiff]
-* {repolink}/docs/licenses/log-LICENSE.txt/[log]
-* {repolink}/docs/licenses/mimalloc-LICENSE.txt[mimalloc]
-* {repolink}/docs/licenses/mimalloc_rust-LICENSE.txt[mimalloc_rust]
-* {repolink}/docs/licenses/regex-LICENSE.txt/[regex]
-* {repolink}/docs/licenses/regex-UNICODE-LICENSE.txt/[regex-UNICODE]
-* {repolink}/docs/licenses/rust_decimal-LICENSE.txt/[rust_decimal]
-* {repolink}/docs/licenses/serde_json-LICENSE.txt/[serde_json]
-* {repolink}/docs/licenses/serde-LICENSE.txt/[serde]
-* {repolink}/docs/licenses/serde_regex-LICENSE.txt/[serde_regex]
-* {repolink}/docs/licenses/sha2-LICENSE.txt/[sha2]
-* {repolink}/docs/licenses/sha3-LICENSE.txt/[sha3]
-* {repolink}/docs/licenses/toml-LICENSE.txt/[toml]
-* {repolink}/docs/licenses/uuid-LICENSE.txt/[uuid]
-* {repolink}/docs/licenses/walkdir-LICENSE.txt/[walkdir]
-* {repolink}/docs/licenses/winnow-LICENSE.txt/[winnow LICENSE]
-* {repolink}/docs/licenses/winnow-COPYRIGHT.txt/[winnow COPYRIGHT]
+* {content-repo}/docs/licenses/base64-LICENSE.txt/[base64]
+* {content-repo}/docs/licenses/clap-LICENSE.txt/[clap]
+* {content-repo}/docs/licenses/digest-LICENSE.txt/[digest]
+* {content-repo}/docs/licenses/gix-hash-LICENSE.txt/[gix-hash]
+* {content-repo}/docs/licenses/gix-LICENSE.txt/[gix]
+* {content-repo}/docs/licenses/indoc-LICENSE.txt/[indoc]
+* {content-repo}/docs/licenses/itertools-LICENSE.txt/[itertools]
+* {content-repo}/docs/licenses/jiff-LICENSE.txt/[jiff]
+* {content-repo}/docs/licenses/log-LICENSE.txt/[log]
+* {content-repo}/docs/licenses/mimalloc-LICENSE.txt/[mimalloc]
+* {content-repo}/docs/licenses/mimalloc_rust-LICENSE.txt/[mimalloc_rust]
+* {content-repo}/docs/licenses/regex-LICENSE.txt/[regex]
+* {content-repo}/docs/licenses/regex-UNICODE-LICENSE.txt/[regex-UNICODE]
+* {content-repo}/docs/licenses/rust_decimal-LICENSE.txt/[rust_decimal]
+* {content-repo}/docs/licenses/serde_json-LICENSE.txt/[serde_json]
+* {content-repo}/docs/licenses/serde-LICENSE.txt/[serde]
+* {content-repo}/docs/licenses/serde_regex-LICENSE.txt/[serde_regex]
+* {content-repo}/docs/licenses/sha2-LICENSE.txt/[sha2]
+* {content-repo}/docs/licenses/sha3-LICENSE.txt/[sha3]
+* {content-repo}/docs/licenses/toml-LICENSE.txt/[toml]
+* {content-repo}/docs/licenses/uuid-LICENSE.txt/[uuid]
+* {content-repo}/docs/licenses/walkdir-LICENSE.txt/[walkdir]
+* {content-repo}/docs/licenses/winnow-LICENSE.txt/[winnow LICENSE]
+* {content-repo}/docs/licenses/winnow-COPYRIGHT.txt/[winnow COPYRIGHT]
 
 Tackler's documentation:
 
-* https://gitlab.com/antora/antora/-/blob/main/LICENSE[Antora]
-* https://gitlab.com/antora/antora-ui-default/-/blob/master/LICENSE[Antora default UI]
+* {content-site}/licenses/antora-LICENSE.txt/[Antora]
+* {content-site}/licenses/antora-ui-LICENSE.txt/[Antora default UI]
 
 Tackler's site:
 
-* {siterepolink}/licenses/JEKYLL-LICENSE.txt/[Jekyll]
-* {siterepolink}/licenses/GITGRAPHJS-LICENSE.txt/[GitGraph.JS]
-* {siterepolink}/licenses/LATO-LICENSE.txt/[Lato Font]
-* {siterepolink}/licenses/COUSINE-LICENSE.txt/[Cousine Font]
+* {content-site}/licenses/jekyll-LICENSE.txt/[Jekyll]
+* {content-site}/licenses/gitgraphjs-LICENSE.txt/[GitGraph.JS]
+* {content-site}/licenses/lato-LICENSE.txt/[Lato Font]
+* {content-site}/licenses/cousine-LICENSE.txt/[Cousine Font]

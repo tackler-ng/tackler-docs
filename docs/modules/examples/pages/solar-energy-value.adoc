@@ -133,4 +133,4 @@ On the other hand, by selling it, we would have earned 3.38 € - that's about v
 
 == Full Example
 
-The full solar energy value example is located under link:https://github.com/tackler-ng/tackler/tree/main/examples[tackler example] folder, and it's executed as part of the Tackler's CI/CD jobs.
+The full solar energy value example is located under {url-repo-tackler}/tree/main/examples[tackler example] folder, and it's executed as part of the Tackler's CI/CD jobs.

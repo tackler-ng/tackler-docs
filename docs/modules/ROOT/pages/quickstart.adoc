@@ -103,7 +103,7 @@ cd tackler
 === Simple example
 
 The
-link:https://github.com/tackler-ng/tackler/blob/main/examples/simple.toml[simple.toml]
+{url-repo-tackler}/blob/main/examples/simple.toml[simple.toml]
 example uses filesystem based storage backend, no account name validations, no auditing features.
 
 ==== Command
@@ -131,7 +131,7 @@ Balance Report
 === Let's play for real - Git storage and Audit mode
 
 The
-link:https://github.com/tackler-ng/tackler/blob/main/examples/audit.toml[audit.toml]
+{url-repo-tackler}/blob/main/examples/audit.toml[audit.toml]
 example uses a bare git repository as transaction storage, and also strict and
 audit mode is activated by configuration. This means that all accounts,
 commodity names and tags are validated.  The triplet of git commit id, Txn Set
