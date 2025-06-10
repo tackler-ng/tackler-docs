@@ -44,7 +44,7 @@ permit-empty-commodity = true
 ###  Characters can be a wide range of
 ###  international UTF-8 characters.
 ###
-###  See https://tackler.e257.fi/docs/journal/charsets/ for full list.
+###  See https://tackler.fi/docs/journal/charsets/ for full list.
 ###
 ###  Or in other words:
 ###

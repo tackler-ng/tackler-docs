@@ -33,5 +33,5 @@ Tackler uses CalVer versioning, based on year, month and index (`YY-MM-INDEX`).
 
 Tackler won't break backward journal compatibility between releases without grace period. 
 The last backward incompatible journal format change was on 
-https://tackler.e257.fi/news/2019/03/17/format-change/[17 Mar 2019].
+https://tackler.fi/news/2019/03/17/format-change/[17 Mar 2019].
 

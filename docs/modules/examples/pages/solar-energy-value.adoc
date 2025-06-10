@@ -33,7 +33,7 @@ In this example we will use one hour resolution.
 We will record produced energy to transactions by automated system,
 which will read it directly from the Solar Charge Controller.
 The amount of these automatically generated transactions won't be any problem to tacker,
-as it can easily process link:/news/2025/01/21/250_000_txns/[hundreds of thousands] transactions.
+as it can easily process xref:ROOT:features/performance.adoc[hundreds of thousands] transactions.
 
 ----
 2024-03-20T08:00:00
