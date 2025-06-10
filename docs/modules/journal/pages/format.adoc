@@ -1,6 +1,5 @@
 = Journal Format
-:page-date: 2019-03-29 00:00:00 Z
-:page-last_modified_at: 2024-12-01 00:00:00 Z
+:page-layout: wide
 
 
 Tacklers journal is based on idea of link:https://plaintextaccounting.org/[plain text files],
