@@ -201,6 +201,8 @@ The list is space separated
 
 Possible values: `register`, `balance`, `balance-group`
 
+Use empty string `""` to disable all reports.
+
 [[group-by]]
 === `--group-by <group>`
 
@@ -225,6 +227,15 @@ The list is space separated
 
 Possible values: `identity`, `equity`
 
+Use empty string `""` to disable all exports.
+
+[[invert]]
+=== `--invert`
+
+Invert all amounts in exports and reports.
+
+This is especially useful when reporting Credit (negative) Accounts,
+and when it would make more sense to have reports with positive values.
 
 == Commodity Price
 
