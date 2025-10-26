@@ -131,7 +131,7 @@ Expenses:風:空
 Credit_Card:1234567890
 ----
 | Top-account names must begin with a UTF-8 letter or sign
-(xrefreference:charsets.adoc[over 130 languages and code blocks are supported]).
+(xref:reference:charsets.adoc[over 130 languages and code blocks are supported]).
 Then letters, digits, middle dot `·`, hyphen `-`, underscore `_` are allowed in account names,
 but no spaces. +
  +
