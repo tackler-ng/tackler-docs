@@ -41,7 +41,7 @@ reports, with customizable account selection and grouping options.
 
 *Exporting*::
 Tackler supports exporting data in formats compatible with its input, such as
-equity and identity exports.
+equity, identity and accounts exports.
 
 *Scalability*::
 Tackler has excellent performance characteristics, even with very large

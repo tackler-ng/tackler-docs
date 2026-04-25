@@ -1,0 +1,26 @@
+= Accounts export
+
+Accounts export makes xref:reference:accounts-toml.adoc[accounts.toml]
+configuration file with all accounts present on the journal.
+
+The generated xref:reference:accounts-toml.adoc[accounts.toml] is a valid
+configuration file for Tackler, and can be used as such as part of the
+xref:reference:index.adoc[journal configuration].
+
+See CLI option xref:reference:command-line.adoc#exports[--exports]
+and xref:reference:tackler-toml.adoc#export[export.targets setting]
+in the tackler.toml for how to activate the accounts export.
+
+== Typical use case for the accounts export
+
+The account export is very handy when user starts the journal in ad-hoc mode
+(no predefined Chart of Accounts) or migrates from other PTA tools to tackler.
+
+Once the account structure is settled, it will be easy generate valid
+Chart of Accounts and
+to move into xref:reference:tackler-toml.adoc#_kernel[strict mode]
+with the accounts export.
+
+With Chart of Accounts and strict mode on, tackler will spot and reject misspelled
+account names and prevents transactions to be "lost", e.g. end up into unknown
+accounts which are not part of reports.

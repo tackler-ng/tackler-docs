@@ -1,8 +1,14 @@
 = Balance Report
-:page-date: 2019-03-29 00:00:00 Z
-:page-last_modified_at: 2025-04-06 00:00:00 Z
 
 Balance Report produces sum of selected accounts, and total of those account sums.
+
+See CLI option xref:reference:command-line.adoc#reports[--reports]
+and xref:reference:tackler-toml.adoc#report[report.targets setting]
+in the tackler.toml for how to activate the balance report.
+
+For configuration options, see
+xref:reference:tackler-toml.adoc#report-balance[report.balance section]
+in the tackler.toml.
 
 [NOTE]
 ====
@@ -31,7 +37,7 @@ Balance Report
 ....
 
 This report type is selected by configuration setting `report.balance.type = "flat"` in
-tackler's configuration file xref:reference:tackler-toml.adoc[tackler.toml].
+tackler's configuration file xref:reference:tackler-toml.adoc#report-balance[tackler.toml].
 
 == Tree Balance
 
@@ -53,7 +59,7 @@ Balance Report
 ....
 
 This report type is selected by configuration setting `report.balance.type = "tree"` in
-tackler's configuration file xref:reference:tackler-toml.adoc[tackler.toml].
+tackler's configuration file xref:reference:tackler-toml.adoc#report-balance[tackler.toml].
 
 
 === Format
@@ -73,7 +79,7 @@ Balance delta is based and calculated only by values reported on the first colum
 
 == Balance report configuration
 
-See xref:reference:tackler-toml.adoc[tackler.toml] and `report.balance.*` for full
+See xref:reference:tackler-toml.adoc#report-balance[tackler.toml] and `report.balance.*` for full
 information of balance report configuration options.
 
 The flat and tree balances can be selected with `report.balance.type = "flat"`

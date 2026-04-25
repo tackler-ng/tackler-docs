@@ -1,10 +1,16 @@
 = Balance Group Report
-:page-date: 2019-03-29 00:00:00 Z
-:page-last_modified_at: 2025-04-06 00:00:00 Z
 
 Balance Group Report is combined report of multiple balance reports
 based on time selector. Each Balance Group produces sum of selected accounts,
 and total of those account sums for the time period of that group (year, month, day, etc.).
+
+See CLI option xref:reference:command-line.adoc#reports[--reports]
+and xref:reference:tackler-toml.adoc#report[report.targets setting]
+in the tackler.toml for how to activate the balance group report.
+
+For configuration options, see
+xref:reference:tackler-toml.adoc#report-balance-group[report.balance-group section]
+in the tackler.toml.
 
 [NOTE]
 ====
@@ -62,7 +68,7 @@ Balance Group Report
 ....
 
 This report type is selected by configuration setting `report.balance-group.type = "flat"` in
-tackler's configuration file xref:reference:tackler-toml.adoc[tackler.toml].
+tackler's configuration file xref:reference:tackler-toml.adoc#report-balance-group[tackler.toml].
 
 == Tree Balance Group
 
@@ -101,7 +107,7 @@ Balance Group Report
 ....
 
 This report type is selected by configuration setting `report.balance-group.type = "tree"` in
-tackler's configuration file xref:reference:tackler-toml.adoc[tackler.toml].
+tackler's configuration file xref:reference:tackler-toml.adoc#report-balance-group[tackler.toml].
 
 
 === Format
@@ -123,7 +129,7 @@ Balance delta is based and calculated only by values reported on the first colum
 
 == Balance group report configuration
 
-See xref:reference:tackler-toml.adoc[tackler.toml] and `report.balance-group.*` for full
+See xref:reference:tackler-toml.adoc#report-balance-group[tackler.toml] and `report.balance-group.*` for full
 information of balance group report configuration options.
 
 The flat and tree balances can be selected with `report.balance-group.type = "flat"`

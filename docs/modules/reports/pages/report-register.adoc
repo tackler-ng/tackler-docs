@@ -1,8 +1,15 @@
 = Register report
-:page-date: 2019-03-29 00:00:00 Z
-:page-last_modified_at: 2024-12-01 00:00:00 Z
 
-Register report is report with running total of transactions for selected accounts.
+Register report is a report with a running total of transactions
+for selected accounts.
+
+See CLI option xref:reference:command-line.adoc#reports[--reports]
+and xref:reference:tackler-toml.adoc#report[report.targets setting]
+in the tackler.toml for how to activate the register report.
+
+For configuration options, see
+xref:reference:tackler-toml.adoc#report-register[report.register section]
+in the tackler.toml.
 
 ....
 Report Time Zone
@@ -64,7 +71,7 @@ but actual value of timestamp is used for determining sort order always.
 
 == Register report configuration
 
-See xref:reference:tackler-toml.adoc[tackler.toml] and `report.register.*` for full
+See xref:reference:tackler-toml.adoc#report-register[tackler.toml] and `report.register.*` for full
 information of register report configuration options.
 
 === Timestamps in register report
@@ -101,7 +108,7 @@ or  by using report specific
 If there are no accounts matched with selected regexs with some transaction,
 then that transaction is not included into report at all.
 
-See 'timezone', 'report-timezone' options in xref:reference:tackler-toml.adoc[tackler.toml].
+See 'timezone', 'report-timezone' options in xref:reference:tackler-toml.adoc#report-register[tackler.toml].
 
 
 == Example reports

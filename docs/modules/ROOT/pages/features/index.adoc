@@ -27,9 +27,11 @@
 
 ** xref:reports:report-balance.adoc[Balance], 
 xref:reports:report-balance-group.adoc[Balance Groups] 
-and xref:reports:report-register.adoc[Register] Reports
+and xref:reports:report-register.adoc[Register] reports
 
-** xref:reports:export-equity.adoc[Equity] and xref:reports:export-identity.adoc[Identity] Exports
+** xref:reports:export-equity.adoc[Equity],
+xref:reports:export-identity.adoc[Identity] and
+xref:reports:export-accounts.adoc[Accounts] exports
 
 * xref:reports:formats.adoc[Text and JSON] report formats
 

@@ -3,5 +3,6 @@
 ** xref:report-balance-group.adoc[]
 ** xref:report-register.adoc[]
 ** xref:export-equity.adoc[]
+** xref:export-accounts.adoc[]
 ** xref:export-identity.adoc[]
 ** xref:formats.adoc[]

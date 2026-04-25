@@ -225,7 +225,7 @@ List of Exports to generate
 
 The list is space separated
 
-Possible values: `identity`, `equity`
+Possible values: `identity`, `equity`, `accounts`
 
 Use empty string `""` to disable all exports.
 

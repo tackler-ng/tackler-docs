@@ -1,15 +1,17 @@
 = Equity export
-:page-date: 2019-03-29 00:00:00 Z
-:page-last_modified_at: 2024-12-01 00:00:00 Z
 
 Equity export produces a transaction which records
 current state of accounts.
 
+See CLI option xref:reference:command-line.adoc#exports[--export]
+and xref:reference:tackler-toml.adoc#export[export.targets setting]
+in the tackler.toml for how to activate equity export.
+
 == Equity export configuration
 
-
-See xref:reference:tackler-toml.adoc[tackler.toml] and `export.equity.*`
-for full information of equity export configuration options.
+For configuration options, see
+xref:reference:tackler-toml.adoc#export-equity[equity section]
+in the tackler.toml.
 
 === Account filtering
 

@@ -325,7 +325,9 @@ Produced exports can be selected either by xref:reference:tackler-toml.adoc[conf
 
 `--exports export1 export2`::
 
-valid options are xref:reports:export-equity.adoc[`equity`] and xref:reports:export-identity.adoc[`identity`]
+valid options are xref:reports:export-equity.adoc[`equity`],
+xref:reports:export-identity.adoc[`identity`] and
+xref:reports:export-accounts.adoc[`accounts`]
 
 
 ==== Configuring used output scale of reports

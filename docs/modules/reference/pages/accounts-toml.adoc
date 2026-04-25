@@ -1,7 +1,14 @@
 = accounts.toml
 
 
-This is configuration file to define transaction accounts.
+This is configuration file defines valid and known transaction accounts.
+
+With Chart of Accounts and strict mode on, tackler will spot and reject misspelled
+account names and prevents transactions to be "lost", e.g. end up into unknown
+accounts which are not part of reports.
+
+This file can be generated from existing journal data with
+xref:reports:export-accounts.adoc[accounts export].
 
 include::reference:partial$tacker-new.adoc[]
 

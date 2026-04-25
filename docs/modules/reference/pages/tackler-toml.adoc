@@ -375,13 +375,21 @@ scale = { min = 2, max = 7 }
 
 === `report.balance`
 
-Settings for xref:reports:report-balance.adoc[Balance Report]
+Settings for xref:reports:report-balance.adoc[Balance report]
 
 [source,ini]
 ----
 [report.balance]
 ### Report title
 title = "Balance Report"
+### Balance Report type
+###
+### This defines report type:
+###   "flat" means that only leaf account sums are reported
+###   "tree" means that full account tree is reported from leaf to root
+### If you are coming from other PTA tools, start with "flat"
+### Valid options are: "flat" or "tree"
+type = "flat"
 ### Account selector for Balance Report
 ###
 ### If set, this will override 'report.accounts'
@@ -391,12 +399,20 @@ title = "Balance Report"
 
 === `report.balance-group`
 
-Settings for xref:reports:report-balance.adoc[Balance Group Report]
+Settings for xref:reports:report-balance.adoc[Balance Group report]
 
 [source,ini]
 ----
 [report.balance-group]
 title = "Balance Group Report"
+### Balance Group Report type
+###
+### This defines report type:
+###   "flat" means that only leaf account sums are reported
+###   "tree" means that full account tree is reported from leaf to root
+### If you are coming from other PTA tools, start with "flat"
+### Valid options are: "flat" or "tree"
+type = "flat"
 ### Group by criteria
 ###
 ### Group by balances based on selected criteria.
@@ -415,7 +431,7 @@ group-by = "month"
 
 === `report.register`
 
-Settings for xref:reports:report-balance.adoc[Register Report]
+Settings for xref:reports:report-balance.adoc[Register report]
 
 [source,ini]
 ----
@@ -452,7 +468,7 @@ Settings for xref:reports:index.adoc[exports]
 ###
 ### This is a list of exports targets to generate.
 ###
-### Valid options are: "equity", "identity"
+### Valid options are: "equity", identity", "accounts"
 ###
 ### CLI: --exports
 targets = [ ]
@@ -460,7 +476,7 @@ targets = [ ]
 
 === `export.equity`
 
-Settings for xref:reports:index.adoc[Equity Exports]
+Settings for xref:reports:index.adoc[Equity exports]
 
 [source,ini]
 ----
@@ -474,6 +490,10 @@ equity-account = "Equity:Balance"
 # accounts = [ ]
 ----
 
-== Identity
+=== `export.identity`
 
-There are no configuration options for identity export
+There are no configuration options for xref:reports:export-identity.adoc[Identity export].
+
+=== `export.accounts`
+
+There are no configuration options for xref:reports:export-accounts.adoc[Accounts export].
