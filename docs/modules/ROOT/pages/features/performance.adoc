@@ -1,21 +1,21 @@
 = Performance
 
 Tackler has excellent performance and it can process
-from 250 000 to 700 000 transactions per second on modern laptop.
+from 300 000 to 900 000 transactions per second on modern laptop.
 
-**What does it mean to process 250 000 txns per sec?**
+**What does it mean to process 300 000 txns per sec?**
 
-0.03 seconds (30 milliseconds)::
+0.01 seconds (10 milliseconds)::
 
 Journal with 3 transactions, in every day, for one year - that's journal with one thousand (1 000) transactions.
 
-0.15 seconds::
+0.03 seconds (30 milliseconds)::
 
-Journal with 30 transactions, in every day, for one year - that's journal with ten thousands (10 000) transactions.
+Journal with 30 transactions in every day, for one year - that's journal with ten thousands (10 000) transactions.
 
-2 seconds::
+1.5 seconds::
 
-Journal with a transaction in every minute, for one year - that's journal with about 500 000 transactions.
+Journal with a transaction in every minute, every day, for one year - that's journal with about 500 000 transactions.
 
 These times are real wall clock values.
 
@@ -27,41 +27,41 @@ year. Or 100 transactions in every hour, every day, for one year.
 
 == Performance benchmarks
 
-Typically tackler is 1.5-2x faster than ledger (C+\+), and 15-20x faster than hledger (Haskell)
-and 30-40x times faster than beancount (C++ and Python). At the same time, it has modest memory
-footprint, which is 2-4x smaller than memory usage of those other tools.
+Typically tackler is 2 times faster than ledger (C+\+), 20 times faster than hledger (Haskell)
+and 50 times faster than beancount (C++ and Python). At the same time, it has modest memory
+footprint, which is 2-4 times smaller than memory usage of those other tools.
 
 
 |===
 |Set Size 2+| Macbook Pro M3 2+|i5-8250U @ 1.60GHz
 
 |1e3 = 1 000
->|0.03 sec
->|5 MB
 >|0.02 sec
->|12 MB
+>|6 MB
+>|0.01 sec
+>|20 MB
 
 |1e4 = 10 000
->|0.05 sec
->|18 MB
->|0.15 sec
->|24 MB
+>|0.02 sec
+>|23 MB
+>|0.03 sec
+>|47 MB
 
 |1e5 = 100 000
->|0.17 sec
->|128 MB
->|0.40 sec
->|135 MB
+>|0.12 sec
+>|140 MB
+>|0.34 sec
+>|156 MB
 
 |1e6 = 1 000 000
->|1.41 sec
->|1.45 GB
->|3.95 sec
->|1.47 GB
+>|1.10 sec
+>|1.12 GB
+>|3.33 sec
+>|1.12 GB
 
 | Performance
-2+| +700 000 txn / s
-2+| +250 000 txn / s
+2+| +900 000 txn / s
+2+| +300 000 txn / s
 |===
 
 You can easily check the performance on your own system with
