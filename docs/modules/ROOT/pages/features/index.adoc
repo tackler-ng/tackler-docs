@@ -6,7 +6,7 @@
 
 * Logical and simple xref:journal:format.adoc[journal format]
 
-* Integrated, navite support for  xref:journal:git-storage.adoc[Git SCM based journal storage], normal xref:journal:fs-storage.adoc[filesystem based journal] is also supported.
+* Integrated, native support for  xref:journal:git-storage.adoc[Git SCM based journal storage], normal xref:journal:fs-storage.adoc[filesystem based journal] is also supported.
 
 * Support for xref:commodities:commodities.adoc[Commodities], xref:commodities:currencies.adoc[Currencies and Shares]
 ** Commodity xref:journal:pricedb.adoc[Price Database] support
@@ -41,9 +41,10 @@ xref:reports:export-accounts.adoc[Accounts] exports
 xref:usage:txn-filters.adoc#txn-code[Code],
 xref:usage:txn-filters.adoc#txn-desc[Description],
 xref:usage:txn-filters.adoc#txn-uuid[UUID],
+xref:usage:txn-filters.adoc#txn-extid[Ext-Id],
 xref:usage:txn-filters.adoc#txn-gis[Location (GIS)],
 xref:usage:txn-filters.adoc#txn-tags[Tags],
-xref:usage:txn-filters.adoc#txn-comments[Comments],
+xref:usage:txn-filters.adoc#txn-comments[Comments]
 ** All posting properties have filters:
 xref:usage:txn-filters.adoc#txn-posting-account[Accounts],
 xref:usage:txn-filters.adoc#txn-posting-amount[Amounts],

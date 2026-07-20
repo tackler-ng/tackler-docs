@@ -121,6 +121,21 @@ hash = "SHA-256"
 mode = true
 ----
 
+=== `kernel.ext-id`
+
+[source,ini]
+----
+[ext-id]
+### Unique External Ids
+###
+### When this is true, then all external ids
+### must be unique. It's fatal halting error,
+### if there are duplicates.
+###
+### Valid options are: true | false
+unique = false
+----
+
 === `kernel.input`
 
 [source,ini]

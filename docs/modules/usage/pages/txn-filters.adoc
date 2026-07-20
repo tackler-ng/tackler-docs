@@ -1,6 +1,6 @@
 = Transaction Filters
 :page-date: 2019-03-29 00:00:00 Z
-:page-last_modified_at: 2024-12-12 00:00:00 Z
+:page-last_modified_at: 2026-07-12 00:00:00 Z
 
 Transaction stream can be filtered to select which transactions are part of reports and calculations.
 
@@ -38,6 +38,7 @@ properties and attributes.
 ** xref:#txn-code[Code]
 ** xref:#txn-desc[Description]
 ** xref:#txn-uuid[UUID]
+** xref:#txn-extid[External Id]
 ** xref:#txn-gis[Geo Location]
 ** xref:#txn-tags[Txn Tags]
 ** xref:#txn-comments[Txn Comments]
@@ -184,6 +185,19 @@ Txn UUID filter selects transactions which UUID is same as specified.
 },
 ----
 
+[[txn-extid]]
+===== Txn External Id
+
+Txn external id filter selects transactions which txn ext-id matches specified {url-regex}[regular expression].
+
+----
+{
+  "TxnFilterTxnExtId" : {
+    "regex" : "<regex>"
+  }
+}
+----
+
 [[txn-gis]]
 ===== Geo Location
 
@@ -281,7 +295,7 @@ with exactly same amount as specified amount.
 {
   "TxnFilterPostingAmountEqual" : {
     "regex" : "<regex>",
-    "amount" : <BigDecimal>
+    "amount" : <number>
   }
 }
 ----
@@ -303,7 +317,7 @@ with amount that is less than specified amount.
 {
   "TxnFilterPostingAmountLess" : {
     "regex" : "<regex>",
-    "amount" : <BigDecimal>
+    "amount" : <number>
   }
 }
 ----
@@ -325,7 +339,7 @@ with amount that is greater than specified amount.
 {
   "TxnFilterPostingAmountGreater" : {
     "regex" : "<regex>",
-    "amount" : <BigDecimal>
+    "amount" : <number>
   }
 }
 ----
@@ -356,5 +370,3 @@ Posting Commodity selects transactions which have a posting with comment which m
   }
 }
 ----
-
-
