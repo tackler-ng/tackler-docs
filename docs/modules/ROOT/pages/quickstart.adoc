@@ -67,12 +67,9 @@ information.
 ----
 Balance Report
 --------------
-                 0.00    17.50  Expenses
-                 0.00    12.00  Expenses:Food
-                12.00    12.00  Expenses:Food:Fast-Food
-                 0.00     5.50  Expenses:Sweets
-                 2.50     2.50  Expenses:Sweets:Candy
-                 3.00     3.00  Expenses:Sweets:Ice·Cream
+                12.00    Expenses:Food:Fast-Food
+                 2.50    Expenses:Sweets:Candy
+                 3.00    Expenses:Sweets:Ice·Cream
 =====================
                 17.50
 
@@ -114,6 +111,9 @@ tackler --config examples/simple.toml
 ----
 
 ==== Output
+
+Below is an example of balance report in tree mode, when sibling account's cumulative sums are
+reported too.
 
 [source, text]
 ----
