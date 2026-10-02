@@ -1,19 +1,21 @@
 = Performance
 
 Tackler has excellent performance and it can process
-from 300 000 to 900 000 transactions per second on modern laptop.
+from 500 000 to 1.2 million transactions per second on modern laptop.
+It can be easily used to process transactions from
+xref:examples:solar-energy-value.adoc[automated systems].
 
-**What does it mean to process 300 000 txns per sec?**
+**What does it mean to process 500 000 txns per sec?**
 
 0.01 seconds (10 milliseconds)::
 
-Journal with 3 transactions, in every day, for one year - that's journal with one thousand (1 000) transactions.
+Journal with 3 transactions, in every day, for one year - that's journal with 1 000 transactions.
 
-0.03 seconds (30 milliseconds)::
+0.02 seconds (30 milliseconds)::
 
-Journal with 30 transactions in every day, for one year - that's journal with ten thousands (10 000) transactions.
+Journal with 30 transactions in every day, for one year - that's journal with 10 000 transactions.
 
-1.5 seconds::
+1 second::
 
 Journal with a transaction in every minute, every day, for one year - that's journal with about 500 000 transactions.
 
@@ -24,69 +26,52 @@ transactions.
 
 A million transaction journal is comparable to 3 000 transactions per day for on
 year. Or 100 transactions in every hour, every day, for one year.
+Or one big archive of journal data - 30 transactions per day for 100 years.
 
 == Performance benchmarks
 
-Typically tackler is 2 times faster than ledger (C+\+), 20 times faster than hledger (Haskell)
-and 50 times faster than beancount (C++ and Python). At the same time, it has modest memory
-footprint, which is 2-4 times smaller than memory usage of those other tools.
+Typically tackler is 35% faster than rustledger,
+3 times faster than ledger (C+\+),
+30 times faster than hledger (Haskell)
+and 50-70 times faster than beancount (C++ and Python).
+
+At the same time, it has modest memory footprint, which is 2-4 times smaller than memory usage of those other tools.
 
 
 |===
-|Set Size 2+| Macbook Pro M3 2+|i5-8250U @ 1.60GHz
+|Set Size 2+| Macbook Pro M3 (MacOS) 2+|i5-8250U @ 1.60GHz (Linux)
 
 |1e3 = 1 000
->|0.02 sec
+>|0.01 sec
 >|6 MB
 >|0.01 sec
 >|20 MB
 
 |1e4 = 10 000
 >|0.02 sec
->|23 MB
->|0.03 sec
->|47 MB
+>|20 MB
+>|0.02 sec
+>|36 MB
 
 |1e5 = 100 000
->|0.12 sec
->|140 MB
->|0.34 sec
->|156 MB
+>|0.10 sec
+>|135 MB
+>|0.21 sec
+>|151 MB
 
 |1e6 = 1 000 000
->|1.10 sec
->|1.12 GB
->|3.33 sec
->|1.12 GB
+>|0.82 sec
+>|1.21 GB
+>|1.98 sec
+>|1.23 GB
 
 | Performance
-2+| +900 000 txn / s
-2+| +300 000 txn / s
+2+| +1.2M txns/s (+1 200 000 txn/s)
+2+| +0.5M txns/s (+500 000 txn/s)
 |===
 
 You can easily check the performance on your own system with
 {url-repo-pta-generator}[pta-generator] tool.
-
-
-== Test results
-
-Tackler is performance tested to validate sanity of used algorithms and overall performance of system.
-These are ballpark figures and  should be treated as such.
-
-Artificial test data is used for performance test data.
-Used test sets are sets of 1E3, 1E4, 1E5 and 1E6 transactions. Tests are run for all
-report types, and also with transaction filtering and without.
-
-Also Filesystem and Git based storage are tested.
-
-xref:journal:git-storage.adoc[Git Storage backend] is performance tested with
-same data sets  than filesystem based storage. Git Storage backend has same
-or *better* performance as filesystem backend.
-
-There are five runs for each report type, the fastest and slowest run are removed from results,
-and then the remaining three values are used to calculate average.
-
-Test setup and full results are described on {url-repo-tackler}/blob/main/perf/readme.adoc[Performance Readme] document.
 
 
 == Test data
@@ -102,39 +87,85 @@ so all accounts are checked that they are defined in Chart of Accounts.
 Each transaction is located on own file, and sharding of transaction journals is based on txn dates
 (e.g. one transaction would be  `perf-1E6/YYYY/MM/DD/YYYYMMDDTHHMMSS-idx.txn`, where `idx` is index of txn).
 
-Used test sets (small and big) are:
+Used test sets are:
 
- * 1E3 (1 000) transactions
- * 1E4 (10 000) transactions
- * 1E5 (100 000) transactions
- * 1E6 (1 000 000) transactions
+ * 1e3 (1 000) transactions
+ * 1e4 (10 000) transactions
+ * 1e5 (100 000) transactions
+ * 1e6 (1 000 000) transactions
 
 
-=== Chart of Accounts for perf tests
+=== Chart of Accounts
 
-Chart of Accounts has 378 entries and it is generated based on txn's dates:
+Performance test's Chart of Accounts has 378 entries and it is generated based on txn's dates.
+The year is fixed to 2016 as this same data is part of tackler's test system and reference vectors.
 
-For "assets" following structure is used `a:ay<year>:am<month>`.
+Accounts for "assets" has following structure `a:ay<year>:am<month>`.
 
 This yields to 12 different accounts:
 
- ...
  "a:ay2016:am01",
  "a:ay2016:am02",
  "a:ay2016:am03",
  ...
 
 
-For "expenses" following structure is used `e:ey<year>:em<month>:ed<day>`.
+Accounts for "expenses" has following structure `e:ey<year>:em<month>:ed<day>`.
 
-This yields to 366 different accounts:
+This yields to 366 different accounts, as 2016 is leap year:
 
- ...
  "e:ey2016:em01:ed01",
  "e:ey2016:em01:ed02",
  "e:ey2016:em01:ed03",
  ...
 
+==== Compatibility mode
+
+When tackler is benchmarked with other tools,
+top level accounts `a` and `e` are replaced with `Assets` and `Expenses`.
+Also first letters of sub-accounts are capitalized.
+This is done to be as close as possible to Beancount syntax.
+
+=== Chart of Commodities
+
+Commodity is selected from this table of 31 commodities
+
+[source,text]
+----
+        "CAA", "CAB", "CAC", "CAD", "CAE",
+        "CBA", "CBB", "CBC", "CBD", "CBE",
+        "CCA", "CCB", "CCC", "CCD", "CCE",
+        "CDA", "CDB", "CDC", "CDD", "CDE",
+        "CEA", "CEB", "CEC", "CED", "CEE",
+        "CFA", "CFB", "CFC", "CFD", "CFE",
+        "EUR"
+----
+
+
+=== Example of test journal
+
+Below are examples of the first and last transactions for 1e6 test set.
+
+[source,text]
+----
+2024-01-01 (#0000001) '1E6 txn-1
+  Expenses:Ey2024:Em01:Ed01  1.0000001 CAA
+  Assets:Ay2024:Am01
+
+2024-01-01 (#0000002) '1E6 txn-2
+  Expenses:Ey2024:Em01:Ed01  1.0000001 CAA
+  Assets:Ay2024:Am01
+
+...
+
+2024-12-24 (#0999999) '1E6 txn-999999
+  Expenses:Ey2024:Em12:Ed24  24.0000001 CED
+  Assets:Ay2024:Am12
+
+2024-12-24 (#1000000) '1E6 txn-1000000
+  Expenses:Ey2024:Em12:Ed24  24.0000001 CED
+  Assets:Ay2024:Am12
+----
 
 == Single file or single input String
 
@@ -143,6 +174,31 @@ e.g. the processing time is same for one big single journal file
 as it is for sharded transaction directories.
 
 However, to optimize memory usage of tackler, bigger transactions sets
-over one hundred thousands (1E5) transactions should split over multiple files,
+over one hundred thousands (1e5) transactions could be split into multiple files,
 and use FS or GIT storage system with shard directory structure.
-The one common way xref:journal:sharding.adoc[to split transaction journals] is based on dates, or by producers (each have they own subtree of transactions or journal files which to use).
+The one common way xref:journal:sharding.adoc[to split transaction journals] is based on dates,
+or by producers (each have they own subtree of transactions or journal files which to use).
+
+== Test results
+
+Tackler is performance tested to validate sanity of used algorithms and
+overall performance of system. These are ballpark figures and  should be
+treated as such.
+
+Artificial test data is used for performance test data.
+Used test sets are sets of 1e3, 1e4, 1e5 and 1e6 transactions.
+Tests are run for all report types, and also with transaction
+filtering and without.
+
+Also Filesystem and Git based storage are tested.
+
+xref:journal:git-storage.adoc[Git Storage backend] is performance tested with
+same data sets  than filesystem based storage. Git Storage backend has same
+or *better* performance as filesystem backend.
+
+There are five runs for each report type, the fastest and slowest run are
+removed from results,  and then the remaining three values are used to
+calculate average.
+
+Test setup and full results are described on
+{url-repo-tackler}/blob/main/perf/readme.adoc[Performance Readme] document.
