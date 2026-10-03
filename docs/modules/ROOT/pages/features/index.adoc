@@ -1,6 +1,7 @@
 = Features
 
 * Tackler has excellent performance - it can process xref:ROOT:features/performance.adoc[1.2M txn/s] on modern laptop
+** Tackler can process transactions produced by xref:examples:solar-energy-value.adoc[automated systems]
 
 * Tackler is written in link:https://www.rust-lang.org/[Rust] and it's xref:ROOT:features/reliability.adoc[well tested]
 

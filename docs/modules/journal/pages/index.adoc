@@ -7,10 +7,12 @@ accounts involved, amounts, currencies or commodities, and optional metadata.
 This format is used in plain text accounting systems for its simplicity and easy
 of editing.
 
+Tackler's journal syntax is described in the
+xref:journal:format.adoc[Journal Format] document.
+
 In the context of Tackler, a plain text journal can be stored as a single file
 or split into multiple files. Tackler supports over 130 languages and Unicode
-blocks for account and commodity names. The journal syntax is described in the
-xref:journal:format.adoc[Journal Format].
+blocks for account and commodity names.
 
 Tackler has in build support for creating default journal setup,
 which includes all basic files and settings, and it's ready to be used.

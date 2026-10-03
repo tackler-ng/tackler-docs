@@ -8,7 +8,7 @@ To use tackler, you will need tackler binary and an accounting journal.
 cargo install --locked tackler
 ----
 
-.Create journal example
+.Create an example journal and run default reports
 ----
 tackler new journal
 tackler --config journal/conf/tackler.toml
@@ -18,12 +18,11 @@ tackler --config journal/conf/tackler.toml
 
 You are now ready to start your accounting journey. Feel free to add, modify or
 delete transaction files under the `journal/txns` directory. After all, it's
-your journal. Tackler will pick up automatically all files ending as `.txn`
-under that directory.
+your journal. Tackler will pick up automatically all files ending with `.txn`
+as journal from that directory.
 
-See
-xref:journal:index.adoc[] and
-xref:reference:command-line.adoc[] how to get started with tackler.
+See xref:journal:index.adoc[] and xref:reference:command-line.adoc[] 
+how to get started with tackler.
 
 
 == Longer version of the same story
@@ -49,7 +48,13 @@ Once you have installed tackler, create default journal setup with:
 tackler new journal
 ----
 
-This will create a new bookkeeping setup, with default configuration `journal/conf` and example transactions in `journal/txns` (feel free to modify or delete these transaction files).
+This will create a new bookkeeping setup, with default configuration located at `journal/conf`.
+
+include::reference:partial$config.adoc[]
+
+The example transactions are located under `journal/txns` directory, and this is your journal.
+Feel free to add, modify or delete these transaction files. 
+Tackler will automatically pick up all from here files ending with '.txn' as journal data.
 
 The next step is to run default reports for the journal:
 
@@ -78,7 +83,6 @@ Register Report
 ...
 ----
 
-include::reference:partial$config.adoc[]
 
 
 == Journal examples and source code
