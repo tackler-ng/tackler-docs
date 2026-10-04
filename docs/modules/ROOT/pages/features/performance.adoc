@@ -11,7 +11,7 @@ xref:examples:solar-energy-value.adoc[automated systems].
 
 Journal with 3 transactions, in every day, for one year - that's journal with 1 000 transactions.
 
-0.02 seconds (30 milliseconds)::
+0.02 seconds (20 milliseconds)::
 
 Journal with 30 transactions in every day, for one year - that's journal with 10 000 transactions.
 
