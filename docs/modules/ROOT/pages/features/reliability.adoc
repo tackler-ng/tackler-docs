@@ -13,7 +13,7 @@ then it will fail fast and hard and won't process dubious input as valid one.
 
 == Performance
 
-Tackler has excellent performance characteristics - it can process more than 700_000 txns per second
+Tackler has excellent performance characteristics - it can process more than 1.2M txns per second
 on modern laptop. See xref:ROOT:features/performance.adoc[Performance Overview] for details.
 
 
@@ -21,15 +21,14 @@ on modern laptop. See xref:ROOT:features/performance.adoc[Performance Overview] 
 
 Foundation of tackler development is that all features must be tested logically and code-wise,
 and overall test coverage should be almost perfect.  Tackler is tested with functional and
-logical test sets to ensure that all code paths are covered by tests.
+logical tests to ensure that all code paths are covered by testing.
 
-Tackler has *120* tracked features.
-These features are verified by *508* tracked test cases.
-Tackler is tested with *436* tests vectors,
-and test results are verified by *672* reference reports.
+Tackler has *124* tracked features.
+These features are verified by *520* tracked test cases,
+and test results are verified by *667* reference reports.
 
 Part of the test setup is journal with
-{url-repo-tackler}/blob/main/tackler-core/tests/git_txns.rs#L86[*one hundred thousand* (100 000)] transactions.
+{url-repo-tackler}/blob/main/tackler-core/tests/git_txns.rs#L142[*one hundred thousand* (100 000)] transactions.
 It is processed several times in a loop to verify tackler's ability handle repeatably journals with many transactions.
 
 Tackler is stress and performance tested with up to {url-repo-tackler}/blob/main/perf/readme.adoc[*one million* (1E6)]
