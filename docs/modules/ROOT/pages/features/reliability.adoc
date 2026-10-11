@@ -32,7 +32,7 @@ Part of the test setup is journal with
 It is processed several times in a loop to verify tackler's ability handle repeatably journals with many transactions.
 
 Tackler is stress and performance tested with up to {url-repo-tackler}/blob/main/perf/readme.adoc[*one million* (1E6)]
-transactions sets with external test setup.
+transactions sets with {url-repo-pta-generator}[external test setup].
 
 === Tackler Test Tracking Database
 
