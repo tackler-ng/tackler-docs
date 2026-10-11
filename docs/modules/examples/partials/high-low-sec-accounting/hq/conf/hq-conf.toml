@@ -1,0 +1,30 @@
+[kernel]
+strict = false
+audit = { mode = false, hash = "SHA-256" }
+timestamp = { default-time = 00:00:00, timezone = { name = "UTC" } }
+
+[kernel.input]
+storage = "git"
+fs = { dir = "acme-hq/txns", suffix = "txn" }
+git = { repository = "acme-hq/.git", dir = "txns", ref = "main", suffix = "txn" }
+
+[transaction]
+accounts    = { path = "none" }
+commodities = { path = "none" }
+tags        = { path = "none" }
+
+### Report Configuration
+[report]
+report-timezone = "UTC"
+scale = { min = 2, max = 4 }
+accounts = [ "^Assets:", "^Warehouse:" ]
+targets = [ "balance", "register" ]
+
+balance       = { title = "Balance Report" }
+balance-group = { title = "Balance Group Report", group-by = "month" }
+register      = { title = "Register Report" }
+
+### Export Configuration
+[export]
+targets = [ ]
+equity = { equity-account = "Equity:Balance" }

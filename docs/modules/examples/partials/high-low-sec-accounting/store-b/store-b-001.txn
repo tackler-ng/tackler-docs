@@ -1,0 +1,4 @@
+2024-12-17 'Store-B txn
+   # uuid: be405a05-2293-45ca-a4c5-2c51e726f078
+   Assets:Store-B:Cashier  123 €
+   Warehouse:Store-B  -1 Unit @ 123 €

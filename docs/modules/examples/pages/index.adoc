@@ -23,3 +23,8 @@ This is a travel journal example how to utilize plaintext accounting with geogra
 xref:filter-for-two-accounts.adoc[Finding Transactions between two accounts]::
 
 This an example of filter, which will find all transactions between two accounts, These could be for example card balance payments (not purchases).
+
+
+xref:high-low-sec-accounting.adoc[High-low Security Accounting]::
+
+This example shows how to split plaintext accounting journal between high and low security journals, and still be able to have combined reporting over all journals.

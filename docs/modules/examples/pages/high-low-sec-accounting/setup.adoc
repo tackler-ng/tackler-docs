@@ -1,0 +1,73 @@
+= Setup
+:page-date: 2026-10-04 00:00:00 Z
+:page-last_modified_at: 2026-10-04 00:00:00 Z
+
+
+== Establish Acme Inc.
+
+=== Acme Inc. Headquarters
+[source, bash]
+----
+include::partial$high-low-sec-accounting/hq/init-hq.sh[]
+----
+
+=== Acme Inc. Store A
+[source, bash]
+----
+include::partial$high-low-sec-accounting/store-a/init-store-a.sh[]
+----
+
+=== Acme Inc. Store B
+[source, bash]
+----
+include::partial$high-low-sec-accounting/store-b/init-store-b.sh[]
+----
+
+=== TODO
+[source, bash]
+----
+include::partial$high-low-sec-accounting/hq/hq-remotes.sh[]
+----
+
+
+== Holiday season marketing push
+
+=== Sales event on Store A!
+[source, bash]
+----
+include::partial$high-low-sec-accounting/store-a/store-a-001.sh[]
+----
+
+=== Sales event on Store B!
+[source, bash]
+----
+include::partial$high-low-sec-accounting/store-b/store-b-001.sh[]
+----
+
+=== HQ Accounting department
+
+Busy day at Accounting department of Acme Inc Headquarters
+[source, bash]
+----
+include::partial$high-low-sec-accounting/hq/hq-accounting-01.sh[]
+----
+
+In the meanwhile Store B has been really busy
+[source, bash]
+----
+include::partial$high-low-sec-accounting/store-b/store-b-002.sh[]
+include::partial$high-low-sec-accounting/store-b/store-b-003.sh[]
+----
+
+
+Time to report numbers of holiday sales push
+[source, bash]
+----
+include::partial$high-low-sec-accounting/hq/hq-accounting-02.sh[]
+----
+
+Acme Inc HQ's reporting definition, this makes it possible to switch between working copy and repository with  `--input.storage "fs"`
+[source, toml]
+----
+include::partial$high-low-sec-accounting/hq/conf/hq-conf.toml[]
+----

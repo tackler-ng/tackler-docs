@@ -1,0 +1,98 @@
+= High-Low Security Accounting
+:page-date: 2026-10-04 00:00:00 Z
+:page-last_modified_at: 2026-10-04 00:00:00 Z
+
+
+xref:high-low-sec-accounting/setup.adoc[Setup]
+
+== Establish Acme Inc.
+
+== Holiday season marketing push
+
+=== Sales event on Store A!
+[source, bash]
+----
+include::partial$high-low-sec-accounting/store-a/store-a-001.sh[]
+----
+
+=== Sales event on Store B!
+[source, bash]
+----
+include::partial$high-low-sec-accounting/store-b/store-b-001.sh[]
+----
+
+=== HQ Accounting department
+
+Busy day at Accounting department of Acme Inc Headquarters
+[source, bash]
+----
+include::partial$high-low-sec-accounting/hq/hq-accounting-01.sh[]
+----
+
+In the meanwhile Store B has been really busy
+[source, bash]
+----
+include::partial$high-low-sec-accounting/store-b/store-b-002.sh[]
+include::partial$high-low-sec-accounting/store-b/store-b-003.sh[]
+----
+
+
+Time to report numbers of holiday sales push
+[source, bash]
+----
+include::partial$high-low-sec-accounting/hq/hq-accounting-02.sh[]
+----
+
+Acme Inc HQ's reporting definition, this makes it possible to switch between working copy and repository with  `--input.storage "fs"`
+[source, toml]
+----
+include::partial$high-low-sec-accounting/hq/conf/hq-conf.toml[]
+----
+
+----
+# inside 'tackler-ng/tmp/acme-inc'
+tackler --config acme.toml
+----
+
+----
+Git Storage
+         commit : d0801cf2e7d2117cd04dd1c715450632514efe8f
+      reference : main
+      directory : txns
+         suffix : .txn
+        message : Merge remote-tracking branch 'store-b/main'
+**********************************************************************************
+
+Balance Report
+--------------
+                -4.00          -4.00 Unit  Warehouse:Acmerator
+               168.00         168.00 €     Assets:Cashier
+==========================
+                -4.00 Unit
+               168.00 €
+##################################################################################
+**********************************************************************************
+Report Time Zone
+        TZ name : UTC
+
+
+Register Report
+---------------
+2024-12-17 'store a txn
+            Warehouse:Acmerator                           -1.00              -1.00 Unit
+            Assets:Cashier                                42.00              42.00 €
+---------------------------------------------------------------------------------------
+2024-12-17 'store b txn
+            Warehouse:Acmerator                           -1.00              -2.00 Unit
+            Assets:Cashier                                42.00              84.00 €
+---------------------------------------------------------------------------------------
+2024-12-17 'store b txn
+            Warehouse:Acmerator                           -1.00              -3.00 Unit
+            Assets:Cashier                                42.00             126.00 €
+---------------------------------------------------------------------------------------
+2024-12-17 'store b txn
+            Warehouse:Acmerator                           -1.00              -4.00 Unit
+            Assets:Cashier                                42.00             168.00 €
+---------------------------------------------------------------------------------------
+##################################################################################
+----
