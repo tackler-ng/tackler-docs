@@ -35,13 +35,13 @@ include::partial$high-low-sec-accounting/hq/hq-remotes.sh[]
 === Sales event on Store A!
 [source, bash]
 ----
-include::partial$high-low-sec-accounting/store-a/store-a-001.sh[]
+include::partial$high-low-sec-accounting/store-a/sales-001.sh[]
 ----
 
 === Sales event on Store B!
 [source, bash]
 ----
-include::partial$high-low-sec-accounting/store-b/store-b-001.sh[]
+include::partial$high-low-sec-accounting/store-b/sales-001.sh[]
 ----
 
 === HQ Accounting department
@@ -55,8 +55,8 @@ include::partial$high-low-sec-accounting/hq/hq-accounting-01.sh[]
 In the meanwhile Store B has been really busy
 [source, bash]
 ----
-include::partial$high-low-sec-accounting/store-b/store-b-002.sh[]
-include::partial$high-low-sec-accounting/store-b/store-b-003.sh[]
+include::partial$high-low-sec-accounting/store-b/sales-002.sh[]
+include::partial$high-low-sec-accounting/store-b/sales-003.sh[]
 ----
 
 

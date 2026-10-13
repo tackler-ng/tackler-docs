@@ -1,4 +1,4 @@
-2024-12-17 'Store-A txn
+2024-12-17 'Store-A sales txn
    # uuid: 9b4523b2-00a9-45ef-8f96-1d30a6626574
-   Assets:Store-B:Cashier  123 €
+   Assets:Store-A:Cashier  123 €
    Warehouse:Store-A  -1 Unit @ 123 €

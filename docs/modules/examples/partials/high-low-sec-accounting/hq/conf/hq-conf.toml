@@ -1,12 +1,12 @@
 [kernel]
 strict = false
-audit = { mode = false, hash = "SHA-256" }
+audit = { mode = true, hash = "SHA-256" }
 timestamp = { default-time = 00:00:00, timezone = { name = "UTC" } }
 
 [kernel.input]
 storage = "git"
-fs = { dir = "acme-hq/txns", suffix = "txn" }
-git = { repository = "acme-hq/.git", dir = "txns", ref = "main", suffix = "txn" }
+fs = { dir = "txns", suffix = "txn" }
+git = { repository = "../.git", dir = "txns", ref = "main", suffix = "txn" }
 
 [transaction]
 accounts    = { path = "none" }
@@ -17,7 +17,7 @@ tags        = { path = "none" }
 [report]
 report-timezone = "UTC"
 scale = { min = 2, max = 4 }
-accounts = [ "^Assets:", "^Warehouse:" ]
+accounts = [ "Assets(:.*)?", "Warehouse(:.*)?" ]
 targets = [ "balance", "register" ]
 
 balance       = { title = "Balance Report" }
