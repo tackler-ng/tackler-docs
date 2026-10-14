@@ -38,6 +38,18 @@ include::partial$high-low-sec-accounting/hq/update.sh[]
 include::partial$high-low-sec-accounting/hq/report.sh[]
 ----
 
+[source, text]
+.Initial balance report at HQ
+----
+include::partial$high-low-sec-accounting/reports/hq-begin.bal.txt[]
+----
+
+[source, text]
+.Initial register report at HQ
+----
+include::partial$high-low-sec-accounting/reports/hq-begin.reg.txt[]
+----
+
 
 In the meanwhile Store B has been really busy
 [source, text]
@@ -52,10 +64,17 @@ include::partial$high-low-sec-accounting/store-b/sales-002.txn[]
 include::partial$high-low-sec-accounting/store-b/sales-003.txn[]
 ----
 
+Store A managed also to get one additional sales before the end of campaign.
+
+[source, text]
+.Sales transaction #002 at the Store A
+----
+include::partial$high-low-sec-accounting/store-a/sales-002.txn[]
+----
 
 Time to report numbers of holiday sales push
 [source, bash]
-.Update sales data from stores
+.Update sales data from stores at HQ
 ----
 include::partial$high-low-sec-accounting/hq/update.sh[]
 ----
@@ -67,8 +86,35 @@ include::partial$high-low-sec-accounting/hq/update.sh[]
 include::partial$high-low-sec-accounting/hq/report.sh[]
 ----
 
+[source, text]
+.Final balance report at HQ
+----
+include::partial$high-low-sec-accounting/reports/hq-final.bal.txt[]
+----
+
+
 [source, bash]
-.Run reports only for Stora A at HQ
+.Run reports only for Store A at HQ
 ----
 include::partial$high-low-sec-accounting/hq/filter.sh[]
+----
+
+[source, text]
+.Register report for Store A at HQ
+----
+include::partial$high-low-sec-accounting/reports/hq-filter.reg.txt[]
+----
+
+Let's see how these same reports looks like at Store A
+
+[source, bash]
+.Run reports at Store A
+----
+include::partial$high-low-sec-accounting/store-a/report.sh[]
+----
+
+[source, text]
+.Register report for Store A at Store A
+----
+include::partial$high-low-sec-accounting/reports/store-a.reg.txt[]
 ----

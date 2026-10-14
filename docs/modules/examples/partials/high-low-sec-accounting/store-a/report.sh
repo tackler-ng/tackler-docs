@@ -1,1 +1,3 @@
-tackler --config conf/store-a-conf.toml --reports register
+tackler \
+    --config conf/store-a-conf.toml \
+    "$@"
