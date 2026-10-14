@@ -9,50 +9,66 @@ xref:high-low-sec-accounting/setup.adoc[Setup]
 
 == Holiday season marketing push
 
-=== Sales event on Store A!
-[source, bash]
+=== Sales events at Stores
+
+[source, text]
+.Sales event at store A
 ----
-include::partial$high-low-sec-accounting/store-a/sales-001.sh[]
+include::partial$high-low-sec-accounting/store-a/sales-001.txn[]
 ----
 
-=== Sales event on Store B!
-[source, bash]
+[source, text]
+.Sales event at store B
 ----
-include::partial$high-low-sec-accounting/store-b/sales-001.sh[]
+include::partial$high-low-sec-accounting/store-b/sales-001.txn[]
 ----
 
 === HQ Accounting department
 
 Busy day at Accounting department of Acme Inc Headquarters
 [source, bash]
+.Update sales data from stores
 ----
-include::partial$high-low-sec-accounting/hq/hq-accounting-01.sh[]
+include::partial$high-low-sec-accounting/hq/update.sh[]
 ----
 
-In the meanwhile Store B has been really busy
 [source, bash]
+.Run combined sales report at HQ
 ----
-include::partial$high-low-sec-accounting/store-b/sales-002.sh[]
-include::partial$high-low-sec-accounting/store-b/sales-003.sh[]
+include::partial$high-low-sec-accounting/hq/report.sh[]
+----
+
+
+In the meanwhile Store B has been really busy
+[source, text]
+.Sales transaction #002 at the Store B
+----
+include::partial$high-low-sec-accounting/store-b/sales-002.txn[]
+----
+
+[source, text]
+.Sales transaction #003 at the Store B
+----
+include::partial$high-low-sec-accounting/store-b/sales-003.txn[]
 ----
 
 
 Time to report numbers of holiday sales push
 [source, bash]
+.Update sales data from stores
 ----
-include::partial$high-low-sec-accounting/hq/hq-accounting-02.sh[]
-----
-
-Acme Inc HQ's reporting definition, this makes it possible to switch between working copy and repository with  `--input.storage "fs"`
-[source, toml]
-----
-include::partial$high-low-sec-accounting/hq/conf/hq-conf.toml[]
+include::partial$high-low-sec-accounting/hq/update.sh[]
 ----
 
+
+[source, bash]
+.Run combined sales reports at HQ
 ----
-# inside 'tackler-ng/tmp/acme-inc'
-tackler --config acme.toml
+include::partial$high-low-sec-accounting/hq/report.sh[]
 ----
 
+[source, bash]
+.Run reports only for Stora A at HQ
 ----
+include::partial$high-low-sec-accounting/hq/filter.sh[]
 ----

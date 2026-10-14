@@ -1,4 +1,5 @@
 #!/bin/sh
+# vim: tabstop=4 shiftwidth=4 softtabstop=4 smarttab expandtab autoindent
 
 set -e
 
@@ -7,41 +8,98 @@ exe_dir=$(dirname $(realpath $0))
 mkdir acme-inc
 cd acme-inc
 
-(sh $exe_dir/hq/init-hq.sh)
-cp  $exe_dir/hq/conf/hq-conf.toml hq/conf/
-cp  $exe_dir/hq/conf/hq-accounts.toml hq/conf/
-cp  $exe_dir/hq/conf/hq-commodities.toml hq/conf/
-
+(
+    sh $exe_dir/hq/init.sh \
+        $exe_dir/hq/conf/hq-conf.toml \
+        $exe_dir/hq/conf/hq-accounts.toml \
+        $exe_dir/hq/conf/hq-commodities.toml \
+        $exe_dir/hq/conf/hq-tags.toml
+)
 sleep 1
 
-(sh $exe_dir/store-a/init-store-a.sh)
+(
+    sh $exe_dir/store-a/init.sh \
+        $exe_dir/store-a/conf/store-a-conf.toml \
+        $exe_dir/store-a/conf/store-a-accounts.toml \
+        $exe_dir/store-a/conf/store-a-commodities.toml \
+        $exe_dir/store-a/conf/store-a-tags.toml
+)
 sleep 1
 
-(sh $exe_dir/store-b/init-store-b.sh)
+(
+    sh $exe_dir/store-b/init.sh
+)
 sleep 1
 
-(sh $exe_dir/hq/hq-remotes.sh)
+(
+    cd hq
+    sh $exe_dir/hq/remotes.sh
+)
 
-cp  $exe_dir/store-a/sales-001.txn store-a/txns/store-a/
-(sh $exe_dir/store-a/sales-001.sh)
-
-cp  $exe_dir/store-b/sales-001.txn store-b/txns/store-b/
-(sh $exe_dir/store-b/sales-001.sh)
-
-
-(sh $exe_dir/hq/hq-accounting-01.sh)
+(
+    cd store-a
+    sh $exe_dir/store-a/sales.sh \
+        "001" $exe_dir/store-a/sales-001.txn
+)
 sleep 1
 
-cp  $exe_dir/store-b/sales-002.txn store-b/txns/store-b/
-(sh $exe_dir/store-b/sales-002.sh)
-
-cp  $exe_dir/store-b/sales-003.txn store-b/txns/store-b/
-(sh $exe_dir/store-b/sales-003.sh)
-
-(sh $exe_dir/hq/hq-accounting-02.sh)
+(
+    cd store-b
+    sh $exe_dir/store-b/sales.sh \
+        "001" $exe_dir/store-b/sales-001.txn
+)
 sleep 1
 
-cp  $exe_dir/store-a/sales-002.txn store-a/txns/store-a/
-(sh $exe_dir/store-a/sales-002.sh)
 
-(sh $exe_dir/hq/hq-accounting-03.sh)
+(
+    cd hq
+    sh $exe_dir/hq/update.sh
+    sh $exe_dir/hq/report.sh
+)
+sleep 1
+
+(
+    cd store-b
+    sh $exe_dir/store-b/sales.sh \
+        "002" $exe_dir/store-b/sales-002.txn
+)
+sleep 1
+
+(
+	cd store-b
+	sh $exe_dir/store-b/sales.sh \
+	"003" $exe_dir/store-b/sales-003.txn
+)
+sleep 1
+
+(
+    cd hq
+    sh $exe_dir/hq/update.sh
+    sh $exe_dir/hq/report.sh
+)
+sleep 1
+
+(
+    cd store-a
+    sh $exe_dir/store-a/sales.sh \
+        "002" $exe_dir/store-a/sales-002.txn
+)
+sleep 1
+
+(
+    cd hq
+    sh $exe_dir/hq/update.sh
+    sh $exe_dir/hq/report.sh
+)
+
+(
+    cd hq
+    sh $exe_dir/hq/filter.sh
+)
+
+(
+    cd store-a
+    sh $exe_dir/store-a/report.sh
+)
+
+

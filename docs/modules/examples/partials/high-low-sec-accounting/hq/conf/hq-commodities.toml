@@ -1,4 +1,6 @@
-permit-empty-commodity = true
+permit-empty-commodity = false
 
-commodities = [ "€", "Unit" ]
-
+commodities = [
+    "€",
+    "Unit",
+]

@@ -6,68 +6,72 @@
 == Establish Acme Inc.
 
 === Acme Inc. Headquarters
+
 [source, bash]
 ----
-include::partial$high-low-sec-accounting/hq/init-hq.sh[]
-----
-
-=== Acme Inc. Store A
-[source, bash]
-----
-include::partial$high-low-sec-accounting/store-a/init-store-a.sh[]
-----
-
-=== Acme Inc. Store B
-[source, bash]
-----
-include::partial$high-low-sec-accounting/store-b/init-store-b.sh[]
-----
-
-=== TODO
-[source, bash]
-----
-include::partial$high-low-sec-accounting/hq/hq-remotes.sh[]
-----
-
-
-== Holiday season marketing push
-
-=== Sales event on Store A!
-[source, bash]
-----
-include::partial$high-low-sec-accounting/store-a/sales-001.sh[]
-----
-
-=== Sales event on Store B!
-[source, bash]
-----
-include::partial$high-low-sec-accounting/store-b/sales-001.sh[]
-----
-
-=== HQ Accounting department
-
-Busy day at Accounting department of Acme Inc Headquarters
-[source, bash]
-----
-include::partial$high-low-sec-accounting/hq/hq-accounting-01.sh[]
-----
-
-In the meanwhile Store B has been really busy
-[source, bash]
-----
-include::partial$high-low-sec-accounting/store-b/sales-002.sh[]
-include::partial$high-low-sec-accounting/store-b/sales-003.sh[]
-----
-
-
-Time to report numbers of holiday sales push
-[source, bash]
-----
-include::partial$high-low-sec-accounting/hq/hq-accounting-02.sh[]
+include::partial$high-low-sec-accounting/hq/init.sh[]
 ----
 
 Acme Inc HQ's reporting definition, this makes it possible to switch between working copy and repository with  `--input.storage "fs"`
 [source, toml]
 ----
 include::partial$high-low-sec-accounting/hq/conf/hq-conf.toml[]
+----
+[source, toml]
+----
+include::partial$high-low-sec-accounting/hq/conf/hq-accounts.toml[]
+----
+[source, toml]
+----
+include::partial$high-low-sec-accounting/hq/conf/hq-commodities.toml[]
+----
+
+=== Acme Inc. Store A
+
+[source, bash]
+----
+include::partial$high-low-sec-accounting/store-a/init.sh[]
+----
+
+=== Acme Inc. Store B
+
+[source, bash]
+----
+include::partial$high-low-sec-accounting/store-b/init.sh[]
+----
+
+=== Acme Inc. HQ <-> Store connections
+
+[source, bash]
+----
+include::partial$high-low-sec-accounting/hq/remotes.sh[]
+----
+
+
+== Sales events in stores
+
+=== Sales event on Store A
+[source, bash]
+----
+include::partial$high-low-sec-accounting/store-a/sales.sh[]
+----
+
+=== Sales event on Store B
+[source, bash]
+----
+include::partial$high-low-sec-accounting/store-b/sales.sh[]
+----
+
+== HQ Accounting department
+
+[source, bash]
+----
+include::partial$high-low-sec-accounting/hq/update.sh[]
+----
+
+
+[source, bash]
+.Run sales reports at HQ
+----
+include::partial$high-low-sec-accounting/hq/report.sh[]
 ----
