@@ -1,0 +1,22 @@
+= Second Round of Sales
+
+In the meanwhile Store B has been really busy
+[source, text]
+.Sales transaction #002 at the Store B
+----
+include::partial$high-low-sec-accounting/store-b/sales-002.txn[]
+----
+
+[source, text]
+.Sales transaction #003 at the Store B
+----
+include::partial$high-low-sec-accounting/store-b/sales-003.txn[]
+----
+
+Store A managed also to get one additional sales before the end of campaign.
+
+[source, text]
+.Sales transaction #002 at the Store A
+----
+include::partial$high-low-sec-accounting/store-a/sales-002.txn[]
+----

@@ -1,0 +1,38 @@
+= Final Reports
+
+Time to report numbers for holiday sales push
+
+[source, bash]
+.Update sales data from stores to HQ
+----
+include::partial$high-low-sec-accounting/hq/update.sh[]
+----
+
+
+[source, bash]
+.Run combined sales reports at HQ
+----
+include::partial$high-low-sec-accounting/hq/report.sh[]
+----
+
+[source, text]
+.Final balance report at HQ
+----
+include::partial$high-low-sec-accounting/reports/hq-final.bal.txt[]
+----
+
+== How to verify Transactions?
+
+Let's collect all transaction UUIDs and then calculate manually what is the transaction set checksum.  In this example it's done fully manually, but there is a contrib script to calculate it in tackler's repository: {url-repo-tackler}blob/main/contrib/txn-set-checksum.sh[txn-set-checksum.sh]
+
+[source, bash]
+.Verify manually Txn Set Checksum based on collected UUIDs
+----
+include::partial$high-low-sec-accounting/hq/checksum-03.sh[]
+----
+
+[source,bash]
+.The result is same as reported Txn Set Checksum in reports.
+----
+940cb81d9f3b728a51d21251b891f62798c081d25e70a838aeb53c8199d33d3e
+----

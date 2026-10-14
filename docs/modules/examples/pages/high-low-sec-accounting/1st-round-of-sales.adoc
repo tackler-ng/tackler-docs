@@ -1,0 +1,15 @@
+= First Round of Sales
+
+== Sales events at Stores
+
+[source, text]
+.Sales event at store A
+----
+include::partial$high-low-sec-accounting/store-a/sales-001.txn[]
+----
+
+[source, text]
+.Sales event at store B
+----
+include::partial$high-low-sec-accounting/store-b/sales-001.txn[]
+----

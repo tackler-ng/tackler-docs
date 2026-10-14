@@ -1,5 +1,3 @@
-#!/bin/sh
-
 cat << EOF | sort | sha256sum
 9b4523b2-00a9-45ef-8f96-1d30a6626574
 8313ffaf-95e9-40b5-8595-c1e0f7533e94

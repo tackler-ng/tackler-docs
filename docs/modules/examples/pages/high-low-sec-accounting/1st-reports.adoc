@@ -1,0 +1,28 @@
+= First reports
+
+== HQ Accounting department
+
+Busy day at Accounting department of Acme Inc Headquarters
+[source, bash]
+.Update sales data from stores
+----
+include::partial$high-low-sec-accounting/hq/update.sh[]
+----
+
+[source, bash]
+.Run combined sales report at HQ
+----
+include::partial$high-low-sec-accounting/hq/report.sh[]
+----
+
+[source, text]
+.Initial balance report at HQ
+----
+include::partial$high-low-sec-accounting/reports/hq-begin.bal.txt[]
+----
+
+[source, text]
+.Initial register report at HQ
+----
+include::partial$high-low-sec-accounting/reports/hq-begin.reg.txt[]
+----
