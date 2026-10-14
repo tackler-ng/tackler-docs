@@ -1,5 +1,5 @@
 [kernel]
-strict = false
+strict = true
 audit = { mode = true, hash = "SHA-256" }
 timestamp = { default-time = 00:00:00, timezone = { name = "UTC" } }
 
@@ -9,8 +9,8 @@ fs = { dir = "txns", suffix = "txn" }
 git = { repository = "../.git", dir = "txns", ref = "main", suffix = "txn" }
 
 [transaction]
-accounts    = { path = "none" }
-commodities = { path = "none" }
+accounts    = { path = "hq-accounts.toml" }
+commodities = { path = "hq-commodities.toml" }
 tags        = { path = "none" }
 
 ### Report Configuration

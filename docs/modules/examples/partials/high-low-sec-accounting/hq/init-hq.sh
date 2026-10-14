@@ -1,7 +1,7 @@
-git init --bare acme-hq.git
-git clone acme-hq.git/
+git init --bare hq.git
+git clone hq.git/
 
-cd acme-hq
+cd hq
 mkdir conf
 git config user.name "ACME HQ"
 git config user.email "hq@acme"

@@ -1,7 +1,7 @@
-git init --bare acme-store-B.git/
-git clone  acme-store-B.git/
+git init --bare store-b.git/
+git clone store-b.git/
 
-cd acme-store-B
+cd store-b
 mkdir -p txns/store-b
 
 git config user.name "ACME Store B"

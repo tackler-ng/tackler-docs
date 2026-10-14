@@ -1,3 +1,4 @@
-cd acme-hq
-git remote add store-a ../acme-store-A.git
-git remote add store-b ../acme-store-B.git
+cd hq
+
+git remote add store-a ../store-a.git
+git remote add store-b ../store-b.git
