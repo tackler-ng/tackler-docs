@@ -10,6 +10,11 @@ xref:solar-energy-value.adoc[Solar Energy Value]::
 This example utilizes link:/docs/price/variable-market-value/[Variable Market Value] price model to calculate the value of energy production of Solar power system.
 
 
+xref:high-low-sec-accounting.adoc[High-Low Security Accounting]::
+
+This example shows how to split accounting data between high and low security setups, and still be able to do combined reporting based on all accounting data.
+
+
 xref:trimix-filling-station.adoc[Trimix Filling Station]::
 
 This examples shows how to use Tackler for accounting and billing system of Trimix Filling station.
@@ -23,8 +28,3 @@ This is a travel journal example how to utilize plaintext accounting with geogra
 xref:filter-for-two-accounts.adoc[Finding Transactions between two accounts]::
 
 This an example of filter, which will find all transactions between two accounts, These could be for example card balance payments (not purchases).
-
-
-xref:high-low-sec-accounting.adoc[High-low Security Accounting]::
-
-This example shows how to split plaintext accounting journal between high and low security journals, and still be able to have combined reporting over all journals.

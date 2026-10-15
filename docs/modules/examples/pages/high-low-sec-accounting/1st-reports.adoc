@@ -1,13 +1,16 @@
-= First reports
-
-== HQ Accounting department
+= First Reports at HQ
 
 Busy day at Accounting department of Acme Inc Headquarters
+
+== Synchronize Journals from Stores
+
 [source, bash]
 .Update sales data from stores
 ----
 include::partial$high-low-sec-accounting/hq/update.sh[]
 ----
+
+== Run Reports
 
 [source, bash]
 .Run combined sales report at HQ
@@ -15,14 +18,17 @@ include::partial$high-low-sec-accounting/hq/update.sh[]
 include::partial$high-low-sec-accounting/hq/report.sh[]
 ----
 
+=== Balance Report
+
 [source, text]
-.Initial balance report at HQ
+.Combined balance report for Store-A and Store-B at HQ
 ----
 include::partial$high-low-sec-accounting/reports/hq-begin.bal.txt[]
 ----
 
+=== Register Report
 [source, text]
-.Initial register report at HQ
+.Combined register report for Store-A and Store-B at HQ
 ----
 include::partial$high-low-sec-accounting/reports/hq-begin.reg.txt[]
 ----

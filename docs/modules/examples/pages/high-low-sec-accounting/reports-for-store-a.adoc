@@ -1,0 +1,75 @@
+= Reports for Store A
+
+This part of example demonstrates how it's possible to target reports to the specific part of the setup, and also how to verify the reported results.
+
+== Reports by HQ
+
+At the HQ's accounting department, we would like to see some reports based on only Store A's journal.
+
+To see Store A specific reports, we will utilize xref:usage:txn-filters.adoc[] to select only Store A transactions to be reported. To do that, we select all transactions with  `store-a` tag.
+
+It's also possible to select single commit as a starting point, as is done with xref:#journal-by-ref[Store A's reports]. This same commit Id would work also for HQ journal, as it contains all commits from Store A and B.
+
+[source, bash]
+.Run Store A specific reports at HQ
+----
+include::partial$high-low-sec-accounting/hq/filter.sh[]
+----
+
+[source, text]
+.Register report for Store A at HQ
+----
+include::partial$high-low-sec-accounting/reports/hq-filter.reg.txt[]
+----
+
+[[foo]]
+== Reports by Store A
+
+Let's see how these same reports looks like at Store A's own accounting department.
+
+The Store A uses local plain filesystem as primary source for reporting, but for this case, the journal is switched to the git backend.
+
+Also the report is fixed to the same commit which has been synchronized with HQ. This makes it possible to compare same journal data, even when Store A would have new sales in their local journal, which haven't been yet synchronized with HQ.
+
+[[journal-by-ref]]
+[source, bash]
+.Run reports at Store A
+----
+include::partial$high-low-sec-accounting/store-a/report.sh[]
+----
+
+[source, text]
+.Store A's own Register report as seen in a point in time (by commit id)
+----
+include::partial$high-low-sec-accounting/reports/store-a.reg.txt[]
+----
+
+== Verifying the results
+
+Again, how do we know that this setup is working as intended, and that HQ really has all correct transactions from Store A?
+
+In this case, we can see that HQ reports have the same Txn Set Checksum as Store A's own reports.  This tells that both reports are based on same set of transactions, even though they are run on different, separate systems.
+
+[source,text]
+.Partial metadata of register report at HQ
+----
+         author : ACME HQ <hq@acme>
+           date : 2024-12-20 16:00:00 +0000
+        subject : hq: merge store B
+
+Txn Set Checksum
+        SHA-256 : a8efd662df881087f0e0e67c77666988b958916f62a9fe2e687d8758d960130a
+       set size : 2
+----
+
+[source,text]
+.Partial metadata of register report at Store A
+----
+         author : ACME Store A <store-a@acme>
+           date : 2024-12-20 12:00:00 +0000
+        subject : store-a: sales txn 002
+
+Txn Set Checksum
+        SHA-256 : a8efd662df881087f0e0e67c77666988b958916f62a9fe2e687d8758d960130a
+       set size : 2
+----

@@ -3,75 +3,25 @@
 :page-last_modified_at: 2026-10-04 00:00:00 Z
 
 
-== Establish Acme Inc.
-
-=== Acme Inc. Headquarters
-
-[source, bash]
-----
-include::partial$high-low-sec-accounting/hq/init.sh[]
-----
-
-Acme Inc HQ's reporting definition, this makes it possible to switch between working copy and repository with  `--input.storage "fs"`
-[source, toml]
-----
-include::partial$high-low-sec-accounting/hq/conf/hq-conf.toml[]
-----
-[source, toml]
-----
-include::partial$high-low-sec-accounting/hq/conf/hq-accounts.toml[]
-----
-[source, toml]
-----
-include::partial$high-low-sec-accounting/hq/conf/hq-commodities.toml[]
-----
-
-=== Acme Inc. Store A
-
-[source, bash]
-----
-include::partial$high-low-sec-accounting/store-a/init.sh[]
-----
-
-=== Acme Inc. Store B
-
-[source, bash]
-----
-include::partial$high-low-sec-accounting/store-b/init.sh[]
-----
-
-=== Acme Inc. HQ <-> Store connections
-
-[source, bash]
-----
-include::partial$high-low-sec-accounting/hq/remotes.sh[]
-----
+Actual configuration files used in this demo are located under this section.  It's possible to run the example by yourself.
 
 
-== Sales events in stores
+== Acme Inc. Accounting Configuration
 
-=== Sales event on Store A
-[source, bash]
-----
-include::partial$high-low-sec-accounting/store-a/sales.sh[]
-----
+The setups for HQ, Store A and B are here:
 
-=== Sales event on Store B
-[source, bash]
-----
-include::partial$high-low-sec-accounting/store-b/sales.sh[]
-----
+xref:examples:high-low-sec-accounting/setup/headquarters.adoc[]::
 
-== HQ Accounting department
+HQ's configuration contains journal synchronization settings, and reporting setup.  This is the most interesting one.
 
-[source, bash]
-----
-include::partial$high-low-sec-accounting/hq/update.sh[]
-----
+xref:examples:high-low-sec-accounting/setup/store-a.adoc[]::
 
+Store A's configuration contains journal initialization and reporting setup for the local store.
 
-[source, bash]
-.Run sales reports at HQ
-----
-include::partial$high-low-sec-accounting/hq/report.sh[]
-----
+xref:examples:high-low-sec-accounting/setup/store-b.adoc[]::
+
+Store B's configuration contains just journal initialization.
+
+== High-Low Security Example Script
+
+The full example is located under Tackler's  {url-repo-tackler}/tree/main/examples/tackler[example] folder, and you can run it by {url-repo-tackler}/blob/main/examples/high-low/run-high-low-example.sh[run-high-low-example.sh] script.

@@ -1,0 +1,29 @@
+Git Storage
+      reference : FIXED by commit
+      directory : txns
+      extension : txn
+         commit : 9f391d6fd78d46c26d4cb6f18119c944115ccffa
+         author : ACME Store A <store-a@acme>
+           date : 2024-12-20 12:00:00 +0000
+        subject : store-a: sales txn 002
+
+Txn Set Checksum
+        SHA-256 : a8efd662df881087f0e0e67c77666988b958916f62a9fe2e687d8758d960130a
+       set size : 2
+
+Account Selector Checksum
+        SHA-256 : 7d18093d24860c5ccf354bd72b67cbb29ff753d83384367cb86cceade07f1d6b
+      selectors : 'Assets(:.*)?'
+                | 'Warehouse(:.*)?'
+
+
+Store A: Balance Report
+-----------------------
+                 0.00          -2.00 Unit  Warehouse
+                -2.00          -2.00 Unit  Warehouse:Store-A
+                 0.00         246.00 €     Assets
+                 0.00         246.00 €     Assets:Store-A
+               246.00         246.00 €     Assets:Store-A:Cashier
+==========================
+                -2.00 Unit
+               246.00 €

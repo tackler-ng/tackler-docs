@@ -1,0 +1,86 @@
+= Acme Inc. Headquarters
+
+This the crux of High-Low Security Accounting setup.
+
+== Journal Configuration
+
+HQ's journal is created so that journals from stores can be connected to the main HQ journal, and they can be also automatically synchronized.
+
+=== Git Repository
+[source, bash]
+.Standard initialization of HQ's git repository setup
+----
+include::partial$high-low-sec-accounting/hq/init.sh[]
+----
+
+=== Journal Connections for HQ and Stores
+
+Journals between HQ and stores are connected to HQ's main journal by git remotes. This makes it possible to synchronize transactions from stores to the HQ's main journal.
+
+[source, bash]
+.Add git remotes for stores
+----
+include::partial$high-low-sec-accounting/hq/remotes.sh[]
+----
+
+=== Synchronizing Journals
+
+Transaction data ("journals") are synchronized to the HQ's main journal with git merge. Journals are separated, and they are not normal clones of each others, so the merge must be done with unrelated histories (`--allow-unrelated-histories`).
+
+Tackler supports storing single transactions into xref:journal:index.adoc#journal-files[single files], and it also has support for xref:journal:sharding.adoc[journal data sharding]. Both of these features are utilized, so that there won't be merge conflicts when these unrelated data streams are merged.
+
+[source, bash]
+.Synchronize journals from stores
+----
+include::partial$high-low-sec-accounting/hq/update.sh[]
+----
+
+
+== Reporting Configuration
+
+This is reporting configuration used by HQ setup.
+
+include::reference:partial$config.adoc[]
+
+=== Tackler configuration
+
+This is pretty standard configuration for tackler.  Most notable, the strict mode is turned on, so that all  accounts, commodities and tags must be defined. This prevents unknown accounting data to be used by stores, and ensures that HQ has full visibility to the used Chart of Accounts.
+
+The xref:auditing:index.adoc[audit mode] is also activated, which means that tackler calculates checksums of used journal data.  With xref:journal:git-storage.adoc[Git Journal Backend] this provides cryptographic proof of used journal data.
+
+The journal setup is configured so that it's possible to switch between working copy journal (plain filesystem) and Git backend with `--input.storage "fs"` xref:reference:command-line.adoc#input-storage[command line argument].
+
+[source, toml]
+.This is file: hq/conf/hq-conf.toml
+----
+include::partial$high-low-sec-accounting/hq/conf/hq-conf.toml[]
+----
+
+=== Account definitions
+
+The Chart of Accounts for HQ contains all needed accounts, also those from Store A and Store B.
+
+[source, toml]
+.This is file: hq/conf/hq-accounts.toml
+----
+include::partial$high-low-sec-accounting/hq/conf/hq-accounts.toml[]
+----
+
+=== Tag definitions
+
+Same here, Chart of Tags for HQ contains all tags, also those from Store A and Store B.
+
+[source, toml]
+.This is file: hq/conf/hq-tags.toml
+----
+include::partial$high-low-sec-accounting/hq/conf/hq-tags.toml[]
+----
+
+
+=== Commodities
+
+[source, toml]
+.This is file: hq/conf/hq-commodities.toml
+----
+include::partial$high-low-sec-accounting/hq/conf/hq-commodities.toml[]
+----

@@ -2,7 +2,7 @@ Git Storage
       reference : main
       directory : txns
       extension : txn
-         commit : 0a026220df3b78f370a01e8dacc23ad4c2fe86a5
+         commit : e366a07a09d39a306d6beb1e86de5729ac9acc1d
          author : ACME HQ <hq@acme>
            date : 2024-12-17 16:00:00 +0000
         subject : hq: merge store B

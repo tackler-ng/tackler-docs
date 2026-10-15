@@ -1,8 +1,8 @@
 Git Storage
-      reference : main
+      reference : FIXED by commit
       directory : txns
       extension : txn
-         commit : 2a322817addc6840cd61c9e60a903340b933a3cd
+         commit : 9f391d6fd78d46c26d4cb6f18119c944115ccffa
          author : ACME Store A <store-a@acme>
            date : 2024-12-20 12:00:00 +0000
         subject : store-a: sales txn 002
