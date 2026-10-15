@@ -3,7 +3,9 @@
 :page-last_modified_at: 2026-10-04 00:00:00 Z
 
 
-Actual configuration files used in this demo are located under this section.  It's possible to run the example by yourself.
+Actual configuration files used in this demo are located under this section.
+
+include::partial$high-low-sec-accounting/example-script.adoc[]
 
 
 == Acme Inc. Accounting Configuration
@@ -21,7 +23,3 @@ Store A's configuration contains journal initialization and reporting setup for 
 xref:examples:high-low-sec-accounting/setup/store-b.adoc[]::
 
 Store B's configuration contains just journal initialization.
-
-== High-Low Security Example Script
-
-The full example is located under Tackler's  {url-repo-tackler}/tree/main/examples/tackler[example] folder, and you can run it by {url-repo-tackler}/blob/main/examples/high-low/run-high-low-example.sh[run-high-low-example.sh] script.

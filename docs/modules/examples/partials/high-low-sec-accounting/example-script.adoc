@@ -1,0 +1,4 @@
+[NOTE]
+====
+The full example is located under Tackler's  {url-repo-tackler}/tree/main/examples/tackler[example] folder, and you can run it by {url-repo-tackler}/blob/main/examples/high-low/high-low-security-accounting.sh[high-low-security-accounting.sh] script.
+====

@@ -5,13 +5,4 @@
 
 xref:high-low-sec-accounting/setup.adoc[Setup]
 
-== Establish Acme Inc.
-
-== Holiday season marketing push
-
-
-
-
-
-
-
+include::partial$high-low-sec-accounting/example-script.adoc[]
