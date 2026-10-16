@@ -7,7 +7,7 @@ Busy day at Accounting department of Acme Inc Headquarters
 [source, bash]
 .Update sales data from stores
 ----
-include::partial$high-low-sec-accounting/hq/update.sh[]
+include::partial$high-low-security/setup/hq/update.sh[]
 ----
 
 == Run Reports
@@ -15,7 +15,7 @@ include::partial$high-low-sec-accounting/hq/update.sh[]
 [source, bash]
 .Run combined sales report at HQ
 ----
-include::partial$high-low-sec-accounting/hq/report.sh[]
+include::partial$high-low-security/setup/hq/report.sh[]
 ----
 
 === Balance Report
@@ -23,12 +23,12 @@ include::partial$high-low-sec-accounting/hq/report.sh[]
 [source, text]
 .Combined balance report for Store-A and Store-B at HQ
 ----
-include::partial$high-low-sec-accounting/reports/hq-begin.bal.txt[]
+include::partial$high-low-security/reports/hq-begin.bal.txt[]
 ----
 
 === Register Report
 [source, text]
 .Combined register report for Store-A and Store-B at HQ
 ----
-include::partial$high-low-sec-accounting/reports/hq-begin.reg.txt[]
+include::partial$high-low-security/reports/hq-begin.reg.txt[]
 ----

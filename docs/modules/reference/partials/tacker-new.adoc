@@ -1,7 +1,7 @@
 
 [TIP]
 ====
-Use `tackler new` to create a functional template journal:
+Use `tackler new` command to create a functional template journal:
 [source,bash]
 ----
 tackler new journal

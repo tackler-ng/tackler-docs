@@ -2,15 +2,19 @@
 
 This the crux of High-Low Security Accounting setup.
 
+
 == Journal Configuration
 
-HQ's journal is created so that journals from stores can be connected to the main HQ journal, and they can be also automatically synchronized.
+image::high-low-setup.png[]
+
+
+HQ's journal is configured so that it can connect to stores' journals and they can be also automatically synchronized with HQ's own journal.
 
 === Git Repository
 [source, bash]
 .Standard initialization of HQ's git repository setup
 ----
-include::partial$high-low-sec-accounting/hq/init.sh[]
+include::partial$high-low-security/setup/hq/init.sh[]
 ----
 
 === Journal Connections for HQ and Stores
@@ -20,7 +24,7 @@ Journals between HQ and stores are connected to HQ's main journal by git remotes
 [source, bash]
 .Add git remotes for stores
 ----
-include::partial$high-low-sec-accounting/hq/remotes.sh[]
+include::partial$high-low-security/setup/hq/remotes.sh[]
 ----
 
 === Synchronizing Journals
@@ -32,7 +36,7 @@ Tackler supports storing single transactions into xref:journal:index.adoc#journa
 [source, bash]
 .Synchronize journals from stores
 ----
-include::partial$high-low-sec-accounting/hq/update.sh[]
+include::partial$high-low-security/setup/hq/update.sh[]
 ----
 
 
@@ -46,6 +50,8 @@ include::reference:partial$config.adoc[]
 
 This is pretty standard configuration for tackler.  Most notable, the strict mode is turned on, so that all  accounts, commodities and tags must be defined. This prevents unknown accounting data to be used by stores, and ensures that HQ has full visibility to the used Chart of Accounts.
 
+There is no need to define store journals at HQ level, as tackler xref:reference:tackler-toml.adoc#kernel-input-git[automatically discovers transactions] in defined journal.
+
 The xref:auditing:index.adoc[audit mode] is also activated, which means that tackler calculates checksums of used journal data.  With xref:journal:git-storage.adoc[Git Journal Backend] this provides cryptographic proof of used journal data.
 
 The journal setup is configured so that it's possible to switch between working copy journal (plain filesystem) and Git backend with `--input.storage "fs"` xref:reference:command-line.adoc#input-storage[command line argument].
@@ -53,7 +59,7 @@ The journal setup is configured so that it's possible to switch between working 
 [source, toml]
 .This is file: hq/conf/hq-conf.toml
 ----
-include::partial$high-low-sec-accounting/hq/conf/hq-conf.toml[]
+include::partial$high-low-security/setup/hq/conf/hq-conf.toml[]
 ----
 
 === Account definitions
@@ -63,7 +69,7 @@ The Chart of Accounts for HQ contains all needed accounts, also those from Store
 [source, toml]
 .This is file: hq/conf/hq-accounts.toml
 ----
-include::partial$high-low-sec-accounting/hq/conf/hq-accounts.toml[]
+include::partial$high-low-security/setup/hq/conf/hq-accounts.toml[]
 ----
 
 === Tag definitions
@@ -73,7 +79,7 @@ Same here, Chart of Tags for HQ contains all tags, also those from Store A and S
 [source, toml]
 .This is file: hq/conf/hq-tags.toml
 ----
-include::partial$high-low-sec-accounting/hq/conf/hq-tags.toml[]
+include::partial$high-low-security/setup/hq/conf/hq-tags.toml[]
 ----
 
 
@@ -82,5 +88,5 @@ include::partial$high-low-sec-accounting/hq/conf/hq-tags.toml[]
 [source, toml]
 .This is file: hq/conf/hq-commodities.toml
 ----
-include::partial$high-low-sec-accounting/hq/conf/hq-commodities.toml[]
+include::partial$high-low-security/setup/hq/conf/hq-commodities.toml[]
 ----

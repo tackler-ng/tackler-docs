@@ -1,18 +1,22 @@
 = Tackler Examples
 :page-date: 2025-03-15 00:00:00 Z
-:page-last_modified_at: 2025-03-15 00:00:00 Z
+:page-last_modified_at: 2026-10-17 00:00:00 Z
 
 
 These are examples of how tackler could be used in various real life accounting situations.
 
+If you would just like to see as simple as possible usage of tackler, try this tip:
+
+include::reference:partial$tacker-new.adoc[]
+
+xref:high-low-security.adoc[High-Low Security Accounting]::
+
+This example shows how to split accounting journal between high and low security setups. It also demonstrates usage of some most advanced features of tackler.
+
+
 xref:solar-energy-value.adoc[Solar Energy Value]::
 
 This example utilizes link:/docs/price/variable-market-value/[Variable Market Value] price model to calculate the value of energy production of Solar power system.
-
-
-xref:high-low-sec-accounting.adoc[High-Low Security Accounting]::
-
-This example shows how to split accounting data between high and low security setups, and still be able to do combined reporting based on all accounting data.
 
 
 xref:trimix-filling-station.adoc[Trimix Filling Station]::

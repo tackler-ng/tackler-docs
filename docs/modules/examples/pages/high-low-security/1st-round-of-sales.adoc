@@ -1,0 +1,23 @@
+= First Round of Sales
+
+Tackler supports storing a single transaction into xref:journal:index.adoc#journal-files[single files], and it also has support for xref:journal:sharding.adoc[journal data sharding]. Both of these features are utilized so that there won't be merge conflicts when these journals are merged.
+
+Each transaction is stored its own file, and directory structure inside all journals (HQ, Store A and Store B) is constructed so that there won't be merge conflicts when these unrelated data streams are merged into HQ journal.
+
+Each transaction has an UUID and transactions are also tagged based on the store.
+
+== Sales events at Stores
+
+First two sales transactions are these:
+
+[source, text]
+.Sales event at store A
+----
+include::partial$high-low-security/setup/store-a/sales-001.txn[]
+----
+
+[source, text]
+.Sales event at store B
+----
+include::partial$high-low-security/setup/store-b/sales-001.txn[]
+----

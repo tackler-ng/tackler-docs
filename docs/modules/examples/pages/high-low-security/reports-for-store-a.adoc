@@ -13,35 +13,35 @@ It's also possible to select single commit as a starting point, as is done with 
 [source, bash]
 .Run Store A specific reports at HQ
 ----
-include::partial$high-low-sec-accounting/hq/filter.sh[]
+include::partial$high-low-security/setup/hq/filter.sh[]
 ----
 
 [source, text]
 .Register report for Store A at HQ
 ----
-include::partial$high-low-sec-accounting/reports/hq-filter.reg.txt[]
+include::partial$high-low-security/reports/hq-filter.reg.txt[]
 ----
 
-[[foo]]
+[[reports-by-store-a]]
 == Reports by Store A
 
 Let's see how these same reports looks like at Store A's own accounting department.
 
 The Store A uses local plain filesystem as primary source for reporting, but for this case, the journal is switched to the git backend.
 
-Also the report is fixed to the same commit which has been synchronized with HQ. This makes it possible to compare same journal data, even when Store A would have new sales in their local journal, which haven't been yet synchronized with HQ.
+Also the journal state is fixed to the same commit which has been synchronized with HQ. This makes it possible to use same journal data and compare reports, even when Store A would have new sales in their local journal, which haven't been yet synchronized with HQ.
 
 [[journal-by-ref]]
 [source, bash]
-.Run reports at Store A
+.Run reports at Store A with fixed journal state by commit id
 ----
-include::partial$high-low-sec-accounting/store-a/report.sh[]
+include::partial$high-low-security/setup/store-a/report.sh[]
 ----
 
 [source, text]
-.Store A's own Register report as seen in a point in time (by commit id)
+.Store A's own Register report with fixed journal state by commit id
 ----
-include::partial$high-low-sec-accounting/reports/store-a.reg.txt[]
+include::partial$high-low-security/reports/store-a.reg.txt[]
 ----
 
 == Verifying the results

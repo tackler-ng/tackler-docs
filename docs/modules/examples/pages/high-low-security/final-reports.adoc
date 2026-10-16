@@ -7,7 +7,7 @@ Time to report numbers for holiday sales push
 [source, bash]
 .Update sales data from stores to HQ
 ----
-include::partial$high-low-sec-accounting/hq/update.sh[]
+include::partial$high-low-security/setup/hq/update.sh[]
 ----
 
 == Run Reports
@@ -15,7 +15,7 @@ include::partial$high-low-sec-accounting/hq/update.sh[]
 [source, bash]
 .Run combined sales reports at HQ
 ----
-include::partial$high-low-sec-accounting/hq/report.sh[]
+include::partial$high-low-security/setup/hq/report.sh[]
 ----
 
 === Balance Report
@@ -23,14 +23,14 @@ include::partial$high-low-sec-accounting/hq/report.sh[]
 [source, text]
 .Combined balance report for Store-A and Store-B at HQ
 ----
-include::partial$high-low-sec-accounting/reports/hq-final.bal.txt[]
+include::partial$high-low-security/reports/hq-final.bal.txt[]
 ----
 
 === Register Report
 [source, text]
 .Combined register report for Store-A and Store-B at HQ
 ----
-include::partial$high-low-sec-accounting/reports/hq-final.reg.txt[]
+include::partial$high-low-security/reports/hq-final.reg.txt[]
 ----
 
 
@@ -43,7 +43,7 @@ Let's collect all transaction UUIDs and then calculate manually what is the tran
 [source, bash]
 .Verify manually Txn Set Checksum based on collected UUIDs
 ----
-include::partial$high-low-sec-accounting/hq/checksum-03.sh[]
+include::partial$high-low-security/setup/hq/checksum-03.sh[]
 ----
 
 The result is same as reported Txn Set Checksum in reports.

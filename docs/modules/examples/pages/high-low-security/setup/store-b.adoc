@@ -5,5 +5,5 @@ Store B is used just as an example of transaction producer, see xref:./store-a.a
 [source, bash]
 .Git repository setup for Store B
 ----
-include::partial$high-low-sec-accounting/store-b/init.sh[]
+include::partial$high-low-security/setup/store-b/init.sh[]
 ----

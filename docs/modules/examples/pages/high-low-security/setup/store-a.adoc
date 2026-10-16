@@ -6,7 +6,7 @@
 [source, bash]
 .Standard initialization of Store A's git repository setup
 ----
-include::partial$high-low-sec-accounting/store-a/init.sh[]
+include::partial$high-low-security/setup/store-a/init.sh[]
 ----
 
 == Reporting Configuration
@@ -29,7 +29,7 @@ xref:auditing:index.adoc[Audit mode] is also activated, which means that tackler
 [source, toml]
 .This is file: store-a/conf/store-a-conf.toml
 ----
-include::partial$high-low-sec-accounting/store-a/conf/store-a-conf.toml[]
+include::partial$high-low-security/setup/store-a/conf/store-a-conf.toml[]
 ----
 
 === Account definitions
@@ -39,7 +39,7 @@ The Chart of Accounts contains only local accounts for Store A.
 [source, toml]
 .This is file: store-a/conf/store-a-accounts.toml
 ----
-include::partial$high-low-sec-accounting/store-a/conf/store-a-accounts.toml[]
+include::partial$high-low-security/setup/store-a/conf/store-a-accounts.toml[]
 ----
 
 === Tag definitions
@@ -49,7 +49,7 @@ Same here, Chart of contains only local tags used at Store A.
 [source, toml]
 .This is file: store-a/conf/store-a-tags.toml
 ----
-include::partial$high-low-sec-accounting/store-a/conf/store-a-tags.toml[]
+include::partial$high-low-security/setup/store-a/conf/store-a-tags.toml[]
 ----
 
 
@@ -58,5 +58,5 @@ include::partial$high-low-sec-accounting/store-a/conf/store-a-tags.toml[]
 [source, toml]
 .This is file: store-a/conf/store-a-commodities.toml
 ----
-include::partial$high-low-sec-accounting/store-a/conf/store-a-commodities.toml[]
+include::partial$high-low-security/setup/store-a/conf/store-a-commodities.toml[]
 ----

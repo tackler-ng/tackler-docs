@@ -20,7 +20,7 @@ See xref:journal:git-storage/primer.adoc[] how to initialize and take in use git
 
 [NOTE]
 ====
-See xref:examples:high-low-sec-accounting.adoc[] for example of advanced use cases of Git based journal storage.
+See xref:examples:high-low-security.adoc[] for example of advanced use cases of Git based journal storage.
 ====
 
 There are several advantages to use git as storage system for account data.
