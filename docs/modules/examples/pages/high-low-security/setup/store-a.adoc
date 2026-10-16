@@ -1,0 +1,62 @@
+= Acme Inc. Store A
+
+== Journal Configuration
+
+=== Git Repository
+[source, bash]
+.Standard initialization of Store A's git repository setup
+----
+include::partial$high-low-security/setup/store-a/init.sh[]
+----
+
+== Reporting Configuration
+
+This is reporting configuration used locally at Store A.
+
+include::reference:partial$config.adoc[]
+
+=== Tackler configuration
+
+Store A's journal is just plain journal with optional xref:journal:git-storage.adoc[Git backend] support.
+
+The journal setup is configured so that it's possible to switch between working copy journal (plain filesystem) and Git backend with `--input.storage "fs"` xref:reference:command-line.adoc#input-storage[command line argument].
+
+Strict mode is activated, so that all accounts, commodities and tags must be defined. This prevents unknown accounting data to be used by Store A.
+
+xref:auditing:index.adoc[Audit mode] is also activated, which means that tackler calculates checksums of used journal data.
+
+
+[source, toml]
+.This is file: store-a/conf/store-a-conf.toml
+----
+include::partial$high-low-security/setup/store-a/conf/store-a-conf.toml[]
+----
+
+=== Account definitions
+
+The Chart of Accounts contains only local accounts for Store A.
+
+[source, toml]
+.This is file: store-a/conf/store-a-accounts.toml
+----
+include::partial$high-low-security/setup/store-a/conf/store-a-accounts.toml[]
+----
+
+=== Tag definitions
+
+Same here, Chart of contains only local tags used at Store A.
+
+[source, toml]
+.This is file: store-a/conf/store-a-tags.toml
+----
+include::partial$high-low-security/setup/store-a/conf/store-a-tags.toml[]
+----
+
+
+=== Commodities
+
+[source, toml]
+.This is file: store-a/conf/store-a-commodities.toml
+----
+include::partial$high-low-security/setup/store-a/conf/store-a-commodities.toml[]
+----

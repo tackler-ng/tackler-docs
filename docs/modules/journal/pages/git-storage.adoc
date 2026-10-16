@@ -18,6 +18,11 @@ See xref:journal:git-storage/primer.adoc[] how to initialize and take in use git
 
 == Why to use Git as journal storage?
 
+[NOTE]
+====
+See xref:examples:high-low-security.adoc[] for example of advanced use cases of Git based journal storage.
+====
+
 There are several advantages to use git as storage system for account data.
 Git itself is very good distributed SCM, and it has many
 important features for Tackler and accounting in general:

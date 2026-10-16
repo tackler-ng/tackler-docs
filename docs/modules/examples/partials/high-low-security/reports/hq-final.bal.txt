@@ -1,0 +1,32 @@
+Git Storage
+      reference : main
+      directory : txns
+      extension : txn
+         commit : 349a6e249add308363ab8a421e6368fbda229611
+         author : ACME HQ <hq@acme>
+           date : 2024-12-20 16:00:00 +0000
+        subject : hq: merge store B
+
+Txn Set Checksum
+        SHA-256 : 940cb81d9f3b728a51d21251b891f62798c081d25e70a838aeb53c8199d33d3e
+       set size : 5
+
+Account Selector Checksum
+        SHA-256 : 7d18093d24860c5ccf354bd72b67cbb29ff753d83384367cb86cceade07f1d6b
+      selectors : 'Assets(:.*)?'
+                | 'Warehouse(:.*)?'
+
+
+HQ: Balance Report
+------------------
+                 0.00          -5.00 Unit  Warehouse
+                -2.00          -2.00 Unit  Warehouse:Store-A
+                -3.00          -3.00 Unit  Warehouse:Store-B
+                 0.00         615.00 €     Assets
+                 0.00         246.00 €     Assets:Store-A
+               246.00         246.00 €     Assets:Store-A:Cashier
+                 0.00         369.00 €     Assets:Store-B
+               369.00         369.00 €     Assets:Store-B:Cashier
+==========================
+                -5.00 Unit
+               615.00 €

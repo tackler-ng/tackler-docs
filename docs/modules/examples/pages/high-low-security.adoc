@@ -1,0 +1,52 @@
+= High-Low Security Accounting
+:page-date: 2026-10-04 00:00:00 Z
+:page-last_modified_at: 2026-10-17 00:00:00 Z
+
+
+image::high-low-setup.png[]
+
+== Intro
+
+High-Low Security setups are systems where the system is partitioned into multiple different security zones. Typically, data transfer, visibility and availability is restricted between these zones.  For example, data can flow from lower environments to the High Security Zone, but not vice versa.
+
+Traditional Plaintext Accounting example would be a setup where groceries are recorded and processed with mobile phone, but whole financial data, including medical bills and investment portfolio information is processed in more secure computer setup.  If the phone gets mugged and thugs manage to open it, they are only wiser about your spending habits about ice cream and candies.
+
+This example shows how this kind of High-Low Security Accounting setup can be defined and how data synchronization could be implemented with PTA tool. The example is tackler specific, but the core concept of it can be adapted to other PTA tools.
+
+
+== Demonstrated Concepts
+
+This example demonstrates many advanced concepts of tackler, and it's also utilizing advanced features of Git Storage backend.  Some of these are:
+
+
+* Many features of xref:journal:git-storage.adoc[Git Storage] based journals, including automatic data synchronization between High and Low zones, and point-in-time snapshots of journal
+* xref:auditing:index.adoc[] and validating used journal data
+* xref:usage:txn-filters.adoc[Filtering] journal based on transaction tags
+
+== High-Low Security Example
+
+The example tells story of major holiday sales push by Acme Inc., how accounting information flows from two stores to the headquarters, and what kind of data assurance and reporting options there are available.
+
+[NOTE]
+====
+If you would like to jump directly to the crux of this High-Low Security Accounting setup, see the xref:high-low-security/setup/headquarters.adoc[configuration of Acme Inc. Headquarters].
+====
+
+xref:high-low-security/1st-round-of-sales.adoc[]::
+Describes used transaction data, and adds first few sales transactions.
+
+xref:high-low-security/1st-reports.adoc[]::
+Shows how the journals are synchronized and inital reporting done at HQ.
+
+xref:high-low-security/2nd-round-of-sales.adoc[]::
+Shows how journals can evolve independently over the time, and it adds more sales transactions.
+
+xref:high-low-security/final-reports.adoc[]::
+Demonstrates resynchronization of the journal, and it shows how used journal data can be verified.
+
+xref:high-low-security/reports-for-store-a.adoc[]::
+Shows how store specific reporting can be done at HQ level, and it also shows how specific journal version can be used for auditing and reporting.
+
+== About this Example
+
+Actual configuration and explanations of the setup, and scripts to run this example are documented under xref:high-low-security/setup.adoc[] section. It also contains information how you can run it by yourself.

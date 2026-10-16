@@ -1,0 +1,25 @@
+= Setup
+:page-date: 2026-10-04 00:00:00 Z
+:page-last_modified_at: 2026-10-04 00:00:00 Z
+
+
+Actual configuration files used in this demo are located under this section.
+
+include::partial$high-low-example.adoc[]
+
+
+== Acme Inc. Accounting Configuration
+
+The setups for HQ, Store A and B are here:
+
+xref:examples:high-low-security/setup/headquarters.adoc[]::
+
+HQ's configuration contains journal synchronization settings, and reporting setup.  This is the most interesting one.
+
+xref:examples:high-low-security/setup/store-a.adoc[]::
+
+Store A's configuration contains journal initialization and reporting setup for the local store.
+
+xref:examples:high-low-security/setup/store-b.adoc[]::
+
+Store B's configuration contains just journal initialization.

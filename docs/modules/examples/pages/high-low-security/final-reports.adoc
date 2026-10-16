@@ -1,0 +1,55 @@
+= Final Reports at HQ
+
+Time to report numbers for holiday sales push
+
+== Synchronize Journals from Stores
+
+[source, bash]
+.Update sales data from stores to HQ
+----
+include::partial$high-low-security/setup/hq/update.sh[]
+----
+
+== Run Reports
+
+[source, bash]
+.Run combined sales reports at HQ
+----
+include::partial$high-low-security/setup/hq/report.sh[]
+----
+
+=== Balance Report
+
+[source, text]
+.Combined balance report for Store-A and Store-B at HQ
+----
+include::partial$high-low-security/reports/hq-final.bal.txt[]
+----
+
+=== Register Report
+[source, text]
+.Combined register report for Store-A and Store-B at HQ
+----
+include::partial$high-low-security/reports/hq-final.reg.txt[]
+----
+
+
+== How to verify the Journal at HQ?
+
+How do we know that this setup is working as intended, and that HQ really has all correct transactions from Stores? This is tricky question, especially when it's not feasible to audit (read) the full journal.
+
+Let's collect all transaction UUIDs and then calculate manually what is the transaction set checksum.  In this example it's done fully manually, but there is a contrib script to calculate it in tackler's repository: {url-repo-tackler}/blob/main/contrib/txn-set-checksum.sh[txn-set-checksum.sh]
+
+[source, bash]
+.Verify manually Txn Set Checksum based on collected UUIDs
+----
+include::partial$high-low-security/setup/hq/checksum-03.sh[]
+----
+
+The result is same as reported Txn Set Checksum in reports.
+
+[source,bash]
+.Manually calculated Txn Set Checksum (SHA-256)
+----
+940cb81d9f3b728a51d21251b891f62798c081d25e70a838aeb53c8199d33d3e
+----

@@ -1,0 +1,34 @@
+= First Reports at HQ
+
+Busy day at Accounting department of Acme Inc Headquarters
+
+== Synchronize Journals from Stores
+
+[source, bash]
+.Update sales data from stores
+----
+include::partial$high-low-security/setup/hq/update.sh[]
+----
+
+== Run Reports
+
+[source, bash]
+.Run combined sales report at HQ
+----
+include::partial$high-low-security/setup/hq/report.sh[]
+----
+
+=== Balance Report
+
+[source, text]
+.Combined balance report for Store-A and Store-B at HQ
+----
+include::partial$high-low-security/reports/hq-begin.bal.txt[]
+----
+
+=== Register Report
+[source, text]
+.Combined register report for Store-A and Store-B at HQ
+----
+include::partial$high-low-security/reports/hq-begin.reg.txt[]
+----

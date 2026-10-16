@@ -1,19 +1,21 @@
 = Accounting Auditing
 :page-date: 2019-03-29 00:00:00 Z
-:page-last_modified_at: 2024-12-01 00:00:00 Z
+:page-last_modified_at: 2026-10-16 00:00:00 Z
 
-Tackler has features to support accounting auditing, 
+Tackler has multiple features to support accounting auditing,
 assurance actions and financial audit.
 
 
-For supporting accounting auditing, tackler can provide: 
+Some examples of these are:
 
- * Proof of used accounting data
- * Proof of used set of transactions
+ * Native support for immutable, tamperproof accounting data
+ * Proof of journal state at certain point in time
+ * Proof of used journal data (transaction set)
  * Validation of all used accounts
  * Validation of all used commodities
+ * Validation of all used transaction tags
  * Proof of used reporting parameters
- * Extensive test setup 
+ * Open Source code base and test setup
 
 
 [WARNING]
@@ -25,30 +27,53 @@ the {content-repo}/LICENSE/[License].
 == Tackler's features for Auditing and Assurance actions
 
 
-=== Proof of accounting data
+=== Support for Immutable, Tamperproof Accounting Data
 
-Tackler's Git storage backend provides immutable, cryptographic strong evidence of used data.
-This information is included in reports' metadata.  It is also possible to rerun reports based on old,
-original data, and be assured that same data was used for new calculations that was used originally in the past.
+Tackler's Git storage backend provides immutable, cryptographic strong evidence of journal's data. This information is included in reports' metadata.  It is possible to rerun reports based on old, original journal data, and be assured that same journal data was used for new reports than what was used originally in the past.
 
-See xref:journal:git-storage.adoc[Git Storage] and xref:#examples[examples] section for further details.
+See xref:journal:git-storage.adoc[Git Storage] documentation, and xref:examples:high-low-security/reports-for-store-a.adoc#reports-by-store-a[High-Low Security Accounting] example for further details.
 
 
-=== Proof of used set of transactions
+=== Proof of Journal State
 
-Tackler can provided checksum of transaction set used in accounting calculations.
-This can be used as an evidence and assurance that all wanted transactions
-are included into calculations. This txn set checksum can be easily
-calculated without Tackler.
+The state of journal is included into each report when xref:journal:git-storage.adoc[git storage] is used. This is cryptographically strong, immutable description of the state of journal at certain point of time.  This makes it possible to process the exactly same journal data in the future.
 
-Information provided by Git storage backend and Txn Set Checksum combined together creates
+[source, text]
+.Example of journal metadata section
+----
+Git Storage
+      reference : main
+      directory : txns
+      extension : txn
+         commit : e366a07a09d39a306d6beb1e86de5729ac9acc1d
+         author : ACME HQ <hq@acme>
+           date : 2024-12-17 16:00:00 +0000
+        subject : hq: merge store B
+----
+
+
+=== Proof of Used Journal Data
+
+Tackler can provided proof of used journal data with reports.  This proof is cryptographically strong checksum of transaction set used with reports.
+
+This transaction set checksum can be used as an evidence and assurance that all intended transactions are included into calculations, and it's possible to easily re-calculate this checksum without Tackler by external system.
+
+Combined information provided by Git storage backend and Txn Set Checksum creates
 immutable and persistent evidence of used accounting data in calculations.
 
-Tackler contrib has an example script {url-repo-tackler}/blob/main/docs/devel/txn-set-checksum.sh[txn-set-checksum.sh]
+Transaction Set Checksums are reported when xref:reference:tackler-toml.adoc#kernel-audit[audit mode] is activated.
+
+[source,text]
+.Example of Transaction Set Checksum metadata section
+----
+Txn Set Checksum
+        SHA-256 : 940cb81d9f3b728a51d21251b891f62798c081d25e70a838aeb53c8199d33d3e
+       set size : 5
+----
+
+Tackler's contrib directory has an example script {url-repo-tackler}/blob/main/contrib/txn-set-checksum.sh[txn-set-checksum.sh]
 to demonstrate how to externally calculate Txn Set Checksum.
 
-See xref:#examples[examples] section and {url-repo-tackler}/blob/main/docs/tep/tep-1007.adoc[TEP-1007: Txn Set Checksum]
-for more infromation.
 
 == Correctness of Accounting Data
 
@@ -62,56 +87,75 @@ You can enable strict mode with the template journal.
 
 include::reference:partial$tacker-new.adoc[]
 
-=== Validation of accounts
+=== Validation of Accounts
 
 If accounting system allows usage of undefined accounts and doesn't enforce account name validation, it is possible to
-loose or leak value into unknown, not tracked accounts, even when transactions still balance internally perfectly.
+lose or leak value into unknown, not tracked accounts, even when transactions still balance internally perfectly.
+
+By enabling strict account validation, the Chart of Accounts is well-defined, and accounting data can't be lost due typos.
 
 See xref:reference:accounts-toml.adoc[accounts.toml] for further info.
 
 
-=== Validation of commodities
+=== Validation of Commodities
 
-In addition to strict mode for accounts, tackler supports strict mode for commodities.  In fact, if strict mode for
-accounts is activated, then it is also activated for commodities at the same time.
+In addition to strict mode for accounts, tackler supports strict mode for commodities.  When strict mode  is activated, then also commodities are checked with defined Chart of Commodities.
 
 When strict mode is activated, it is possible to set configuration option that allows empty commodities
-(e.g. value posts without unit or commodity).
+(e.g. value posts without unit or commodity), or this can be disallowed, if all transactions must have a commodity.
 
 See xref:reference:commodities-toml.adoc[commodities.toml] for further info.
 
+=== Validation of Tags
 
-=== Proof of used reporting parameters
+When strict mode  is activated, then also transaction tags are checked with defined Chart of Tags.
 
-Accounting reports generated by Tackler include account selector checksum, when Txn Set Checksum is activated.
+See xref:reference:tags-toml.adoc[tags.toml] for further info.
 
-Account Selector checksum is checksum of conditions which is used to determine which accounts will be included
-into reports and calculations. Account Selector Checksum is easier and more straight forward to audit
-than verbatim listing of long and potentially complex accounts selector definition.
+=== Proof of Reporting Parameters
 
-See xref:#examples[examples] section and 
-{url-repo-tackler}/blob/main/docs/tep/tep-1007.adoc[TEP-1007: Txn Set Checksum]
-for further info.
+==== Account Selector Checksums
+
+Account Selector Checksum is cryptographic proof of used rules which are used to select which accounts will be used for reports.  Account Selector Checksum makes it easy to compare two potentially complex Account Selectors and see immediately if they are same.
+
+Account Selector Checksums are reported when xref:reference:tackler-toml.adoc#kernel-audit[audit mode] is activated.
+
+[source, text]
+.Example of Account Selector metadata section
+----
+Account Selector Checksum
+        SHA-256 : 7d18093d24860c5ccf354bd72b67cbb29ff753d83384367cb86cceade07f1d6b
+      selectors : 'Assets(:.*)?'
+                | 'Warehouse(:.*)?'
+----
+
+==== Transaction Filters
+
+Description of xref:usage:txn-filters.adoc[transaction filters] is included into reports when a filter was used to select only part of transactions to be used for reporting.
+
+[source, text]
+.Example of Transaction Filter metadata section
+----
+Filter
+  Txn Tags: "store-a"
+----
 
 
-=== Tackler's test setup
+== Open Source Code Base and Test Setup
 
 Tackler and it's test setup are open source, so it's possible to do external audit of code base, tests or both.
 
-Tackler's code base is tested extensively. Testing includes unit and logical testing to validate tacklers features. 
-Tackler is also tested with large transaction sets (up to one million  transactions) to detect any anomalies 
-with larger data sets.  Tackler's unit tests includes test cases up to one hundred thousand transactions.
+Tackler's code base is tested extensively. Testing includes unit and logical testing to validate tacklers features.  The logical test coverage of features is tracked by {url-repo-tackler-t3db}[Tackler Test Tracking Database (T3DB)].
 
-For further info, see:
+Tackler is also tested with very large transaction sets (up to one million transactions) to detect any anomalies with larger data sets.
 
- * xref:ROOT:features/reliability.adoc[Reliability]
- * xref:ROOT:features/performance.adoc[Overview of Performance testing]
+For further info, see xref:ROOT:features/reliability.adoc[Reliability] and xref:ROOT:features/performance.adoc[] documentation.
 
 
 == Examples of reports with audit metadata
 [[examples]]
 
-Below are links to test reports with audit metadata:
+Below are links to reports with audit metadata. These reports are part of the tackler's test system.
 
 * {content-repo}/suite/audit/ok/audit-1E2-04.ref.bal.txt/[Balance report with audit metadata]
 * {content-repo}/suite/audit/ok/audit-1E2-04.ref.balgrp.txt/[Balance Group report with audit metadata]

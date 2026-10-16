@@ -1,0 +1,9 @@
+= Acme Inc. Store B
+
+Store B is used just as an example of transaction producer, see xref:./store-a.adoc[Store A setup] for store specific reporting settings etc.
+
+[source, bash]
+.Git repository setup for Store B
+----
+include::partial$high-low-security/setup/store-b/init.sh[]
+----
